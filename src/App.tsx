@@ -3,16 +3,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import LoginPage from "./app/layout/pages/LoginPage";
-import DashboardPage from "./app/layout/pages/DashboardPage";
-import ProfilePage from "./app/layout/pages/ProfilePage";
-import ProfileSettingsPage from "./app/layout/pages/ProfileSettingsPage";
-import GroupListPage from "./app/layout/pages/GroupListPage";
-import GroupPage from "./app/layout/pages/GroupPage";
-import TopicListPage from "./app/layout/pages/TopicListPage";
-import TopicPage from "./app/layout/pages/TopicPage";
-import ThreadPage from "./app/layout/pages/ThreadPage";
-import SearchPage from "./app/layout/pages/SearchPage";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import ProfilePage from "./pages/ProfilePage";
+import ProfileSettingsPage from "./pages/ProfileSettingsPage";
+import GroupListPage from "./pages/GroupListPage";
+import GroupPage from "./pages/GroupPage";
+import TopicListPage from "./pages/TopicListPage";
+import TopicPage from "./pages/TopicPage";
+import ThreadPage from "./pages/ThreadPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [count, setCount] = useState(0);
