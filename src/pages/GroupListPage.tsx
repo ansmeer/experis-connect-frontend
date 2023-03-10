@@ -1,10 +1,10 @@
 import React from "react";
-import GroupListForm from "../components/Group/GroupListForm";
+import GroupList from "../components/GroupList/GroupList";
 
 function GroupListPage() {
   return (
     <>
-      <GroupListForm />
+      <GroupList />
     </>
   );
 }

@@ -1,9 +1,9 @@
-import LoginForm from "../components/Login/LoginForm";
+import Login from "../components/Login/Login";
 
 function LoginPage() {
   return (
     <>
-      <LoginForm />
+      <Login />
     </>
   );
 }

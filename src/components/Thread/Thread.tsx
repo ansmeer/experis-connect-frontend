@@ -1,13 +1,13 @@
 import React from "react";
 
-function SearchForm() {
+function Thread() {
   return (
     <>
       <div>
-        <h1>Search Page</h1>
+        <h1>Thread Page</h1>
       </div>
     </>
   );
 }
 
-export default SearchForm;
+export default Thread;

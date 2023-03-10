@@ -1,13 +1,13 @@
 import React from "react";
 
-function GroupForm() {
+function SearchResult() {
   return (
     <>
       <div>
-        <h1>Group Page</h1>
+        <h1>Search Page</h1>
       </div>
     </>
   );
 }
 
-export default GroupForm;
+export default SearchResult;

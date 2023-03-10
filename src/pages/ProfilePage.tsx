@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../components/Profile/ProfileForm";
+import Profile from "../components/Profile/Profile";
 
 function ProfilePage() {
   return (

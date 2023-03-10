@@ -1,6 +1,6 @@
 import React from "react";
 
-function GroupListForm() {
+function GroupList() {
   return (
     <>
       <div>
@@ -10,4 +10,4 @@ function GroupListForm() {
   );
 }
 
-export default GroupListForm;
+export default GroupList;

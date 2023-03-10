@@ -1,13 +1,13 @@
 import React from "react";
 
-function ThreadForm() {
+function Login() {
   return (
     <>
       <div>
-        <h1>Thread Page</h1>
+        <h1>Login Page</h1>
       </div>
     </>
   );
 }
 
-export default ThreadForm;
+export default Login;

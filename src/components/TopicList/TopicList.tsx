@@ -1,6 +1,6 @@
 import React from "react";
 
-function TopicListForm() {
+function TopicList() {
   return (
     <>
       <div>
@@ -10,4 +10,4 @@ function TopicListForm() {
   );
 }
 
-export default TopicListForm;
+export default TopicList;

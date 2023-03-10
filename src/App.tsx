@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import reactLogo from "./assets/react.svg";
 import "./App.css";
@@ -12,13 +12,12 @@ import GroupPage from "./pages/GroupPage";
 import TopicListPage from "./pages/TopicListPage";
 import TopicPage from "./pages/TopicPage";
 import ThreadPage from "./pages/ThreadPage";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/SearchResultPage";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -33,7 +32,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
-    
+
     /*
     <div className="App">
 

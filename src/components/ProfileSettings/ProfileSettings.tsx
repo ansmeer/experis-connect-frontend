@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProfileSettingsForm() {
+function ProfileSettings() {
   return (
     <>
       <div>
@@ -10,4 +10,4 @@ function ProfileSettingsForm() {
   );
 }
 
-export default ProfileSettingsForm;
+export default ProfileSettings;

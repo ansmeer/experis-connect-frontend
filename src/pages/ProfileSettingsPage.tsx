@@ -1,10 +1,10 @@
 import React from "react";
-import ProfileSettingsForm from "../components/Profile/ProfileSettingsForm";
+import ProfileSettings from "../components/ProfileSettings/ProfileSettings";
 
 function ProfileSettingsPage() {
   return (
     <>
-      <ProfileSettingsForm />
+      <ProfileSettings />
     </>
   );
 }

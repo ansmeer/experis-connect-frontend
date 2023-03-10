@@ -1,10 +1,10 @@
 import React from "react";
-import GroupForm from "../components/Group/GroupForm";
+import Group from "../components/Group/Group";
 
 function GroupPage() {
   return (
     <>
-      <GroupForm />
+      <Group />
     </>
   );
 }

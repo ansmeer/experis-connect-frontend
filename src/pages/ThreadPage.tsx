@@ -1,10 +1,10 @@
 import React from "react";
-import ThreadForm from "../components/Thread/ThreadForm";
+import Thread from "../components/Thread/Thread";
 
 function ThreadPage() {
   return (
     <>
-      <ThreadForm />
+      <Thread />
     </>
   );
 }

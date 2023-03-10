@@ -1,10 +1,10 @@
 import React from "react";
-import TopicListForm from "../components/Topics/TopicListForm";
+import TopicList from "../components/TopicList/TopicList";
 
 function TopicListPage() {
   return (
     <>
-      <TopicListForm />
+      <TopicList />
     </>
   );
 }

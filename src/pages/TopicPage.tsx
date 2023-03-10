@@ -1,10 +1,10 @@
 import React from "react";
-import TopicForm from "../components/Topics/TopicForm";
+import Topic from "../components/Topic/Topic";
 
 function TopicPage() {
   return (
     <>
-      <TopicForm />
+      <Topic />
     </>
   );
 }
