@@ -1,7 +1,16 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-function Layout() {
-  return <div>Layout</div>;
+type Props = {
+  children: ReactNode;
+};
+
+function Layout({ children }: Props) {
+  return (
+    <>
+      <div>Layout</div>
+      {children}
+    </>
+  );
 }
 
 export default Layout;

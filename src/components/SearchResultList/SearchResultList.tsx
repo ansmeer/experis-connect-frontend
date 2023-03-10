@@ -1,7 +1,13 @@
 import React from "react";
+import Post from "../Post/Post";
 
 function SearchResultList() {
-  return <div>SearchResultList</div>;
+  return (
+    <>
+      <div>SearchResultList</div>
+      <Post />
+    </>
+  );
 }
 
 export default SearchResultList;
