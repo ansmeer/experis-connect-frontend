@@ -16,11 +16,13 @@ import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./consts/roles";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const queryClient = new QueryClient();
 
   return (
+    <QueryClientProvider client={queryClient}>
     <Layout>
       <Header />
       <BrowserRouter>
@@ -100,7 +102,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </Layout>
+    </QueryClientProvider>
   );
 }
 
