@@ -23,84 +23,85 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <Layout>
-      <Header />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <DashboardPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <ProfilePage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/profile/settings"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <ProfileSettingsPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/grouplist"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <GroupListPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/groups"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <GroupPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/topiclist"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <TopicListPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/topics"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <TopicPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/thread"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <ThreadPage />
-              </KeycloakRoute>
-            }
-          />
-          <Route
-            path="/search"
-            element={
-              <KeycloakRoute role={ROLES.User} redirectTo="/">
-                <SearchPage />
-              </KeycloakRoute>
-            }
-          />
-        </Routes>
+        <Layout>
+          <Header />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <DashboardPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <ProfilePage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/profile/settings"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <ProfileSettingsPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/grouplist"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <GroupListPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/group"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <GroupPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/topiclist"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <TopicListPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/topic"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <TopicPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/thread"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <ThreadPage />
+                </KeycloakRoute>
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <KeycloakRoute role={ROLES.User}>
+                  <SearchPage />
+                </KeycloakRoute>
+              }
+            />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </QueryClientProvider>
   );
