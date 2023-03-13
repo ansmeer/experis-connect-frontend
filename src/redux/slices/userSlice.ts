@@ -89,7 +89,6 @@ const updateUserFulfilled = (
 
 const defaultRejected = (state: UserState, action: any) => {
   // TODO fix explicit any
-  console.log(action);
   state.error = action.error.message;
 };
 
