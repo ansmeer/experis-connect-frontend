@@ -1,7 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../redux/slices/userSlice";
+import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
 
 function Header() {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.details);
+
+  const onLogoutClick = () => {
+    dispatch(logout());
+    keycloak.logout();
+  };
+
   return (
     <div>
       <header>Icon, Searchbar, +</header>
@@ -18,6 +29,7 @@ function Header() {
           <NavLink to="/topic">Topic</NavLink>&nbsp;
           <NavLink to="/thread">Thread</NavLink>&nbsp;
           <NavLink to="/search">Search</NavLink>
+          <button onClick={onLogoutClick}>Logout</button>
         </>
       )}
     </div>
