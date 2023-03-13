@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import Unlocking from "./components/Unlocking/Unlocking";
 import "./index.css";
 import { initialize } from "./utils/keycloak";
 
@@ -8,7 +9,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-root.render(<div>Waiting for Keycloak</div>);
+root.render(<Unlocking />);
 
 // Initialize Keycloak
 initialize()
