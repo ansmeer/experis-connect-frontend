@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import keycloak from "../utils/keycloak";
 
-type Props = { children: ReactNode; role: string; redirectTo: string };
+type Props = { children: ReactNode; role: string; redirectTo?: string };
 
 function KeycloakRoute({ children, role, redirectTo = "/" }: Props) {
   if (!keycloak.authenticated) {
