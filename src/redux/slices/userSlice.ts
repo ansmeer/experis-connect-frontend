@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  SerializedError,
+} from "@reduxjs/toolkit";
 import { TUser, TUserPut } from "../../types/user";
 import {
   registerCurrentUser,
@@ -9,13 +14,13 @@ import {
 // Initial state
 
 export type UserState = {
-  error: undefined | any; // TODO fix any here, what type is error? string?
+  error: undefined | string;
   isLoggedIn: boolean;
   details: TUser | undefined;
 };
 
 const userInitialState: UserState = {
-  error: null,
+  error: undefined,
   isLoggedIn: false,
   details: undefined,
 };
@@ -40,7 +45,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-const loginUserFulfilled = (state: UserState, action) => {
+const loginUserFulfilled = (state: UserState, action: PayloadAction<TUser>) => {
   state.error = undefined;
   state.isLoggedIn = true;
   state.details = action.payload;
@@ -56,7 +61,10 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-const registerUserFulfilled = (state: UserState, action) => {
+const registerUserFulfilled = (
+  state: UserState,
+  action: PayloadAction<TUser>
+) => {
   loginUserFulfilled(state, action);
 };
 
@@ -70,13 +78,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-const updateUserFulfilled = (state: UserState, action) => {
+const updateUserFulfilled = (
+  state: UserState,
+  action: PayloadAction<TUser>
+) => {
   loginUserFulfilled(state, action);
 };
 
 // Extra reducers: defaults
 
-const defaultRejected = (state: UserState, action) => {
+const defaultRejected = (state: UserState, action: any) => {
+  // TODO fix explicit any
+  console.log(action);
   state.error = action.error.message;
 };
 
