@@ -1,4 +1,4 @@
 export type ApiRequestInfo = {
   uri: string;
-  options: { method: string; headers: object; body?: string };
+  options: { method: string; headers: HeadersInit; body?: string };
 };
