@@ -6,10 +6,14 @@ export type TPost = {
   content: string;
   postTarget: "user" | "group" | "target";
   senderId: string;
-  replyParentId?: number;
-  targetUser?: string;
-  targetGroup?: number;
-  targetTopic?: number;
+  replyParentId: number | null;
+  targetUser: string | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
+};
+
+export type TPostWithReplies = TPost & {
+  replies: TPost[];
 };
 
 export type TPostPost = {
@@ -17,10 +21,10 @@ export type TPostPost = {
   content: string;
   postTarget: "user" | "group" | "target";
   senderId: string;
-  replyParentId?: number;
-  targetUser?: string;
-  targetGroup?: number;
-  targetTopic?: number;
+  replyParentId: number | null;
+  targetUser: string | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
 };
 
 export type TPostPut = {
