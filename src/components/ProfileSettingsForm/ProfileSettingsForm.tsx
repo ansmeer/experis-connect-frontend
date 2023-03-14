@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { TUserPut } from "../../types/user";
+import { TUser, TUserPut } from "../../types/user";
 import styles from "./profileSettings.module.css";
 
-type Props = { handleData: (data: TUserPut) => void };
+type Props = { handleData: (data: TUser) => void };
 
 function ProfileSettingsForm({ handleData }: Props) {
   const values = useSelector((state: RootState) => state.user.details);
@@ -15,7 +15,7 @@ function ProfileSettingsForm({ handleData }: Props) {
     formState: { errors },
   } = useForm({ defaultValues: {}, values });
 
-  const onSubmit = (data: TUserPut) => {
+  const onSubmit = (data: TUser) => {
     handleData(data);
   };
 

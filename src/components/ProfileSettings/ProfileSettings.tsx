@@ -2,12 +2,12 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import ProfileSettingsForm from "../ProfileSettingsForm/ProfileSettingsForm";
 import { updateUser } from "../../redux/slices/userSlice";
-import { TUserPut } from "../../types/user";
+import { TUser } from "../../types/user";
 
 function ProfileSettings() {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleFormData = (data: TUserPut) => {
+  const handleFormData = (data: TUser) => {
     const updatedUserPut = {
       name: data.name,
       bio: data.bio,
