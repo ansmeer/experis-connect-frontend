@@ -1,48 +1,56 @@
 import { ApiRequestInfo } from "../types/api";
 import { TUserPut } from "../types/user";
+import keycloak from "../utils/keycloak";
 
 const userApiUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
 
 export const userApi = {
   get: {
     currentUser: (): ApiRequestInfo => {
+      const token = keycloak.token;
       return {
         uri: new URL(userApiUrl).toString(),
         options: {
           method: "GET",
-          headers: {}, // TODO authentication headers
+          headers: [["Authorization", `Bearer ${token}`]],
         },
       };
     },
     userById: (userId: string): ApiRequestInfo => {
+      const token = keycloak.token;
       return {
         uri: new URL(`${userApiUrl}/${userId}`).toString(),
         options: {
           method: "GET",
-          headers: {}, // TODO authentication headers
+          headers: [["Authorization", `Bearer ${token}`]],
         },
       };
     },
   },
   post: {
-    newUser: (userId: string): ApiRequestInfo => {
+    newUser: (): ApiRequestInfo => {
+      const token = keycloak.token;
       return {
         uri: new URL(userApiUrl).toString(),
         options: {
           method: "POST",
-          headers: {}, // TODO authentication headers
-          body: userId,
+          headers: [["Authorization", `Bearer ${token}`]],
         },
       };
     },
   },
   put: {
-    user: (userId: string, userDetails: TUserPut): ApiRequestInfo => {
+    user: (userDetails: TUserPut): ApiRequestInfo => {
+      const userId = keycloak.subject;
+      const token = keycloak.token;
       return {
         uri: new URL(`${userApiUrl}/${userId}`).toString(),
         options: {
           method: "PUT",
-          headers: {}, // TODO authentication headers
+          headers: [
+            ["Authorization", `Bearer ${token}`],
+            ["Content-Type", "application/json"],
+          ],
           body: JSON.stringify(userDetails),
         },
       };
