@@ -23,8 +23,8 @@ function Header() {
           <NavLink to="/dashboard">Dashboard</NavLink>&nbsp;
           <NavLink to="/profile">Profile</NavLink>&nbsp;
           <NavLink to="/profile/settings">Settings</NavLink>&nbsp;
-          <NavLink to="/grouplist">Groups</NavLink>&nbsp;
-          <NavLink to="/group">Group</NavLink>&nbsp;
+          <NavLink to="/groups">Groups</NavLink>&nbsp;
+          <NavLink to="/groups/1">Group</NavLink>&nbsp;
           <NavLink to="/topiclist">Topics</NavLink>&nbsp;
           <NavLink to="/topic">Topic</NavLink>&nbsp;
           <NavLink to="/thread">Thread</NavLink>&nbsp;
