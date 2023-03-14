@@ -4,20 +4,24 @@ import styles from "./groupCard.module.css";
 
 type GroupCardProps = {
   data: TGroup;
+  isMember: boolean;
 };
 
-function GroupCard({ data }: GroupCardProps) {
+function GroupCard({ data, isMember }: GroupCardProps) {
   const navigate = useNavigate();
 
-  const handleCardClick = () => {
+  const handleVisitClick = () => {
     navigate(`/groups/${data.id}`);
   };
 
   return (
-    <div className={styles.groupCard} onClick={handleCardClick} role="button">
+    <div className={styles.groupCard} role="button">
       <div>{data.name}</div>
       <div>Description: {data.description}</div>
       <div>Started: {data.createdAt}</div>
+      <div>{data.isPrivate && "private group"}</div>
+      {isMember && <div>you are a member</div>}
+      <button onClick={handleVisitClick}>Visit group</button>
     </div>
   );
 }
