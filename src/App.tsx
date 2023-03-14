@@ -19,6 +19,7 @@ import { ROLES } from "./consts/roles";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Error404Page from "./pages/Error404Page";
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,7 +41,7 @@ function App() {
                 }
               />
               <Route
-                path="/profile"
+                path="/profile/:id?"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <ProfilePage />
@@ -103,6 +104,7 @@ function App() {
                   </KeycloakRoute>
                 }
               />
+              <Route path="*" element={<Error404Page />} />
             </Routes>
           </Layout>
         </BrowserRouter>
