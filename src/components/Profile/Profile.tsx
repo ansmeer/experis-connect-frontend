@@ -9,7 +9,7 @@ function Profile() {
   const navigate = useNavigate();
   const { id } = useParams(); // TODO id not updated when going from other profile to own profile
   const { data, isLoading } = useQuery({
-    queryFn: async (): Promise<TUser | undefined> => {
+    queryFn: async (): Promise<TUser> => {
       const userRequest = id
         ? userApi.get.userById(id)
         : userApi.get.currentUser();
