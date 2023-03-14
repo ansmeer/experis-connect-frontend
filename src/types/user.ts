@@ -4,7 +4,11 @@ export type TUser = {
   picture: string;
   status: string;
   bio: string;
-  fun_fact: string;
+  funFact: string;
+  updatedAt: string;
+  createdAt: string;
+  groups: number[];
+  topics: number[];
 };
 
 export type TUserPut = {
@@ -12,5 +16,5 @@ export type TUserPut = {
   picture: string;
   status: string;
   bio: string;
-  fun_fact: string;
+  funFact: string;
 };
