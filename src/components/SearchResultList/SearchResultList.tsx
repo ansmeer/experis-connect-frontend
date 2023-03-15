@@ -5,7 +5,6 @@ function SearchResultList() {
   return (
     <>
       <div>SearchResultList</div>
-      <Post />
     </>
   );
 }
