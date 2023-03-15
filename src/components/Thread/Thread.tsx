@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { AppDispatch, RootState } from "../../redux/store";
+import { RootState } from "../../redux/store";
 import { TPostPost, TPostPut } from "../../types/post";
 import Post from "../Post/Post";
 import PostReplyForm from "../PostReplyForm/PostReplyForm";
@@ -30,6 +30,8 @@ function Thread() {
 
     const postRequest = postApi.post.newPost(postToSend);
     await fetch(postRequest.uri, postRequest.options);
+
+    // TODO fix data refresh in all post components
   };
 
   return (
