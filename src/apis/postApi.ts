@@ -147,7 +147,10 @@ export const postApi = {
         uri: new URL(postApiUrl).toString(),
         options: {
           method: "POST",
-          headers: [["Authorization", `Bearer ${token}`]],
+          headers: [
+            ["Authorization", `Bearer ${token}`],
+            ["Content-Type", "application/json"],
+          ],
           body: JSON.stringify(postDetails),
         },
       };
@@ -160,7 +163,10 @@ export const postApi = {
         uri: new URL(`${postApiUrl}/${postId}`).toString(),
         options: {
           method: "PUT",
-          headers: [["Authorization", `Bearer ${token}`]],
+          headers: [
+            ["Authorization", `Bearer ${token}`],
+            ["Content-Type", "application/json"],
+          ],
           body: JSON.stringify(postDetails),
         },
       };
