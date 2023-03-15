@@ -5,7 +5,6 @@ function PostList() {
   return (
     <>
       <div>PostList</div>
-      <Post />
     </>
   );
 }
