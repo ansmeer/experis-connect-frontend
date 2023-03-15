@@ -27,7 +27,7 @@ function Header() {
           <NavLink to="/groups/1">Group</NavLink>&nbsp;
           <NavLink to="/topics">Topics</NavLink>&nbsp;
           <NavLink to="/topics/1">Topic</NavLink>&nbsp;
-          <NavLink to="/thread">Thread</NavLink>&nbsp;
+          <NavLink to="/thread/1">Thread</NavLink>&nbsp;
           <NavLink to="/search">Search</NavLink>
           <button onClick={onLogoutClick}>Logout</button>
         </>

@@ -1,0 +1,23 @@
+.post-wrapper {
+  margin-left: 16px;
+}
+
+.post {
+  margin: 8px;
+  border: 1px solid seagreen;
+  border-radius: 8px;
+}
+
+.post-footer {
+  background: seagreen;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.replies {
+  margin-left: 16px;
+}

@@ -1,10 +1,10 @@
 export type TPost = {
   id: number;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: string;
+  updatedAt: string;
   title: string;
   content: string;
-  postTarget: "user" | "group" | "target";
+  postTarget: "user" | "group" | "topic";
   senderId: string;
   replyParentId: number | null;
   targetUser: string | null;
@@ -13,13 +13,13 @@ export type TPost = {
 };
 
 export type TPostWithReplies = TPost & {
-  replies: TPost[];
+  replies: number[];
 };
 
 export type TPostPost = {
   title: string;
   content: string;
-  postTarget: "user" | "group" | "target";
+  postTarget: "user" | "group" | "topic";
   senderId: string;
   replyParentId: number | null;
   targetUser: string | null;
