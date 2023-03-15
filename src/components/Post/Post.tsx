@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
+import { setReplyToPost } from "../../redux/slices/postSlice";
+import { AppDispatch } from "../../redux/store";
 import { TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
 import styles from "./post.module.css";
@@ -9,10 +12,12 @@ import styles from "./post.module.css";
 type Props = {
   id: number;
   withReplies: boolean;
+  selectPost: boolean;
 };
 
-function Post({ id, withReplies }: Props) {
+function Post({ id, withReplies, selectPost }: Props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const [showReplies, setShowReplies] = useState(withReplies);
   const { data, isLoading, isError } = useQuery<TPostWithReplies>({
     queryKey: ["post", id],
@@ -25,6 +30,7 @@ function Post({ id, withReplies }: Props) {
       return await response.json();
     },
   });
+  const hasReplies = Boolean(data?.replies.length);
 
   const handleHideClick = () => {
     setShowReplies(false);
@@ -32,9 +38,16 @@ function Post({ id, withReplies }: Props) {
   const handleShowClick = () => {
     setShowReplies(true);
   };
-  const handleReplyClick = (id: number) => {
-    console.log("set reply to", id);
+  const handleReplyClick = () => {
+    if (!data) return;
+    dispatch(setReplyToPost(data));
   };
+
+  useEffect(() => {
+    if (selectPost && data) {
+      dispatch(setReplyToPost(data));
+    }
+  }, [selectPost, data]);
 
   if (isLoading) {
     return <Loading />;
@@ -50,13 +63,15 @@ function Post({ id, withReplies }: Props) {
         <div>
           User {data?.senderId} posted on {data?.createdAt}
         </div>
-        <div>{data?.title}</div>
+        <div>
+          {data?.id} - {data?.title}
+        </div>
         <div>{data?.content}</div>
         <div className={styles["post-footer"]}>
           <div>{data?.replies.length} replies</div>
-          <button onClick={() => handleReplyClick(id)}>Reply</button>
-          {showReplies ? (
-            <button onClick={() => handleHideClick()}>Hide replies</button>
+          <button onClick={handleReplyClick}>Reply</button>
+          {showReplies && hasReplies ? (
+            <button onClick={handleHideClick}>Hide replies</button>
           ) : (
             <button onClick={handleShowClick}>Show replies</button>
           )}
@@ -65,7 +80,12 @@ function Post({ id, withReplies }: Props) {
       {showReplies && (
         <div className={styles.replies}>
           {data?.replies.map((reply) => (
-            <Post id={reply} key={reply} withReplies={true} />
+            <Post
+              id={reply}
+              key={reply}
+              withReplies={true}
+              selectPost={false}
+            />
           ))}
         </div>
       )}
