@@ -70,9 +70,10 @@ function Post({ id, withReplies, selectPost }: Props) {
         <div className={styles["post-footer"]}>
           <div>{data?.replies.length} replies</div>
           <button onClick={handleReplyClick}>Reply</button>
-          {showReplies && hasReplies ? (
+          {showReplies && hasReplies && (
             <button onClick={handleHideClick}>Hide replies</button>
-          ) : (
+          )}
+          {!showReplies && hasReplies && (
             <button onClick={handleShowClick}>Show replies</button>
           )}
         </div>
