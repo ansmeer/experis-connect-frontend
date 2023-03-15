@@ -87,7 +87,7 @@ function App() {
                 }
               />
               <Route
-                path="/thread"
+                path="/thread/:id"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <ThreadPage />

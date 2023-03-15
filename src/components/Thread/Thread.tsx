@@ -1,12 +1,20 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 import Post from "../Post/Post";
 import PostReplyForm from "../PostReplyForm/PostReplyForm";
+import styles from "./thread.module.css";
 
 function Thread() {
+  const { id } = useParams();
+
+  if (!id) {
+    return;
+  }
+
   return (
     <div>
-      <h1>Thread Page</h1>
-      <Post />
+      <div className={styles.thread}>
+        <Post id={parseInt(id, 10)} withReplies={true} />
+      </div>
       <PostReplyForm />
     </div>
   );
