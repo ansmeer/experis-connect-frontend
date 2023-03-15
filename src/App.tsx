@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -56,7 +55,7 @@ function App() {
                 }
               />
               <Route
-                path="/grouplist"
+                path="/groups"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <GroupListPage />
@@ -64,7 +63,7 @@ function App() {
                 }
               />
               <Route
-                path="/group"
+                path="/groups/:id"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <GroupPage />

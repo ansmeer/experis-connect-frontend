@@ -4,6 +4,8 @@ export type TGroup = {
   description: string;
   color: string;
   isPrivate: boolean;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type TGroupPost = {
