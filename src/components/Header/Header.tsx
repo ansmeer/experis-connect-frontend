@@ -25,8 +25,8 @@ function Header() {
           <NavLink to="/profile/settings">Settings</NavLink>&nbsp;
           <NavLink to="/groups">Groups</NavLink>&nbsp;
           <NavLink to="/groups/1">Group</NavLink>&nbsp;
-          <NavLink to="/topiclist">Topics</NavLink>&nbsp;
-          <NavLink to="/topic">Topic</NavLink>&nbsp;
+          <NavLink to="/topics">Topics</NavLink>&nbsp;
+          <NavLink to="/topics/1">Topic</NavLink>&nbsp;
           <NavLink to="/thread">Thread</NavLink>&nbsp;
           <NavLink to="/search">Search</NavLink>
           <button onClick={onLogoutClick}>Logout</button>

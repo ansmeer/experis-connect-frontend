@@ -71,7 +71,7 @@ function App() {
                 }
               />
               <Route
-                path="/topiclist"
+                path="/topics"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <TopicListPage />
@@ -79,7 +79,7 @@ function App() {
                 }
               />
               <Route
-                path="/topic"
+                path="/topics/:id"
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <TopicPage />
