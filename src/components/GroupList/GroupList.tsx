@@ -10,6 +10,7 @@ import styles from "./groupList.module.css";
 function GroupList() {
   const user = useSelector((state: RootState) => state.user.details);
   const { data, isLoading, isError } = useQuery({
+    queryKey: "groupList",
     queryFn: async (): Promise<TGroup[]> => {
       const groupRequest = groupApi.get.groups();
       const response = await fetch(groupRequest.uri, groupRequest.options);

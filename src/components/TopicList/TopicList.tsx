@@ -10,6 +10,7 @@ import styles from "./topicList.module.css";
 function TopicList() {
   const user = useSelector((state: RootState) => state.user.details);
   const { data, isLoading, isError } = useQuery({
+    queryKey: "topicList",
     queryFn: async (): Promise<TTopic[]> => {
       const topicRequest = topicApi.get.topics();
       const response = await fetch(topicRequest.uri, topicRequest.options);
