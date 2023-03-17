@@ -1,29 +1,46 @@
-import { useEffect, useState } from "react";
-import { TPost } from "../../types/post";
-import DashboardAll from "../DashboardAll/DashboardAll";
-import DashboardDms from "../DashboardDms/DashboardDms";
-import DashboardGroups from "../DashboardGroups/DashboardGroups";
-import DashboardTopics from "../DashboardTopics/DashboardTopics";
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { postApi } from "../../apis/postApi";
+import { TPostTargetType } from "../../types/post";
 import Explore from "../Explore/Explore";
+import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 
-type TabType = "all" | "groups" | "topics" | "dms";
-
 function Dashboard() {
-  const [selectedTab, setSelectedTab] = useState<TabType>("all");
+  const [selectedTab, setSelectedTab] = useState<TPostTargetType | undefined>(
+    undefined
+  );
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["posts", "from", selectedTab],
+    queryFn: async () => {
+      const postRequest = postApi.get.posts(selectedTab);
+      const response = await fetch(postRequest.uri, postRequest.options);
+      if (!response.ok) return;
+      return await response.json();
+    },
+  });
 
   const handleAllClick = () => {
-    setSelectedTab("all");
+    setSelectedTab(undefined);
   };
   const handleGroupsClick = () => {
-    setSelectedTab("groups");
+    setSelectedTab("group");
   };
   const handleTopicsClick = () => {
-    setSelectedTab("topics");
+    setSelectedTab("topic");
   };
   const handleDmsClick = () => {
-    setSelectedTab("dms");
+    setSelectedTab("user");
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>Could not load feed</div>;
+  }
 
   return (
     <div>
@@ -34,10 +51,9 @@ function Dashboard() {
         <button onClick={handleTopicsClick}>Topics</button>
         <button onClick={handleDmsClick}>DMs</button>
       </div>
-      {selectedTab === "all" && <DashboardAll />}
-      {selectedTab === "groups" && <DashboardGroups />}
-      {selectedTab === "topics" && <DashboardTopics />}
-      {selectedTab === "dms" && <DashboardDms />}
+      {data && <PostList data={data} />}
+      {selectedTab === "group" && <Explore type="groups" />}
+      {selectedTab === "topic" && <Explore type="topics" />}
     </div>
   );
 }
