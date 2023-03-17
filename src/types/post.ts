@@ -5,11 +5,17 @@ export type TPost = {
   title: string;
   content: string;
   postTarget: TPostTargetType;
-  senderId: string;
+  senderId: TPostSender;
   replyParentId: number | null;
   targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
+};
+
+type TPostSender = {
+  id: string;
+  name: string;
+  picture: string;
 };
 
 export type TPostTargetType = "user" | "group" | "topic";

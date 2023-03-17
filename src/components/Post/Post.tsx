@@ -61,7 +61,7 @@ function Post({ id, withReplies, selectPost }: Props) {
     <div className={styles["post-wrapper"]}>
       <div className={styles.post}>
         <div>
-          User {data?.senderId} posted on {data?.createdAt}
+          User {data?.senderId.id} posted on {data?.createdAt}
         </div>
         <div>
           {data?.id} - {data?.title}
