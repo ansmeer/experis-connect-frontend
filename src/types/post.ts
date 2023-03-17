@@ -4,13 +4,15 @@ export type TPost = {
   updatedAt: string;
   title: string;
   content: string;
-  postTarget: "user" | "group" | "topic";
+  postTarget: TPostTargetType;
   senderId: string;
   replyParentId: number | null;
   targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
 };
+
+export type TPostTargetType = "user" | "group" | "topic";
 
 export type TPostWithReplies = TPost & {
   replies: number[];
@@ -19,7 +21,7 @@ export type TPostWithReplies = TPost & {
 export type TPostPost = {
   title: string;
   content: string;
-  postTarget: "user" | "group" | "topic";
+  postTarget: TPostTargetType;
   senderId: string;
   replyParentId: number | null;
   targetUser: string | null;

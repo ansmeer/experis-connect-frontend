@@ -1,5 +1,5 @@
 import { ApiRequestInfo } from "../types/api";
-import { TPostPost, TPostPut } from "../types/post";
+import { TPostPost, TPostPut, TPostTargetType } from "../types/post";
 import keycloak from "../utils/keycloak";
 
 const postApiUrl = `${import.meta.env.VITE_API_BASE_URL}/post`;
@@ -7,10 +7,14 @@ const postApiUrl = `${import.meta.env.VITE_API_BASE_URL}/post`;
 // TODO pagination for all GET requests
 export const postApi = {
   get: {
-    posts: (): ApiRequestInfo => {
+    posts: (target?: TPostTargetType): ApiRequestInfo => {
+      let requestUrl = postApiUrl;
+      if (target) {
+        requestUrl += "?" + new URLSearchParams([["target", target]]);
+      }
       const token = keycloak.token;
       return {
-        uri: new URL(postApiUrl).toString(),
+        uri: new URL(requestUrl).toString(),
         options: {
           method: "GET",
           headers: [["Authorization", `Bearer ${token}`]],
