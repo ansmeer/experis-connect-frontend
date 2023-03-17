@@ -5,7 +5,7 @@ function Topic() {
   return (
     <div>
       <h1>Topic Page</h1>
-      <PostList />
+      {/* <PostList /> */}
     </div>
   );
 }
