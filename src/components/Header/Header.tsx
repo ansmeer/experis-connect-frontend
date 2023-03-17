@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { logout } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
+import SearchForm from "../SearchForm/SearchForm";
 
 function Header() {
   const dispatch = useDispatch();
@@ -15,7 +16,10 @@ function Header() {
 
   return (
     <div>
-      <header>Icon, Searchbar, +</header>
+      <header>
+        <div>Icon</div>
+        <SearchForm />
+      </header>
       {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (
         <>
