@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Error404Page from "./pages/Error404Page";
+import CreatePostPage from "./pages/CreatePostPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -99,6 +100,14 @@ function App() {
                 element={
                   <KeycloakRoute role={ROLES.User}>
                     <SearchPage />
+                  </KeycloakRoute>
+                }
+              />
+              <Route
+                path="/create/post"
+                element={
+                  <KeycloakRoute role={ROLES.User}>
+                    <CreatePostPage />
                   </KeycloakRoute>
                 }
               />

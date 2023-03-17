@@ -16,6 +16,15 @@ export type TPostWithReplies = TPost & {
   replies: number[];
 };
 
+export type TPostFormData = {
+  title: string;
+  content: string;
+  postTarget: "user" | "group" | "topic";
+  targetUser: string | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
+};
+
 export type TPostPost = {
   title: string;
   content: string;

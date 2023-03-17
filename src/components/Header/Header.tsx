@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
@@ -15,7 +15,11 @@ function Header() {
 
   return (
     <div>
-      <header>Icon, Searchbar, +</header>
+      <header>
+        <div>
+          <Link to="/create/post">+</Link>
+        </div>
+      </header>
       {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (
         <>
