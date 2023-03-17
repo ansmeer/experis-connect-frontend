@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
+import SearchForm from "../SearchForm/SearchForm";
 
 function Header() {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ function Header() {
   return (
     <div>
       <header>
+        <div>Icon</div>
+        <SearchForm />
         <div>
           <Link to="/create/post">+</Link>
         </div>
