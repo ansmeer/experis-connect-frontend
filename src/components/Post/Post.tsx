@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { setReplyToPost } from "../../redux/slices/postSlice";
-import { AppDispatch } from "../../redux/store";
+import { AppDispatch, RootState } from "../../redux/store";
 import { TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
 import styles from "./post.module.css";
@@ -18,6 +18,9 @@ type Props = {
 function Post({ id, withReplies, selectPost }: Props) {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const selectedPostId = useSelector(
+    (state: RootState) => state.post.replyToPost?.id
+  );
   const [showReplies, setShowReplies] = useState(withReplies);
   const { data, isLoading, isError } = useQuery<TPostWithReplies>({
     queryKey: ["post", id],
@@ -59,7 +62,10 @@ function Post({ id, withReplies, selectPost }: Props) {
 
   return (
     <div className={styles["post-wrapper"]}>
-      <div className={styles.post}>
+      <div
+        className={
+          selectedPostId === id ? styles["post-highlight"] : styles.post
+        }>
         <div>
           User {data?.senderId} posted on {data?.createdAt}
         </div>

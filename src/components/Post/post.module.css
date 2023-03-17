@@ -2,10 +2,15 @@
   margin-left: 16px;
 }
 
-.post {
+.post,
+.post-highlight {
   margin: 8px;
   border: 1px solid seagreen;
   border-radius: 8px;
+}
+
+.post-highlight {
+  background: #666;
 }
 
 .post-footer {
