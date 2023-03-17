@@ -15,7 +15,10 @@ function Header() {
 
   return (
     <div>
-      <header>Icon, Searchbar, +</header>
+      <header>
+        <div>Icon</div>
+        <SearchForm />
+      </header>
       {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (
         <>
