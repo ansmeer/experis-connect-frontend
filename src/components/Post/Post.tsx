@@ -67,7 +67,7 @@ function Post({ id, withReplies, selectPost }: Props) {
           selectedPostId === id ? styles["post-highlight"] : styles.post
         }>
         <div>
-          User {data?.senderId} posted on {data?.createdAt}
+          User {data?.senderId.id} posted on {data?.createdAt}
         </div>
         <div>
           {data?.id} - {data?.title}
