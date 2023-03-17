@@ -16,6 +16,16 @@ export const groupApi = {
         },
       };
     },
+    userGroups: (): ApiRequestInfo => {
+      const token = keycloak.token;
+      return {
+        uri: new URL(`${groupApiUrl}/user`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
     groupById: (groupId: number): ApiRequestInfo => {
       const token = keycloak.token;
       return {
