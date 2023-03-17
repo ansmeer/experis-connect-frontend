@@ -8,7 +8,7 @@ function PostListItem({ data }: Props) {
   return (
     <div className={styles.post}>
       <div>
-        User {data.senderId} posted on {data.createdAt}
+        User {data.senderId.id} posted on {data.createdAt}
       </div>
       <div>
         {data.id} - {data.title}
