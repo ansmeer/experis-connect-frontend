@@ -16,6 +16,16 @@ export const topicApi = {
         },
       };
     },
+    userTopics: (): ApiRequestInfo => {
+      const token = keycloak.token;
+      return {
+        uri: new URL(`${topicApiUrl}/user`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
     topicById: (topicId: number): ApiRequestInfo => {
       const token = keycloak.token;
       return {

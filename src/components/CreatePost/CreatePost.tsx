@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { RootState } from "../../redux/store";
 import { TPostFormData, TPostPost } from "../../types/post";
@@ -6,6 +7,7 @@ import keycloak from "../../utils/keycloak";
 import CreatePostForm from "../CreatePostForm/CreatePostForm";
 
 function CreatePost() {
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   console.log(keycloak.token);
 
@@ -21,7 +23,9 @@ function CreatePost() {
       replyParentId: null,
     };
     const postRequest = postApi.post.newPost(postToSend);
-    await fetch(postRequest.uri, postRequest.options);
+    const response = await fetch(postRequest.uri, postRequest.options);
+    const postId = await response.json();
+    navigate(`/thread/${postId}`);
   };
 
   return (
