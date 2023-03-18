@@ -7,6 +7,7 @@ import { setReplyToPost } from "../../redux/slices/postSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
+import UserIcon from "../UserIcon/UserIcon";
 import styles from "./post.module.css";
 
 type Props = {
@@ -34,6 +35,8 @@ function Post({ id, withReplies, selectPost }: Props) {
     },
   });
   const hasReplies = Boolean(data?.replies.length);
+  const replyCountText =
+    data?.replies.length === 1 ? "1 reply" : `${data?.replies.length} replies`;
 
   const handleHideClick = () => {
     setShowReplies(false);
@@ -60,33 +63,37 @@ function Post({ id, withReplies, selectPost }: Props) {
     return <div>Could not load post.</div>;
   }
 
+  if (!data) {
+    return <></>;
+  }
+
   return (
     <div className={styles["post-wrapper"]}>
       <div
         className={
           selectedPostId === id ? styles["post-highlight"] : styles.post
         }>
+        <UserIcon user={data.senderId} />
         <div>
-          User {data?.senderId.id} posted on {data?.createdAt}
+          User {data.senderId.id} posted on {data.createdAt}
         </div>
         <div>
-          {data?.id} - {data?.title}
+          {data.id} - {data.title}
         </div>
-        <div>{data?.content}</div>
+        <div>{data.content}</div>
         <div className={styles["post-footer"]}>
-          <div>{data?.replies.length} replies</div>
-          <button onClick={handleReplyClick}>Reply</button>
           {showReplies && hasReplies && (
-            <button onClick={handleHideClick}>Hide replies</button>
+            <button onClick={handleHideClick}>Hide {replyCountText}</button>
           )}
           {!showReplies && hasReplies && (
-            <button onClick={handleShowClick}>Show replies</button>
+            <button onClick={handleShowClick}>Show {replyCountText}</button>
           )}
+          <button onClick={handleReplyClick}>Reply</button>
         </div>
       </div>
       {showReplies && (
         <div className={styles.replies}>
-          {data?.replies.map((reply) => (
+          {data.replies.map((reply) => (
             <Post
               id={reply}
               key={reply}
