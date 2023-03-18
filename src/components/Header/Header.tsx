@@ -4,6 +4,7 @@ import { logout } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
 import SearchForm from "../SearchForm/SearchForm";
+import UserIcon from "../UserIcon/UserIcon";
 
 function Header() {
   const dispatch = useDispatch();
@@ -17,11 +18,14 @@ function Header() {
   return (
     <div>
       <header>
-        <div>Icon</div>
-        <SearchForm />
-        <div>
-          <Link to="/create/post">+</Link>
-        </div>
+        {user && (
+          <>
+            <UserIcon user={user} />
+            <SearchForm />
+            <Link to="/create/post">+</Link>
+          </>
+        )}
+        <div></div>
       </header>
       {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (

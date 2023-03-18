@@ -21,6 +21,8 @@ function Dashboard() {
     },
   });
 
+  const hasData = Boolean(data?.length);
+
   const handleAllClick = () => {
     setSelectedTab(undefined);
   };
@@ -51,7 +53,8 @@ function Dashboard() {
         <button onClick={handleTopicsClick}>Topics</button>
         <button onClick={handleDmsClick}>DMs</button>
       </div>
-      {data && <PostList data={data} />}
+      {!hasData && <div>Oh wow, so empty!</div>}
+      {hasData && <PostList data={data} />}
       {selectedTab === "group" && <Explore type="groups" />}
       {selectedTab === "topic" && <Explore type="topics" />}
     </div>

@@ -21,7 +21,18 @@ import Error404Page from "./pages/Error404Page";
 import CreatePostPage from "./pages/CreatePostPage";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryDefaultOptions = {
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        retry: false,
+        staleTime: 1 * 60 * 1000,
+      },
+    },
+  };
+  const queryClient = new QueryClient(queryDefaultOptions);
 
   return (
     <QueryClientProvider client={queryClient}>
