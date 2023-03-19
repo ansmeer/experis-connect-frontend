@@ -1,13 +1,13 @@
 import { ApiRequestInfo } from "../types/api";
 import { TUserPut } from "../types/user";
-import keycloak from "../utils/keycloak";
+import keycloak, { getKeycloakToken } from "../utils/keycloak";
 
 const userApiUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
 
 export const userApi = {
   get: {
     currentUser: (): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(userApiUrl).toString(),
         options: {
@@ -17,7 +17,7 @@ export const userApi = {
       };
     },
     userById: (userId: string): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${userApiUrl}/${userId}`).toString(),
         options: {
@@ -29,7 +29,7 @@ export const userApi = {
   },
   post: {
     newUser: (): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(userApiUrl).toString(),
         options: {
@@ -42,7 +42,7 @@ export const userApi = {
   put: {
     user: (userDetails: TUserPut): ApiRequestInfo => {
       const userId = keycloak.subject;
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${userApiUrl}/${userId}`).toString(),
         options: {

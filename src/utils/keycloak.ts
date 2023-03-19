@@ -20,5 +20,16 @@ export const initialize = () => {
   return keycloak.init(config);
 };
 
-/** @type { Keycloak } keycloak */
-export default keycloak;
+keycloak.onTokenExpired = () => {
+  keycloak.updateToken(20).catch(() => {
+    window.location.replace("/");
+  });
+};
+
+export const getKeycloakToken = () => {
+  keycloak.updateToken(30);
+  return keycloak.token;
+};
+
+export default /** @type { Keycloak } keycloak */
+keycloak;
