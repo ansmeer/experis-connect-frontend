@@ -26,6 +26,16 @@ export const userApi = {
         },
       };
     },
+    allUsers: (): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(`${userApiUrl}/list`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
   },
   post: {
     newUser: (): ApiRequestInfo => {

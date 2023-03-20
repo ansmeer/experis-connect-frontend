@@ -36,6 +36,16 @@ export const topicApi = {
         },
       };
     },
+    topicMembers: (topicId: number): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(`${topicApiUrl}/${topicId}/user/list`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
   },
   post: {
     newTopic: (topicDetails: TTopicPost): ApiRequestInfo => {
