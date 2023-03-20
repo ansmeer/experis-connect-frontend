@@ -2,9 +2,11 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { groupApi } from "../../apis/groupApi";
 import { topicApi } from "../../apis/topicApi";
+import { userApi } from "../../apis/userApi";
 import { TGroup } from "../../types/group";
 import { TPostFormData } from "../../types/post";
 import { TTopic } from "../../types/topic";
+import { TUserMini } from "../../types/user";
 import styles from "./createPostForm.module.css";
 
 type Props = { handleData: (data: TPostFormData) => void };
@@ -48,6 +50,15 @@ function CreatePostForm({ handleData }: Props) {
     },
   });
 
+  const userQuery = useQuery<TUserMini[]>({
+    queryKey: "user",
+    queryFn: async () => {
+      const userRequest = userApi.get.allUsers();
+      const response = await fetch(userRequest.uri, userRequest.options);
+      return await response.json();
+    },
+  });
+
   const groupOptions = groupsQuery.data?.map((group) => (
     <option key={group.id} value={group.id}>
       {group.name}
@@ -56,6 +67,11 @@ function CreatePostForm({ handleData }: Props) {
   const topicOptions = topicsQuery.data?.map((topic) => (
     <option key={topic.id} value={topic.id}>
       {topic.name}
+    </option>
+  ));
+  const userOptions = userQuery.data?.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
     </option>
   ));
 
@@ -155,7 +171,10 @@ function CreatePostForm({ handleData }: Props) {
           <div className={styles.error} role="alert">
             {errors.targetUser && errors.targetUser.message}
           </div>
-          <div>list if DM -- User list Title Content</div>
+          <select {...register("targetUser")}>
+            <option></option>
+            {userOptions}
+          </select>
         </fieldset>
       )}
 

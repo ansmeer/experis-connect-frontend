@@ -14,3 +14,10 @@ export type TGroupPost = {
   color: string;
   isPrivate: boolean;
 };
+
+export type TGroupFormData = {
+  name: "";
+  description: "";
+  color: "";
+  isPrivate: false;
+};
