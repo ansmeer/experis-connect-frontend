@@ -18,10 +18,4 @@ export type TGroupPost = {
 export type TGroupMini = {
   id: number;
   name: string;
-
-export type TGroupFormData = {
-  name: string;
-  description: string;
-  color: string;
-  isPrivate: boolean;
 };
