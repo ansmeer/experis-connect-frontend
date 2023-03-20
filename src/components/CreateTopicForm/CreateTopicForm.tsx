@@ -1,8 +1,6 @@
-import React from "react";
-import PostList from "../PostList/PostList";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import styles from "../CreatePostForm/createPostForm.module.css";
-import { TTopic, TTopicPost } from "../../types/topic";
+import { TTopicPost } from "../../types/topic";
 
 type Props = { handleData: (data: TTopicPost) => void };
 
@@ -16,9 +14,6 @@ function CreateTopicForm({ handleData }: Props) {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setError,
-    setValue,
   } = useForm({
     defaultValues: {},
     values,
