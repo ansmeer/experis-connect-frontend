@@ -32,23 +32,21 @@ function Profile() {
   }
 
   return (
-    <>
-      <div>
-        <h1>Profile</h1>
-        {data?.picture && (
-          <div>
-            <img src={data.picture} className={styles.avatar} alt={data.name} />
-          </div>
-        )}
-        {showEditButton && (
-          <button onClick={handleEditClick}>Edit profile settings</button>
-        )}
-        {data?.name && <div>Name: {data.name}</div>}
-        {data?.status && <div>Status: {data.status}</div>}
-        {data?.funFact && <div>Fun fact: {data.funFact}</div>}
-        {data?.bio && <div>Bio: {data.bio}</div>}
-      </div>
-    </>
+    <div>
+      <h1>Profile</h1>
+      {data?.picture && (
+        <div>
+          <img src={data.picture} className={styles.avatar} alt={data.name} />
+        </div>
+      )}
+      {showEditButton && (
+        <button onClick={handleEditClick}>Edit profile settings</button>
+      )}
+      {data?.name && <div>Name: {data.name}</div>}
+      {data?.status && <div>Status: {data.status}</div>}
+      {data?.funFact && <div>Fun fact: {data.funFact}</div>}
+      {data?.bio && <div>Bio: {data.bio}</div>}
+    </div>
   );
 }
 

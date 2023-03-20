@@ -1,0 +1,26 @@
+@import "../../colors.css";
+
+.header {
+  background: var(--very-light-background);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  padding: 0.5em;
+  position: sticky;
+  top: 0;
+}
+
+.create-post {
+  border-radius: 50%;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  width: 40px;
+  height: 40px;
+}
+
+.create-post::after {
+  content: none;
+  display: none;
+}
