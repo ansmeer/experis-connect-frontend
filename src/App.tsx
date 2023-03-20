@@ -18,10 +18,9 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Error404Page from "./pages/Error404Page";
 import CreatePostPage from "./pages/CreatePostPage";
-import CreateTopicPage from "./pages/CreateTopicPage"
+import CreateTopicPage from "./pages/CreateTopicPage";
 import CreateGroupPage from "./pages/CreateGroupPage";
 import PageLayout from "./components/PageLayout/PageLayout";
-
 
 function App() {
   const queryDefaultOptions = {
@@ -125,13 +124,14 @@ function App() {
                   </KeycloakRoute>
                 }
               />
-              <Route 
-              path="/create/topic"
-              element={
-                <KeycloakRoute role={ROLES.User}>
-                  <CreateTopicPage></CreateTopicPage>
-                </KeycloakRoute>
-              }
+              <Route
+                path="/create/topic"
+                element={
+                  <KeycloakRoute role={ROLES.User}>
+                    <CreateTopicPage></CreateTopicPage>
+                  </KeycloakRoute>
+                }
+              />
               <Route
                 path="/create/group"
                 element={
