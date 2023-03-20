@@ -10,7 +10,6 @@ import TopicListPage from "./pages/TopicListPage";
 import TopicPage from "./pages/TopicPage";
 import ThreadPage from "./pages/ThreadPage";
 import SearchPage from "./pages/SearchResultPage";
-import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
 import KeycloakRoute from "./routes/KeycloakRoute";
 import { ROLES } from "./consts/roles";
@@ -19,7 +18,11 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Error404Page from "./pages/Error404Page";
 import CreatePostPage from "./pages/CreatePostPage";
+
 import CreateTopicPage from "./pages/CreateTopicPage"
+
+import PageLayout from "./components/PageLayout/PageLayout";
+
 
 function App() {
   const queryDefaultOptions = {
@@ -39,8 +42,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <BrowserRouter>
-          <Layout>
-            <Header />
+          <Header />
+          <PageLayout>
             <Routes>
               <Route path="/" element={<LoginPage />} />
               <Route
@@ -133,7 +136,7 @@ function App() {
               />
               <Route path="*" element={<Error404Page />} />
             </Routes>
-          </Layout>
+          </PageLayout>
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
