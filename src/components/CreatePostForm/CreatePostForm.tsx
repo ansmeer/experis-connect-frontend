@@ -33,7 +33,7 @@ function CreatePostForm({ handleData }: Props) {
   const groupsQuery = useQuery<TGroup[]>({
     queryKey: "groups",
     queryFn: async () => {
-      const groupRequest = groupApi.get.groups();
+      const groupRequest = groupApi.get.userGroups();
       const response = await fetch(groupRequest.uri, groupRequest.options);
       return await response.json();
     },
@@ -42,7 +42,7 @@ function CreatePostForm({ handleData }: Props) {
   const topicsQuery = useQuery<TTopic[]>({
     queryKey: "topics",
     queryFn: async () => {
-      const groupRequest = topicApi.get.topics();
+      const groupRequest = topicApi.get.userTopics();
       const response = await fetch(groupRequest.uri, groupRequest.options);
       return await response.json();
     },

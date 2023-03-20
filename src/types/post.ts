@@ -1,3 +1,5 @@
+import { TUserShort } from "./user";
+
 export type TPost = {
   id: number;
   createdAt: string;
@@ -5,17 +7,11 @@ export type TPost = {
   title: string;
   content: string;
   postTarget: TPostTargetType;
-  senderId: TPostSender;
+  senderId: TUserShort;
   replyParentId: number | null;
   targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
-};
-
-type TPostSender = {
-  id: string;
-  name: string;
-  picture: string;
 };
 
 export type TPostTargetType = "user" | "group" | "topic";

@@ -4,9 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { userApi } from "../../apis/userApi";
 import { useQuery } from "react-query";
 import Loading from "../Loading/Loading";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 function Profile() {
   const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.details);
   const { id } = useParams(); // TODO id not updated when going from other profile to own profile
   const { data, isLoading } = useQuery({
     queryKey: ["profile", id],
@@ -18,6 +21,7 @@ function Profile() {
       return await response.json();
     },
   });
+  const showEditButton = id === user?.id || !id;
 
   const handleEditClick = () => {
     navigate("/profile/settings");
@@ -36,7 +40,7 @@ function Profile() {
             <img src={data.picture} className={styles.avatar} alt={data.name} />
           </div>
         )}
-        {!id && (
+        {showEditButton && (
           <button onClick={handleEditClick}>Edit profile settings</button>
         )}
         {data?.name && <div>Name: {data.name}</div>}

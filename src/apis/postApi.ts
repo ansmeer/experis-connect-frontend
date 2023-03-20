@@ -1,6 +1,6 @@
 import { ApiRequestInfo } from "../types/api";
 import { TPostPost, TPostPut, TPostTargetType } from "../types/post";
-import keycloak from "../utils/keycloak";
+import keycloak, { getKeycloakToken } from "../utils/keycloak";
 
 const postApiUrl = `${import.meta.env.VITE_API_BASE_URL}/post`;
 
@@ -12,7 +12,7 @@ export const postApi = {
       if (target) {
         requestUrl += `/${target}`;
       }
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(requestUrl).toString(),
         options: {
@@ -22,7 +22,7 @@ export const postApi = {
       };
     },
     postById: (id: number): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/${id}`).toString(),
         options: {
@@ -32,7 +32,7 @@ export const postApi = {
       };
     },
     searchPosts: (searchTerm: string): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${postApiUrl}?` + new URLSearchParams({ search: searchTerm })
@@ -44,7 +44,7 @@ export const postApi = {
       };
     },
     postDms: (): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/user`).toString(),
         options: {
@@ -54,7 +54,7 @@ export const postApi = {
       };
     },
     searchPostDms: (searchTerm: string): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${postApiUrl}/user?` + new URLSearchParams({ search: searchTerm })
@@ -66,7 +66,7 @@ export const postApi = {
       };
     },
     postDmsFromUser: (userId: string): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/user/${userId}`).toString(),
         options: {
@@ -79,7 +79,7 @@ export const postApi = {
       userId: string,
       searchTerm: string
     ): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${postApiUrl}/user/${userId}?` +
@@ -92,7 +92,7 @@ export const postApi = {
       };
     },
     postsFromGroup: (groupId: number): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/group/${groupId}`).toString(),
         options: {
@@ -105,7 +105,7 @@ export const postApi = {
       groupId: number,
       searchTerm: string
     ): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${postApiUrl}/group/${groupId}?` +
@@ -118,7 +118,7 @@ export const postApi = {
       };
     },
     postsFromTopic: (topicId: number): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/topic/${topicId}`).toString(),
         options: {
@@ -131,7 +131,7 @@ export const postApi = {
       topicId: number,
       searchTerm: string
     ): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${postApiUrl}/topic/${topicId}?` +
@@ -146,7 +146,7 @@ export const postApi = {
   },
   post: {
     newPost: (postDetails: TPostPost): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(postApiUrl).toString(),
         options: {
@@ -162,7 +162,8 @@ export const postApi = {
   },
   put: {
     updatePost: (postId: number, postDetails: TPostPut): ApiRequestInfo => {
-      const token = keycloak.token;
+      keycloak.updateToken(30);
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/${postId}`).toString(),
         options: {
