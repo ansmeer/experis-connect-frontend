@@ -24,3 +24,8 @@ export type TUserPut = {
   bio: string;
   funFact: string;
 };
+
+export type TMiniUser = {
+  id: string;
+  name: string;
+};
