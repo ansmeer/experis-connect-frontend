@@ -27,13 +27,13 @@ function Dashboard() {
     setSelectedTab(undefined);
   };
   const handleGroupsClick = () => {
-    setSelectedTab("group");
+    setSelectedTab("GROUP");
   };
   const handleTopicsClick = () => {
-    setSelectedTab("topic");
+    setSelectedTab("TOPIC");
   };
   const handleDmsClick = () => {
-    setSelectedTab("user");
+    setSelectedTab("USER");
   };
 
   if (isLoading) {
@@ -55,8 +55,8 @@ function Dashboard() {
       </div>
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
-      {selectedTab === "group" && <Explore type="groups" />}
-      {selectedTab === "topic" && <Explore type="topics" />}
+      {selectedTab === "GROUP" && <Explore type="groups" />}
+      {selectedTab === "TOPIC" && <Explore type="topics" />}
     </div>
   );
 }

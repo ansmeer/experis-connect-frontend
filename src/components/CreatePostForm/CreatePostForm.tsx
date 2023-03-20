@@ -11,7 +11,7 @@ type Props = { handleData: (data: TPostFormData) => void };
 
 function CreatePostForm({ handleData }: Props) {
   const values = {
-    postTarget: "group",
+    postTarget: "GROUP",
     title: "",
     content: "",
     targetGroup: null,
@@ -60,7 +60,7 @@ function CreatePostForm({ handleData }: Props) {
   ));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (data.postTarget === "group" && !Boolean(data.targetGroup)) {
+    if (data.postTarget === "GROUP" && !Boolean(data.targetGroup)) {
       setError("targetGroup", { message: "Group is required." });
       return;
     }
@@ -79,7 +79,7 @@ function CreatePostForm({ handleData }: Props) {
       data.targetTopic = null;
       setValue("targetTopic", null);
     }
-    if (data.postTarget === "topic" || data.postTarget === "group") {
+    if (data.postTarget === "topic" || data.postTarget === "GROUP") {
       data.targetUser = "";
       setValue("targetUser", "");
     }
