@@ -18,7 +18,7 @@ function CreateGroup() {
     const groupRequest = groupApi.post.newGroup(groupToMake);
     const response = await fetch(groupRequest.uri, groupRequest.options);
     // const groupId = await response.json(); TODO fix backend to return id.
-    // navigate(`/group/${postId}`);
+    // navigate(`/group/${groupId}`);
   };
   return (
     <>

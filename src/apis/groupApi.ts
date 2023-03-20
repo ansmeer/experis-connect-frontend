@@ -36,6 +36,16 @@ export const groupApi = {
         },
       };
     },
+    groupMembers: (groupId: number): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(`${groupApiUrl}/${groupId}/user/list`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
   },
   post: {
     newGroup: (groupDetails: TGroupPost): ApiRequestInfo => {
