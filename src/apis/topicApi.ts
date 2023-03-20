@@ -1,13 +1,13 @@
 import { ApiRequestInfo } from "../types/api";
 import { TTopicPost } from "../types/topic";
-import keycloak from "../utils/keycloak";
+import { getKeycloakToken } from "../utils/keycloak";
 
 const topicApiUrl = `${import.meta.env.VITE_API_BASE_URL}/topic`;
 
 export const topicApi = {
   get: {
     topics: (): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(topicApiUrl).toString(),
         options: {
@@ -17,7 +17,7 @@ export const topicApi = {
       };
     },
     userTopics: (): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${topicApiUrl}/user`).toString(),
         options: {
@@ -27,7 +27,7 @@ export const topicApi = {
       };
     },
     topicById: (topicId: number): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${topicApiUrl}/${topicId}`).toString(),
         options: {
@@ -39,7 +39,7 @@ export const topicApi = {
   },
   post: {
     newTopic: (topicDetails: TTopicPost): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(topicApiUrl).toString(),
         options: {
@@ -53,7 +53,7 @@ export const topicApi = {
       };
     },
     addCurrentUserToTopic: (topicId: number): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(`${topicApiUrl}/${topicId}/join`).toString(),
         options: {
@@ -63,7 +63,7 @@ export const topicApi = {
       };
     },
     addUserToTopic: (topicId: number, userId: string): ApiRequestInfo => {
-      const token = keycloak.token;
+      const token = getKeycloakToken();
       return {
         uri: new URL(
           `${topicApiUrl}/${topicId}/join?` +
