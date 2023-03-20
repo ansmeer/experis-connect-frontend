@@ -7,17 +7,36 @@ type Props = { data: TPost };
 
 function PostListItem({ data }: Props) {
   return (
-    <div className={styles.post}>
-      <UserIcon user={data.senderId} />
-      <div>
-        User {data.senderId.id} posted on {data.createdAt}
-      </div>
-      <div>
-        {data.id} - {data.title}
-      </div>
-      <div>{data.content}</div>
-      <Link to={`/thread/${data.id}`} />
-    </div>
+    <section className={styles.post}>
+      <header>
+        <UserIcon user={data.senderId} />
+        <div>
+          <h2>{data.title}</h2>
+          <div className={styles["post-description"]}>
+            <Link to={`/profile/${data.senderId.id}`}>
+              {data.senderId.name}
+            </Link>{" "}
+            on {data.createdAt}
+          </div>
+          <div className={styles["post-description"]}>
+            {data.postTarget === "GROUP" && (
+              <Link to={`/groups/${data.targetGroup?.id}`}>
+                {data.targetGroup?.name}
+              </Link>
+            )}
+            {data.postTarget === "TOPIC" && (
+              <Link to={`/topics/${data.targetTopic?.id}`}>
+                {data.targetTopic?.name}
+              </Link>
+            )}
+          </div>
+        </div>
+      </header>
+      <div className={styles["post-content"]}>{data.content}</div>
+      <footer>
+        <Link to={`/thread/${data.id}`}>Read thread</Link>
+      </footer>
+    </section>
   );
 }
 

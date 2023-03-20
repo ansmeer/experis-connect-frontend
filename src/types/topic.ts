@@ -12,3 +12,8 @@ export type TTopicPost = {
   description: string;
   color: string;
 };
+
+export type TTopicMini = {
+  id: number;
+  name: string;
+};

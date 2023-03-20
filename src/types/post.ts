@@ -1,3 +1,5 @@
+import { TGroupMini } from "./group";
+import { TTopicMini } from "./topic";
 import { TUserShort } from "./user";
 
 export type TPost = {
@@ -10,11 +12,11 @@ export type TPost = {
   senderId: TUserShort;
   replyParentId: number | null;
   targetUser: string | null;
-  targetGroup: number | null;
-  targetTopic: number | null;
+  targetGroup: TGroupMini | null;
+  targetTopic: TTopicMini | null;
 };
 
-export type TPostTargetType = "user" | "group" | "topic";
+export type TPostTargetType = "USER" | "GROUP" | "TOPIC";
 
 export type TPostWithReplies = TPost & {
   replies: number[];
@@ -23,7 +25,7 @@ export type TPostWithReplies = TPost & {
 export type TPostFormData = {
   title: string;
   content: string;
-  postTarget: "user" | "group" | "topic";
+  postTarget: TPostTargetType;
   targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;

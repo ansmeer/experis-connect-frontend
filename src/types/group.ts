@@ -14,3 +14,8 @@ export type TGroupPost = {
   color: string;
   isPrivate: boolean;
 };
+
+export type TGroupMini = {
+  id: number;
+  name: string;
+};
