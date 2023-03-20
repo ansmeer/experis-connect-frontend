@@ -5,6 +5,7 @@ import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
 import SearchForm from "../SearchForm/SearchForm";
 import UserIcon from "../UserIcon/UserIcon";
+import styles from "./header.module.css";
 
 function Header() {
   const dispatch = useDispatch();
@@ -16,20 +17,21 @@ function Header() {
   };
 
   return (
-    <div>
-      <header>
+    <>
+      <header className={styles.header}>
         {user && (
           <>
-            <UserIcon user={user} />
+            <UserIcon user={user} small={true} />
             <SearchForm />
-            <Link to="/create/post">+</Link>
+            <Link to="/create/post" className={styles["create-post"]}>
+              +
+            </Link>
           </>
         )}
-        <div></div>
       </header>
       {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (
-        <>
+        <div>
           Temp menu:&nbsp;
           <NavLink to="/dashboard">Dashboard</NavLink>&nbsp;
           <NavLink to="/profile">Profile</NavLink>&nbsp;
@@ -41,9 +43,9 @@ function Header() {
           <NavLink to="/thread/1">Thread</NavLink>&nbsp;
           <NavLink to="/search">Search</NavLink>
           <button onClick={onLogoutClick}>Logout</button>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 export default Header;
