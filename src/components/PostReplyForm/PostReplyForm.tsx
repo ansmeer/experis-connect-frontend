@@ -30,16 +30,20 @@ function PostReplyForm({ handleData }: Props) {
   };
 
   const inputTitleRequirements = {
+    required: { value: true, message: "Title is required." },
     maxLength: { value: 100, message: "Too many characters." },
   };
 
   const inputContentRequirements = {
+    required: { value: true, message: "Content is required." },
     maxLength: { value: 4000, message: "Too many characters." },
   };
 
   return (
-    <>
-      <div>Reply to post #{selectedPost?.id}</div>
+    <div className={styles.reply}>
+      <div className={styles["form-title"]}>
+        Reply to post #{selectedPost?.id}
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.replyForm}>
         <label htmlFor="title">Reply title</label>
         {errors.title && (
@@ -51,6 +55,7 @@ function PostReplyForm({ handleData }: Props) {
           {...register("title", inputTitleRequirements)}
           aria-invalid={errors.title ? "true" : "false"}
           type="text"
+          className={styles.input}
         />
         <label htmlFor="content">Reply</label>
         {errors.content && (
@@ -61,10 +66,11 @@ function PostReplyForm({ handleData }: Props) {
         <textarea
           {...register("content", inputContentRequirements)}
           aria-invalid={errors.content ? "true" : "false"}
+          className={styles.input}
         />
         <button type="submit">Send reply</button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,27 @@
+@import "../../colors.css";
+
+.reply {
+  background-color: var(--very-light-background);
+  box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.16);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+}
+
+.form-title {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
 .replyForm {
+  text-align: left;
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
 .error {

@@ -7,6 +7,8 @@
   font-size: 1em;
   color: var(--text-color);
 
+  box-sizing: border-box;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +28,6 @@ a:hover {
 a::after {
   content: " ▸";
   color: var(--experis-blue);
-  font-size: 1.5em;
 }
 
 body {
@@ -48,11 +49,19 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   color: var(--button-text);
-  padding: 0.5em 1em;
+  padding: 8px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -70,8 +79,12 @@ button:focus-visible {
 
 input,
 textarea {
-  padding: 0.5em 1em;
+  padding: 8px;
   border-radius: 8px;
-  border: 1px solid var(--experis-blue);
+  border: 1px solid #ccc;
   font-size: 1em;
+}
+
+textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }

@@ -1,7 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { TGroupFormData } from "../../types/group";
+import { TGroupPost } from "../../types/group";
 
-type Props = { handleData: (data: TGroupFormData) => void };
+type Props = { handleData: (data: TGroupPost) => void };
 
 function CreateGroupFrom({ handleData }: Props) {
   const values = {
@@ -28,7 +28,7 @@ function CreateGroupFrom({ handleData }: Props) {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    handleData(data as TGroupFormData);
+    handleData(data as TGroupPost); // TODO remove assertion
   };
 
   return (

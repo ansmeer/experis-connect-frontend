@@ -15,9 +15,7 @@ export type TGroupPost = {
   isPrivate: boolean;
 };
 
-export type TGroupFormData = {
-  name: "";
-  description: "";
-  color: "";
-  isPrivate: false;
+export type TGroupMini = {
+  id: number;
+  name: string;
 };

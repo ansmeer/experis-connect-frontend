@@ -24,8 +24,8 @@ function Thread() {
       replyParentId: selectedPost!.id,
       postTarget: selectedPost!.postTarget,
       targetUser: selectedPost!.targetUser,
-      targetGroup: selectedPost!.targetGroup,
-      targetTopic: selectedPost!.targetTopic,
+      targetGroup: selectedPost!.targetGroup?.id || null,
+      targetTopic: selectedPost!.targetTopic?.id || null,
     };
 
     const postRequest = postApi.post.newPost(postToSend);

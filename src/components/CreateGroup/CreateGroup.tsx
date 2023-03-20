@@ -1,4 +1,4 @@
-import { TGroupFormData, TGroupPost } from "../../types/group";
+import { TGroupPost } from "../../types/group";
 import CreateGroupFrom from "../CreateGroupForm/CreateGroupForm";
 import { groupApi } from "../../apis/groupApi";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { RootState } from "../../redux/store";
 function CreateGroup() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
-  const handleData = async (data: TGroupFormData) => {
+  const handleData = async (data: TGroupPost) => {
     const groupToMake: TGroupPost = {
       name: data.name,
       description: data.description,
