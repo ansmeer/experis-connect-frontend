@@ -25,7 +25,7 @@ export type TUserPut = {
   funFact: string;
 };
 
-export type TMiniUser = {
+export type TUserMini = {
   id: string;
   name: string;
 };

@@ -6,7 +6,7 @@ import { userApi } from "../../apis/userApi";
 import { TGroup } from "../../types/group";
 import { TPostFormData } from "../../types/post";
 import { TTopic } from "../../types/topic";
-import { TMiniUser } from "../../types/user";
+import { TUserMini } from "../../types/user";
 import styles from "./createPostForm.module.css";
 
 type Props = { handleData: (data: TPostFormData) => void };
@@ -50,7 +50,7 @@ function CreatePostForm({ handleData }: Props) {
     },
   });
 
-  const userQuery = useQuery<TMiniUser[]>({
+  const userQuery = useQuery<TUserMini[]>({
     queryKey: "user",
     queryFn: async () => {
       const userRequest = userApi.get.allUsers();
