@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { setReplyToPost } from "../../redux/slices/postSlice";
 import { AppDispatch, RootState } from "../../redux/store";
@@ -68,20 +68,25 @@ function Post({ id, withReplies, selectPost }: Props) {
   }
 
   return (
-    <div className={styles["post-wrapper"]}>
-      <div
+    <div>
+      <section
         className={
           selectedPostId === id ? styles["post-highlight"] : styles.post
         }>
-        <UserIcon user={data.senderId} />
-        <div>
-          User {data.senderId.id} posted on {data.createdAt}
-        </div>
-        <div>
-          {data.id} - {data.title}
-        </div>
-        <div>{data.content}</div>
-        <div className={styles["post-footer"]}>
+        <header>
+          <UserIcon user={data.senderId} />
+          <div>
+            <h2>{data.title}</h2>
+            <div className={styles["post-description"]}>
+              <Link to={`/profile/${data.senderId.id}`}>
+                {data.senderId.name}
+              </Link>{" "}
+              on {data.createdAt}
+            </div>
+          </div>
+        </header>
+        <div className={styles["post-content"]}>{data.content}</div>
+        <footer>
           {showReplies && hasReplies && (
             <button onClick={handleHideClick}>Hide {replyCountText}</button>
           )}
@@ -89,8 +94,8 @@ function Post({ id, withReplies, selectPost }: Props) {
             <button onClick={handleShowClick}>Show {replyCountText}</button>
           )}
           <button onClick={handleReplyClick}>Reply</button>
-        </div>
-      </div>
+        </footer>
+      </section>
       {showReplies && (
         <div className={styles.replies}>
           {data.replies.map((reply) => (

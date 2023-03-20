@@ -10,7 +10,7 @@ export const postApi = {
     posts: (target?: TPostTargetType): ApiRequestInfo => {
       let requestUrl = postApiUrl;
       if (target) {
-        requestUrl += `/${target}`;
+        requestUrl += `/${target.toLowerCase()}`;
       }
       const token = getKeycloakToken();
       return {
