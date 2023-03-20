@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 function SearchForm() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
+  
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     navigate(`/search?search=${data.search}`);
