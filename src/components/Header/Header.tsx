@@ -7,6 +7,9 @@ import SearchForm from "../SearchForm/SearchForm";
 import UserIcon from "../UserIcon/UserIcon";
 import styles from "./header.module.css";
 
+import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from "@mui/icons-material/Home";
+
 function Header() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.details);
@@ -24,7 +27,7 @@ function Header() {
             <UserIcon user={user} small={true} />
             <SearchForm />
             <Link to="/create/post" className={styles["create-post"]}>
-              +
+              <AddIcon />
             </Link>
           </>
         )}

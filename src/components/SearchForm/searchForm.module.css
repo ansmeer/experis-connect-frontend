@@ -1,3 +1,19 @@
 .error {
   color: red;
 }
+
+.inputSearch {
+  border: none;
+}
+
+.SearchIcon {
+  background-color: white;
+}
+
+.buttonSearch {
+  background-color: white;
+}
+
+.link {
+  text-decoration: none;
+}
