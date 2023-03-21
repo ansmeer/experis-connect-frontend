@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { postApi } from "../../apis/postApi";
 import { TGroup } from "../../types/group";
@@ -11,16 +10,17 @@ import UserList from "../UserList/UserList";
 import styles from "./group.module.css";
 
 function Group() {
-  const [selectedTab, setSelectedTab] = useState<string>("posts");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get("show") || "posts";
   const { id } = useParams();
 
   if (!id) return <></>;
 
   const handlePostsClick = () => {
-    setSelectedTab("posts");
+    setSearchParams({ show: "posts" }, { replace: true });
   };
   const handleMembersClick = () => {
-    setSelectedTab("members");
+    setSearchParams({ show: "members" }, { replace: true });
   };
 
   const groupId = parseInt(id);

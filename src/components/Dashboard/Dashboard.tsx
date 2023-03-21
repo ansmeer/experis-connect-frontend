@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { TPostTargetType } from "../../types/post";
 import Footer from "../Footer/Footer";
@@ -8,16 +7,23 @@ import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 import styles from "./dashboard.module.css";
 
+const getTargetType = (input: string | null): TPostTargetType | undefined => {
+  if (input === "dms") return "USER";
+  if (input === "groups") return "GROUP";
+  if (input === "topic") return "TOPIC";
+  return undefined;
+};
+
 function Dashboard() {
-  const [selectedTab, setSelectedTab] = useState<TPostTargetType | undefined>(
-    undefined
-  );
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get("show");
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts", "from", selectedTab],
     queryFn: async () => {
-      const postRequest = postApi.get.posts(selectedTab);
+      const targetType = getTargetType(selectedTab);
+      const postRequest = postApi.get.posts(targetType);
       const response = await fetch(postRequest.uri, postRequest.options);
       if (!response.ok) return;
       return await response.json();
@@ -27,16 +33,16 @@ function Dashboard() {
   const hasData = Boolean(data?.length);
 
   const handleAllClick = () => {
-    setSelectedTab(undefined);
+    setSearchParams(undefined, { replace: true });
   };
   const handleGroupsClick = () => {
-    setSelectedTab("GROUP");
+    setSearchParams({ show: "groups" }, { replace: true });
   };
   const handleTopicsClick = () => {
-    setSelectedTab("TOPIC");
+    setSearchParams({ show: "topics" }, { replace: true });
   };
   const handleDmsClick = () => {
-    setSelectedTab("USER");
+    setSearchParams({ show: "dms" }, { replace: true });
   };
   const handleExploreGroupsClick = () => {
     navigate("/groups");
@@ -64,17 +70,17 @@ function Dashboard() {
           </button>
           <button
             onClick={handleGroupsClick}
-            className={selectedTab === "GROUP" ? styles.selected : ""}>
+            className={selectedTab === "groups" ? styles.selected : ""}>
             Groups
           </button>
           <button
             onClick={handleTopicsClick}
-            className={selectedTab === "TOPIC" ? styles.selected : ""}>
+            className={selectedTab === "topics" ? styles.selected : ""}>
             Topics
           </button>
           <button
             onClick={handleDmsClick}
-            className={selectedTab === "USER" ? styles.selected : ""}>
+            className={selectedTab === "dms" ? styles.selected : ""}>
             DMs
           </button>
         </div>
@@ -82,10 +88,10 @@ function Dashboard() {
       <h1>Dashboard</h1>
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
-      {selectedTab === "GROUP" && (
+      {selectedTab === "groups" && (
         <Footer text="Explore" clickHandler={handleExploreGroupsClick} />
       )}
-      {selectedTab === "TOPIC" && (
+      {selectedTab === "topics" && (
         <Footer text="Explore" clickHandler={handleExploreTopicsClick} />
       )}
     </main>
