@@ -5,6 +5,7 @@ import { TPostTargetType } from "../../types/post";
 import Explore from "../Explore/Explore";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
+import styles from "./dashboard.module.css";
 
 function Dashboard() {
   const [selectedTab, setSelectedTab] = useState<TPostTargetType | undefined>(
@@ -45,19 +46,37 @@ function Dashboard() {
   }
 
   return (
-    <div>
-      <h1>Dashboard Page</h1>
-      <div>
-        <button onClick={handleAllClick}>All</button>
-        <button onClick={handleGroupsClick}>Groups</button>
-        <button onClick={handleTopicsClick}>Topics</button>
-        <button onClick={handleDmsClick}>DMs</button>
+    <main>
+      <div className={styles["top-menu"]}>
+        <div>
+          <button
+            onClick={handleAllClick}
+            className={!selectedTab ? styles.selected : ""}>
+            All
+          </button>
+          <button
+            onClick={handleGroupsClick}
+            className={selectedTab === "GROUP" ? styles.selected : ""}>
+            Groups
+          </button>
+          <button
+            onClick={handleTopicsClick}
+            className={selectedTab === "TOPIC" ? styles.selected : ""}>
+            Topics
+          </button>
+          <button
+            onClick={handleDmsClick}
+            className={selectedTab === "USER" ? styles.selected : ""}>
+            DMs
+          </button>
+        </div>
       </div>
+      <h1>Dashboard</h1>
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
       {selectedTab === "GROUP" && <Explore type="groups" />}
       {selectedTab === "TOPIC" && <Explore type="topics" />}
-    </div>
+    </main>
   );
 }
 

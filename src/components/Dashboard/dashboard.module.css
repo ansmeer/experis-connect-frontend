@@ -1,0 +1,45 @@
+@import "../../colors.css";
+
+.top-menu {
+  background-color: var(--very-light-background);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 70px;
+  left: 0;
+  margin-bottom: 16px;
+  min-width: 320px;
+  border-radius: 0 0 8px 8px;
+}
+
+.top-menu div {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.top-menu button {
+  background-color: var(--very-light-background);
+  color: var(--text-color);
+  border-radius: 0px;
+  border-bottom-color: var(--very-light-background);
+  border-bottom-width: 2px;
+}
+
+.top-menu button:first-of-type {
+  border-radius: 0 0 0 8px;
+}
+
+.top-menu button:last-of-type {
+  border-radius: 0 0 8px 0;
+}
+
+.top-menu button.selected {
+  border-bottom-color: var(--experis-blue);
+  font-weight: 600;
+}
+
+.top-menu button:hover {
+  background-color: var(--very-light-background);
+  color: var(--experis-blue);
+  border-bottom-color: var(--experis-blue);
+}

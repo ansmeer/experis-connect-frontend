@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import styles from "./explore.module.css";
 
 type Props = {
   type: "topics" | "groups";
@@ -11,8 +12,10 @@ function Explore({ type }: Props) {
   };
 
   return (
-    <div>
-      <button onClick={exploreClickHandler}>Explore</button>
+    <div className={styles.explore}>
+      <div>
+        <button onClick={exploreClickHandler}>Explore</button>
+      </div>
     </div>
   );
 }
