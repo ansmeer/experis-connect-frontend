@@ -1,13 +1,16 @@
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { RootState } from "../../redux/store";
 import { TGroup } from "../../types/group";
+import Footer from "../Footer/Footer";
 import GroupCard from "../GroupCard/GroupCard";
 import Loading from "../Loading/Loading";
 import styles from "./groupList.module.css";
 
 function GroupList() {
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   const { data, isLoading, isError } = useQuery({
     queryKey: "groupList",
@@ -26,6 +29,10 @@ function GroupList() {
     />
   ));
 
+  const handleCreateClick = () => {
+    navigate("/create/group");
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -38,6 +45,7 @@ function GroupList() {
     <>
       <h1>Groups</h1>
       <div className={styles.groupList}>{groupList}</div>
+      <Footer text="Create group" clickHandler={handleCreateClick} />
     </>
   );
 }

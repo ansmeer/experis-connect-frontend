@@ -1,13 +1,16 @@
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { topicApi } from "../../apis/topicApi";
 import { RootState } from "../../redux/store";
 import { TTopic } from "../../types/topic";
+import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import TopicCard from "../TopicCard/TopicCard";
 import styles from "./topicList.module.css";
 
 function TopicList() {
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   const { data, isLoading, isError } = useQuery({
     queryKey: "topicList",
@@ -26,6 +29,10 @@ function TopicList() {
     />
   ));
 
+  const handleCreateClick = () => {
+    navigate("/create/topic");
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -38,6 +45,7 @@ function TopicList() {
     <>
       <h1>Topics</h1>
       <div className={styles.topicList}>{topicList}</div>
+      <Footer text="Create topic" clickHandler={handleCreateClick} />
     </>
   );
 }

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { TPostTargetType } from "../../types/post";
-import Explore from "../Explore/Explore";
+import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 import styles from "./dashboard.module.css";
@@ -11,6 +12,7 @@ function Dashboard() {
   const [selectedTab, setSelectedTab] = useState<TPostTargetType | undefined>(
     undefined
   );
+  const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts", "from", selectedTab],
@@ -35,6 +37,12 @@ function Dashboard() {
   };
   const handleDmsClick = () => {
     setSelectedTab("USER");
+  };
+  const handleExploreGroupsClick = () => {
+    navigate("/groups");
+  };
+  const handleExploreTopicsClick = () => {
+    navigate("/topics");
   };
 
   if (isLoading) {
@@ -74,8 +82,12 @@ function Dashboard() {
       <h1>Dashboard</h1>
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
-      {selectedTab === "GROUP" && <Explore type="groups" />}
-      {selectedTab === "TOPIC" && <Explore type="topics" />}
+      {selectedTab === "GROUP" && (
+        <Footer text="Explore" clickHandler={handleExploreGroupsClick} />
+      )}
+      {selectedTab === "TOPIC" && (
+        <Footer text="Explore" clickHandler={handleExploreTopicsClick} />
+      )}
     </main>
   );
 }

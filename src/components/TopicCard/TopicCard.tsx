@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { topicApi } from "../../apis/topicApi";
 import { refetchUser } from "../../redux/slices/userSlice";
 import { AppDispatch } from "../../redux/store";
@@ -15,7 +15,6 @@ function TopicCard({ data, isMember }: TopicCardProps) {
   const dispatch = useDispatch<AppDispatch>();
   const handleSubscribeClick = async () => {
     const subscribeRequest = topicApi.post.addCurrentUserToTopic(data.id);
-    console.log(subscribeRequest);
     await fetch(subscribeRequest.uri, subscribeRequest.options);
     dispatch(refetchUser());
   };
