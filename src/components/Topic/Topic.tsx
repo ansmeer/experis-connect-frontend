@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
@@ -7,6 +7,8 @@ import { TPost } from "../../types/post";
 import { TTopic } from "../../types/topic";
 import { TUser } from "../../types/user";
 import PostList from "../PostList/PostList";
+import UserList from "../UserList/UserList";
+import styles from "./topic.module.css";
 
 function Topic() {
   const [selectedTab, setSelectedTab] = useState<string>("posts");
@@ -54,27 +56,32 @@ function Topic() {
     },
   });
   return (
-    <>
-      <div>
-        <h1>Topic Page</h1>
+    <main>
+      <div className={styles.info}>
         <p>{data?.name}</p>
         <p>{data?.description}</p>
       </div>
-      <div>
-        <button onClick={handlePostsClick}>Posts</button>
-        <button onClick={handleMembersClick}>Members</button>
+
+      <div className={styles.tabs}>
+        <button
+          onClick={handlePostsClick}
+          className={selectedTab === "posts" ? styles.selected : ""}>
+          Posts
+        </button>
+        <button
+          onClick={handleMembersClick}
+          className={selectedTab === "members" ? styles.selected : ""}>
+          Members
+        </button>
       </div>
-      <div>
-        {selectedTab === "posts" && topicPosts && (
-          <PostList data={topicPosts} />
-        )}
-        {selectedTab === "members" &&
-          topicMembers &&
-          topicMembers.map((userName) => (
-            <div key={userName.name}>{userName.name}</div>
-          ))}
-      </div>
-    </>
+
+      <h1>{data?.name}</h1>
+
+      {selectedTab === "posts" && topicPosts && <PostList data={topicPosts} />}
+      {selectedTab === "members" && topicMembers && (
+        <UserList data={topicMembers} />
+      )}
+    </main>
   );
 }
 
