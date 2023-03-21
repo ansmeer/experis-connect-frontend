@@ -1,3 +1,12 @@
 .thread {
   margin-bottom: 320px;
 }
+
+.reply {
+  background-color: var(--very-light-background);
+  box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.16);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+}

@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { setReplyToPost } from "../../redux/slices/postSlice";
+import { setReplyToPost, showReplyForm } from "../../redux/slices/postSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
@@ -47,6 +47,7 @@ function Post({ id, withReplies, selectPost }: Props) {
   const handleReplyClick = () => {
     if (!data) return;
     dispatch(setReplyToPost(data));
+    dispatch(showReplyForm());
   };
 
   useEffect(() => {
