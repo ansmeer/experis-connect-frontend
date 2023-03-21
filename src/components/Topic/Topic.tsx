@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { topicApi } from "../../apis/topicApi";
 import { TPost } from "../../types/post";
@@ -11,15 +10,16 @@ import UserList from "../UserList/UserList";
 import styles from "./topic.module.css";
 
 function Topic() {
-  const [selectedTab, setSelectedTab] = useState<string>("posts");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get("show") || "posts";
   const { id } = useParams();
 
   if (!id) return <></>;
   const handlePostsClick = () => {
-    setSelectedTab("posts");
+    setSearchParams({ show: "posts" }, { replace: true });
   };
   const handleMembersClick = () => {
-    setSelectedTab("members");
+    setSearchParams({ show: "members" }, { replace: true });
   };
   const topicId = parseInt(id);
 
