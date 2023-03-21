@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { dateOptionsEN } from "../../consts/dates";
 import { TPost } from "../../types/post";
 import UserIcon from "../UserIcon/UserIcon";
 import styles from "./postListItem.module.css";
@@ -6,6 +7,11 @@ import styles from "./postListItem.module.css";
 type Props = { data: TPost };
 
 function PostListItem({ data }: Props) {
+  const createdAtDate = new Date(data.createdAt).toLocaleDateString(
+    "en-EN",
+    dateOptionsEN
+  );
+
   return (
     <section className={styles.post}>
       <header>
@@ -16,7 +22,7 @@ function PostListItem({ data }: Props) {
             <Link to={`/profile/${data.senderId.id}`}>
               {data.senderId.name}
             </Link>{" "}
-            on {data.createdAt}
+            on {createdAtDate}
           </div>
           <div className={styles["post-description"]}>
             {data.postTarget === "GROUP" && (
