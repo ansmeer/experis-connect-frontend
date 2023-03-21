@@ -7,7 +7,9 @@ type UserListProps = {
 };
 
 function UserList({ data }: UserListProps) {
-  const userList = data.map((user) => <UserListItem data={user} />);
+  const userList = data.map((user) => (
+    <UserListItem data={user} key={user.id} />
+  ));
 
   return <ul className={styles["user-list"]}>{userList}</ul>;
 }
