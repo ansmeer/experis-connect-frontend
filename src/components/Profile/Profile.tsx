@@ -6,12 +6,13 @@ import { useQuery } from "react-query";
 import Loading from "../Loading/Loading";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 
 function Profile() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   const { id } = useParams(); // TODO id not updated when going from other profile to own profile
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["profile", id],
     queryFn: async (): Promise<TUser> => {
       const userRequest = id
@@ -29,6 +30,10 @@ function Profile() {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (error) {
+    return <ErrorFetch />;
   }
 
   return (
