@@ -29,7 +29,7 @@ function Header() {
           </>
         )}
       </header>
-      {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
+      {/* {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
       {keycloak.authenticated && (
         <div>
           Temp menu:&nbsp;
@@ -44,7 +44,7 @@ function Header() {
           <NavLink to="/search">Search</NavLink>
           <button onClick={onLogoutClick}>Logout</button>
         </div>
-      )}
+      )} */}
     </>
   );
 }

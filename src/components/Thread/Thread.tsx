@@ -37,6 +37,7 @@ function Thread() {
   return (
     <div>
       <div className={styles.thread}>
+        <h1>Thread</h1>
         <Post id={parseInt(id, 10)} withReplies={true} selectPost={true} />
       </div>
       <PostReplyForm handleData={handleReplyData} />
