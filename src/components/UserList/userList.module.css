@@ -1,0 +1,26 @@
+@import "../../colors.css";
+
+.user-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  background-color: var(--very-light-background);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.user-list li {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (min-width: 500px) {
+  .user-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

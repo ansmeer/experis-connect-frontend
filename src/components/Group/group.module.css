@@ -1,21 +1,41 @@
 @import "../../colors.css";
 
-.top-menu {
+.info {
+  background-color: var(--very-light-background);
+  padding: 8px;
+  text-align: left;
+}
+
+.info p {
+  padding: 0;
+  margin: 0;
+}
+
+.info p:first-of-type {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.info p:last-of-type {
+  font-size: 0.9em;
+}
+
+.tabs {
   background-color: var(--very-light-background);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 70px;
   margin-bottom: 16px;
   min-width: 320px;
   border-radius: 0 0 8px 8px;
+  position: sticky;
+  top: 70px;
 }
 
-.top-menu div {
+.tabs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.top-menu button {
+.tabs button {
   background-color: var(--very-light-background);
   color: var(--text-color);
   border-radius: 0px;
@@ -23,20 +43,20 @@
   border-bottom-width: 2px;
 }
 
-.top-menu button:first-of-type {
+.tabs button:first-of-type {
   border-radius: 0 0 0 8px;
 }
 
-.top-menu button:last-of-type {
+.tabs button:last-of-type {
   border-radius: 0 0 8px 0;
 }
 
-.top-menu button.selected {
+.tabs button.selected {
   border-bottom-color: var(--experis-blue);
   font-weight: 600;
 }
 
-.top-menu button:hover {
+.tabs button:hover {
   background-color: var(--very-light-background);
   color: var(--experis-blue);
   border-bottom-color: var(--experis-blue);

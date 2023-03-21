@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { postApi } from "../../apis/postApi";
-import { RootState } from "../../redux/store";
 import { TGroup } from "../../types/group";
 import { TPost } from "../../types/post";
 import { TUser } from "../../types/user";
 import PostList from "../PostList/PostList";
+import UserList from "../UserList/UserList";
+import styles from "./group.module.css";
 
 function Group() {
   const [selectedTab, setSelectedTab] = useState<string>("posts");
   const { id } = useParams();
 
   if (!id) return <></>;
+
   const handlePostsClick = () => {
     setSelectedTab("posts");
   };
   const handleMembersClick = () => {
     setSelectedTab("members");
   };
+
   const groupId = parseInt(id);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["groupDetail", id],
@@ -30,10 +32,11 @@ function Group() {
       return await response.json();
     },
   });
+
   const {
     data: groupPosts,
     isLoading: postsLoading,
-    isError: postError,
+    isError: postsError,
   } = useQuery({
     queryKey: ["groupPosts", id],
     queryFn: async (): Promise<TPost[]> => {
@@ -57,28 +60,37 @@ function Group() {
 
   const hasData = Boolean(groupPosts?.length);
 
+  if (isError || membersError || postsError) {
+    return <div>Could not load data</div>;
+  }
+
   return (
-    <>
-      <div>
-        <h1>Group Page</h1>
+    <main>
+      <div className={styles.info}>
         <p>{data?.name}</p>
         <p>{data?.description}</p>
       </div>
-      <div>
-        <button onClick={handlePostsClick}>Posts</button>
-        <button onClick={handleMembersClick}>Members</button>
+
+      <div className={styles.tabs}>
+        <button
+          onClick={handlePostsClick}
+          className={selectedTab === "posts" ? styles.selected : ""}>
+          Posts
+        </button>
+        <button
+          onClick={handleMembersClick}
+          className={selectedTab === "members" ? styles.selected : ""}>
+          Members
+        </button>
       </div>
-      <div>
-        {selectedTab === "posts" && groupPosts && (
-          <PostList data={groupPosts} />
-        )}
-        {selectedTab === "members" &&
-          groupMembers &&
-          groupMembers.map((userName) => (
-            <div key={userName.name}>{userName.name}</div>
-          ))}
-      </div>
-    </>
+
+      <h1>{data?.name}</h1>
+
+      {selectedTab === "posts" && groupPosts && <PostList data={groupPosts} />}
+      {selectedTab === "members" && groupMembers && (
+        <UserList data={groupMembers} />
+      )}
+    </main>
   );
 }
 
