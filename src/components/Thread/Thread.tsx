@@ -1,18 +1,29 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { RootState } from "../../redux/store";
+import { hideReplyForm } from "../../redux/slices/postSlice";
+import { AppDispatch, RootState } from "../../redux/store";
 import { TPostPost, TPostPut } from "../../types/post";
 import Post from "../Post/Post";
 import PostReplyForm from "../PostReplyForm/PostReplyForm";
+import PostReplyTeaser from "../PostReplyTeaser/PostReplyTeaser";
 import styles from "./thread.module.css";
 
 function Thread() {
   const { id } = useParams();
+  const showReplyForm = useSelector(
+    (state: RootState) => state.post.showReplyForm
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.details);
   const selectedPost = useSelector(
     (state: RootState) => state.post.replyToPost
   );
+
+  useEffect(() => {
+    dispatch(hideReplyForm());
+  }, []);
 
   if (!id) return <></>;
 
@@ -39,7 +50,13 @@ function Thread() {
       <div className={styles.thread}>
         <Post id={parseInt(id, 10)} withReplies={true} selectPost={true} />
       </div>
-      <PostReplyForm handleData={handleReplyData} />
+      <div className={styles.reply}>
+        {showReplyForm ? (
+          <PostReplyForm handleData={handleReplyData} />
+        ) : (
+          <PostReplyTeaser />
+        )}
+      </div>
     </div>
   );
 }

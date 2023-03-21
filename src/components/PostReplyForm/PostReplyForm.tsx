@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { hideReplyForm } from "../../redux/slices/postSlice";
+import { AppDispatch, RootState } from "../../redux/store";
 import { TPostPut } from "../../types/post";
 import styles from "./postReplyForm.module.css";
 
 type Props = { handleData: (data: TPostPut) => void };
 
 function PostReplyForm({ handleData }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
   const selectedPost = useSelector(
     (state: RootState) => state.post.replyToPost
   );
@@ -29,6 +30,10 @@ function PostReplyForm({ handleData }: Props) {
     reset();
   };
 
+  const handleCancelClick = () => {
+    dispatch(hideReplyForm());
+  };
+
   const inputTitleRequirements = {
     required: { value: true, message: "Title is required." },
     maxLength: { value: 100, message: "Too many characters." },
@@ -40,7 +45,7 @@ function PostReplyForm({ handleData }: Props) {
   };
 
   return (
-    <div className={styles.reply}>
+    <>
       <div className={styles["form-title"]}>
         Reply to post #{selectedPost?.id}
       </div>
@@ -68,9 +73,16 @@ function PostReplyForm({ handleData }: Props) {
           aria-invalid={errors.content ? "true" : "false"}
           className={styles.input}
         />
-        <button type="submit">Send reply</button>
+        <div className={styles.buttons}>
+          <button
+            onClick={handleCancelClick}
+            className={styles["button-light"]}>
+            Cancel
+          </button>
+          <button type="submit">Send reply</button>
+        </div>
       </form>
-    </div>
+    </>
   );
 }
 

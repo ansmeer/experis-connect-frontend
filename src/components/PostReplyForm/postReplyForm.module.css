@@ -1,14 +1,5 @@
 @import "../../colors.css";
 
-.reply {
-  background-color: var(--very-light-background);
-  box-shadow: 2px 0px 8px 1px rgba(0, 0, 0, 0.16);
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100vw;
-}
-
 .form-title {
   margin-top: 8px;
   font-weight: 600;
@@ -26,4 +17,23 @@
 
 .error {
   color: red;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-light {
+  background-color: var(--very-light-background);
+  color: var(--text-color);
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+
+.button-light:hover {
+  background-color: var(--very-light-background);
+  border-bottom-color: var(--experis-blue);
+  color: var(--experis-blue);
 }
