@@ -9,6 +9,10 @@ type UserListProps = {
 function UserList({ data }: UserListProps) {
   const userList = data.map((user) => <UserListItem data={user} />);
 
+  if (data.length === 0) {
+    return <div>No members so far.</div>;
+  }
+
   return <ul className={styles["user-list"]}>{userList}</ul>;
 }
 

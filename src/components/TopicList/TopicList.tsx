@@ -22,7 +22,7 @@ function TopicList() {
     <TopicCard
       key={topic.id}
       data={topic}
-      isMember={user?.groups.includes(topic.id) || false}
+      isMember={user?.topics.includes(topic.id) || false}
     />
   ));
 
@@ -34,7 +34,12 @@ function TopicList() {
     return <div>Could not load topic list.</div>;
   }
 
-  return <div className={styles.topicList}>{topicList}</div>;
+  return (
+    <>
+      <h1>Topics</h1>
+      <div className={styles.topicList}>{topicList}</div>
+    </>
+  );
 }
 
 export default TopicList;

@@ -86,4 +86,16 @@ export const groupApi = {
       };
     },
   },
+  put: {
+    removeCurrentUserFromGroup: (groupId: number): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(`${groupApiUrl}/${groupId}/leave`).toString(),
+        options: {
+          method: "PUT",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
+  },
 };

@@ -85,6 +85,23 @@ const updateUserFulfilled = (
   loginUserFulfilled(state, action);
 };
 
+// Extra reducers: async refetchUser
+
+export const refetchUser = createAsyncThunk(
+  "user/refetchUser",
+  async (): Promise<TUser> => {
+    const user = await getCurrentUser();
+    return user;
+  }
+);
+
+const refetchUserFulfilled = (
+  state: UserState,
+  action: PayloadAction<TUser>
+) => {
+  loginUserFulfilled(state, action);
+};
+
 // Extra reducers: defaults
 
 const defaultRejected = (state: UserState, action: any) => {
@@ -105,7 +122,9 @@ export const userSlice = createSlice({
       .addCase(registerUser.fulfilled, registerUserFulfilled)
       .addCase(registerUser.rejected, defaultRejected)
       .addCase(updateUser.fulfilled, updateUserFulfilled)
-      .addCase(updateUser.rejected, defaultRejected);
+      .addCase(updateUser.rejected, defaultRejected)
+      .addCase(refetchUser.fulfilled, updateUserFulfilled)
+      .addCase(refetchUser.rejected, defaultRejected);
   },
 });
 

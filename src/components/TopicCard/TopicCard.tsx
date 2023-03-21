@@ -1,4 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { topicApi } from "../../apis/topicApi";
+import { refetchUser } from "../../redux/slices/userSlice";
+import { AppDispatch } from "../../redux/store";
 import { TTopic } from "../../types/topic";
 import styles from "./topicCard.module.css";
 
@@ -8,20 +12,40 @@ type TopicCardProps = {
 };
 
 function TopicCard({ data, isMember }: TopicCardProps) {
-  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const handleSubscribeClick = async () => {
+    const subscribeRequest = topicApi.post.addCurrentUserToTopic(data.id);
+    console.log(subscribeRequest);
+    await fetch(subscribeRequest.uri, subscribeRequest.options);
+    dispatch(refetchUser());
+  };
 
-  const handleVisitClick = () => {
-    navigate(`/topics/${data.id}`);
+  const handleUnsubscribeClick = async () => {
+    const unsubscribeRequest = topicApi.put.removeCurrentUserFromTopic(data.id);
+    await fetch(unsubscribeRequest.uri, unsubscribeRequest.options);
+    dispatch(refetchUser());
   };
 
   return (
-    <div className={styles.topicCard}>
-      <div>{data.name}</div>
-      <div>Description: {data.description}</div>
-      <div>Started: {data.createdAt}</div>
-      {isMember && <div>you are following this topic</div>}
-      <button onClick={handleVisitClick}>Visit topic</button>
-    </div>
+    <section className={styles.topicCard}>
+      <header className={styles.header}>
+        <h2>{data.name}</h2>
+        <p>Founded {}</p>
+        {/* TODO insert date here */}
+      </header>
+
+      <div>{data.description}</div>
+
+      <footer>
+        <Link to={`/topics/${data.id}`}>Visit</Link>
+        {isMember && (
+          <button onClick={handleUnsubscribeClick} className={styles.light}>
+            Unsubscribe
+          </button>
+        )}
+        {!isMember && <button onClick={handleSubscribeClick}>Subscribe</button>}
+      </footer>
+    </section>
   );
 }
 

@@ -34,7 +34,12 @@ function GroupList() {
     return <div>Could not load group list.</div>;
   }
 
-  return <div className={styles.groupList}>{groupList}</div>;
+  return (
+    <>
+      <h1>Groups</h1>
+      <div className={styles.groupList}>{groupList}</div>
+    </>
+  );
 }
 
 export default GroupList;
