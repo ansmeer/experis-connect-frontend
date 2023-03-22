@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import InputAdornment from "@mui/material/InputAdornment";
 import Input from "@mui/material/Input";
-
+import styles from "./searchForm.module.css";
 
 function SearchForm() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function SearchForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="searchForm">
+    <form onSubmit={handleSubmit(onSubmit)} className={styles["search"]}>
       <input
         {...register("search")}
         type="text"
@@ -26,12 +26,9 @@ function SearchForm() {
         placeholder="Search here"
       />
 
-      <button type="submit" className="buttonSearch">
+      <button type="submit" className={styles["button-search"]}>
         <SearchIcon />
       </button>
-      <Link to="/" className="link">
-        <HomeIcon></HomeIcon>
-      </Link>
     </form>
   );
 }
