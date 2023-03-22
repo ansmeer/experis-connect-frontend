@@ -40,7 +40,10 @@ function Header() {
             <Link to="/create/post" title="Create post">
               <AddCircleOutlineIcon />
             </Link>
-            <button onClick={onLogoutClick} className={styles.hide}>
+            <button
+              onClick={onLogoutClick}
+              className={styles.hide}
+              aria-label="logout">
               <LogoutOutlinedIcon />
             </button>
           </div>

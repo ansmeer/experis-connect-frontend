@@ -22,7 +22,8 @@ function SearchForm() {
         placeholder="Search"
       />
 
-      <button type="submit" className={styles["button-search"]}>
+      <button aria-label="submit search">
+        type="submit" className={styles["button-search"]}
         <SearchIcon />
       </button>
     </form>
