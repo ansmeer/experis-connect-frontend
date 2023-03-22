@@ -49,3 +49,25 @@
 .post-highlight {
   border: 2px solid var(--experis-blue);
 }
+
+.post-content img {
+  width: 100%;
+  height: auto;
+}
+
+.post-content blockquote {
+  margin: 16px;
+  padding: 8px 16px;
+  border-left: 8px solid var(--experis-blue);
+  background: var(--light-background);
+}
+
+.post-content p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.post-content p:last-of-type {
+  margin-bottom: 0;
+}

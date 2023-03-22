@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -92,7 +93,7 @@ function Post({ id, withReplies, selectPost }: Props) {
             </div>
           </div>
         </header>
-        <div className={styles["post-content"]}>{data.content}</div>
+        <div className={styles["post-content"]}><ReactMarkdown>{data.content}</ReactMarkdown></div>
         <footer>
           {showReplies && hasReplies && (
             <button onClick={handleHideClick}>Hide {replyCountText}</button>
