@@ -4,11 +4,12 @@ import { groupApi } from "../../apis/groupApi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import styles from "./createGroup.module.css";
 
 function CreateGroup() {
   const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.user.details);
-  const handleData = async (data: TGroupPost) => {
+
+  const handleGroupData = async (data: TGroupPost) => {
     const groupToMake: TGroupPost = {
       name: data.name,
       description: data.description,
@@ -20,10 +21,23 @@ function CreateGroup() {
     // const groupId = await response.json(); TODO fix backend to return id.
     // navigate(`/group/${groupId}`);
   };
+
+  const handleTopicClick = () => {
+    navigate("/create/topic");
+  };
+
   return (
     <>
-      <div>CreateGroup</div>
-      <CreateGroupFrom handleData={handleData} />
+      <h1>Create new group</h1>
+      <main className={styles.create}>
+        <div className={styles["top-menu"]}>
+          <div>
+            <button className={styles.selected}>Group</button>
+            <button onClick={handleTopicClick}>Topic</button>
+          </div>
+        </div>
+        <CreateGroupFrom handleData={handleGroupData} />
+      </main>
     </>
   );
 }

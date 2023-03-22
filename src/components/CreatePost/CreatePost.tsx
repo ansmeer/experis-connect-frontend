@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { RootState } from "../../redux/store";
 import { TPostFormData, TPostPost } from "../../types/post";
-import keycloak from "../../utils/keycloak";
 import CreatePostForm from "../CreatePostForm/CreatePostForm";
 
 function CreatePost() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
-  console.log(keycloak.token);
 
   const handleData = async (data: TPostFormData) => {
     const postToSend: TPostPost = {
@@ -30,7 +28,7 @@ function CreatePost() {
 
   return (
     <>
-      <div>CreatePost</div>
+      <h1>Create new post</h1>
       <CreatePostForm handleData={handleData} />
     </>
   );

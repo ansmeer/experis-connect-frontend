@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { TGroupPost } from "../../types/group";
+import styles from "./createGroupForm.module.css";
 
 type Props = { handleData: (data: TGroupPost) => void };
 
@@ -18,6 +20,7 @@ function CreateGroupFrom({ handleData }: Props) {
     defaultValues: {},
     values,
   });
+
   const inputNameRequirements = {
     required: { value: true, message: "Name is required." },
     maxLength: { value: 100, message: "Too many characters" },
@@ -32,31 +35,81 @@ function CreateGroupFrom({ handleData }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <label htmlFor="name">Name: </label>
-        {errors.name && <div role="alert">{errors.name.message}</div>}
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
+      <fieldset className={styles.postContent}>
+        <label htmlFor="name" className={styles.labelStyle}>
+          Name
+        </label>
+        {errors.name && (
+          <div role="alert" className={styles.error}>
+            {errors.name.message}
+          </div>
+        )}
         <input
+          placeholder="Give the group a name"
           {...register("name", inputNameRequirements)}
           aria-invalid={errors.name ? "true" : "false"}
         />
-        <label htmlFor="description">Description: </label>
+        <label htmlFor="description" className={styles.labelStyle}>
+          Description
+        </label>
         {errors.description && (
-          <div role="alert">{errors.description.message}</div>
+          <div role="alert" className={styles.error}>
+            {errors.description.message}
+          </div>
         )}
         <textarea
+          className={styles.txtArea}
+          placeholder="This group is about..."
           {...register("description", inputDescriptionRequirements)}
           aria-invalid={errors.description ? "true" : "false"}
         />
-        <label htmlFor="color">Color: </label>
-        <input type="color" {...register("color")} />
+        <label htmlFor="color" className={styles.labelStyle}>
+          Color
+        </label>
+        <span className={styles.labelDetails}>Select group color</span>
+        <input
+          type="color"
+          className={styles.colorPicker}
+          {...register("color")}
+        />
       </fieldset>
       <fieldset id="privateOption">
-        <label htmlFor="private">Private: </label>
-        <input type="radio" value="true" {...register("private")} /> Yes
-        <input type="radio" value="false" {...register("private")} checked /> No
+        <div className={styles.publicFields}>
+          <div className={styles.radioBox}>
+            <input type="radio" value="true" {...register("private")} />
+          </div>
+          <div className={styles.radioText}>
+            <label htmlFor="public" className={styles.radioOption}>
+              Public
+            </label>
+            <span className={styles.radioDetails}>
+              Everyone can see members in the group and what they publish
+            </span>
+          </div>
+        </div>
+        <div className={styles.privateFields}>
+          <div className={styles.radioBox}>
+            <input
+              type="radio"
+              value="false"
+              {...register("private")}
+              checked
+            />
+          </div>
+          <div className={styles.radioText}>
+            <label htmlFor="public" className={styles.radioOption}>
+              Private{" "}
+            </label>
+            <span className={styles.radioDetails}>
+              Only members can see group members and what they publish
+            </span>
+          </div>
+        </div>
       </fieldset>
-      <button type="submit">Save</button>
+      <button type="submit" className={styles.submitButton}>
+        Create group
+      </button>
     </form>
   );
 }

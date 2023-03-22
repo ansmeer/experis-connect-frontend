@@ -1,14 +1,11 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { topicApi } from "../../apis/topicApi";
-import { RootState } from "../../redux/store";
 import { TTopicPost } from "../../types/topic";
-import keycloak from "../../utils/keycloak";
 import CreateTopicForm from "../CreateTopicForm/CreateTopicForm";
+import styles from "./createTopic.module.css";
 
 function CreateTopic() {
   const navigate = useNavigate();
-  console.log(keycloak.token);
 
   const handleData = async (data: TTopicPost) => {
     const topicToSend: TTopicPost = {
@@ -23,10 +20,22 @@ function CreateTopic() {
     //navigate(`/thread/${postId}`);
   };
 
+  const handleGroupClick = () => {
+    navigate("/create/group");
+  };
+
   return (
     <>
-      <div>Create Topic</div>
-      <CreateTopicForm handleData={handleData} />
+      <h1>Create new topic</h1>
+      <main className={styles.create}>
+        <div className={styles["top-menu"]}>
+          <div>
+            <button onClick={handleGroupClick}>Group</button>
+            <button className={styles.selected}>Topic</button>
+          </div>
+        </div>
+        <CreateTopicForm handleData={handleData} />
+      </main>
     </>
   );
 }

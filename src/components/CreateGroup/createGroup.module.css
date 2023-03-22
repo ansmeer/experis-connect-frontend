@@ -5,48 +5,6 @@
   padding-bottom: 8px;
 }
 
-.formStyles {
-  display: flex;
-  justify-content: center;
-}
-
-.postForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.postForm fieldset {
-  margin: 0;
-  padding: 8px;
-}
-
-.postContent {
-  display: flex;
-  flex-direction: column;
-  padding-top: 0;
-}
-
-.targetSelect {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  padding-bottom: 0;
-}
-
-.submitButton {
-  width: 60%;
-  margin: 0 auto;
-}
-
-.txtArea {
-  height: 132px;
-}
-
-.error {
-  color: red;
-  text-align: left;
-}
-
 .top-menu {
   background-color: var(--very-light-background);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
@@ -56,14 +14,7 @@
 
 .top-menu div {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.selectStyles {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1em;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .top-menu button {
@@ -91,12 +42,4 @@
   background-color: var(--very-light-background);
   color: var(--experis-blue);
   border-bottom-color: var(--experis-blue);
-}
-
-.labelText {
-  font-weight: 600;
-  display: flex;
-  align-items: start;
-  padding: 0 0 8px 8px;
-  margin-top: 16px;
 }
