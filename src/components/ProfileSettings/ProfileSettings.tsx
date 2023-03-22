@@ -20,7 +20,7 @@ function ProfileSettings() {
 
   return (
     <div>
-      <h1>Profile Settings Page</h1>
+      <h1>User settings</h1>
       <ProfileSettingsForm handleData={handleFormData} />
     </div>
   );
