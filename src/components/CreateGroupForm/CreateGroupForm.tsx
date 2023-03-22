@@ -10,7 +10,7 @@ function CreateGroupFrom({ handleData }: Props) {
     name: "",
     description: "",
     color: "#000000",
-    isPrivate: false,
+    private: false,
   };
   const {
     register,
@@ -65,7 +65,7 @@ function CreateGroupFrom({ handleData }: Props) {
         <fieldset id="privateOption">
           <div className={styles.publicFields}>
             <div className={styles.radioBox}>
-              <input type="radio" value="true" {...register("isPrivate")} />
+              <input type="radio" value="true" {...register("private")} />
             </div>
             <div className={styles.raidoText}>
               <label htmlFor="public" className={styles.raidoOption}>
@@ -81,7 +81,7 @@ function CreateGroupFrom({ handleData }: Props) {
               <input
                 type="radio"
                 value="false"
-                {...register("isPrivate")}
+                {...register("private")}
                 checked
               />
             </div>
