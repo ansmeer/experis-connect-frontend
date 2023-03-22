@@ -95,6 +95,7 @@ button:focus-visible {
 button.light {
   background-color: var(--light-background);
   color: var(--text-color);
+  cursor: pointer;
 }
 
 button.light:hover {
