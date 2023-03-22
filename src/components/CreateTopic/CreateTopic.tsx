@@ -31,7 +31,7 @@ function CreateTopic() {
   return (
     <div>
       <h1>Create new topic</h1>
-      <main>
+      <div className={styles.divMain}>
         <div className={styles["top-menu"]}>
           <div>
             <button onClick={handleGroupClick}>Group</button>
@@ -39,7 +39,7 @@ function CreateTopic() {
           </div>
         </div>
         <CreateTopicForm handleData={handleData} />
-      </main>
+      </div>
     </div>
   );
 }

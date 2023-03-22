@@ -130,7 +130,7 @@ function CreatePostForm({ handleData }: Props) {
   };
 
   return (
-    <main>
+    <div className={styles.mainDiv}>
       <div className={styles["top-menu"]}>
         <div>
           <button
@@ -160,7 +160,9 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetGroup && errors.targetGroup.message}
             </div>
-            <select {...register("targetGroup")}>
+            <select
+              className={styles.selectStyles}
+              {...register("targetGroup")}>
               <option value="" disabled selected>
                 Select
               </option>
@@ -176,7 +178,9 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetTopic && errors.targetTopic.message}
             </div>
-            <select {...register("targetTopic")}>
+            <select
+              className={styles.selectStyles}
+              {...register("targetTopic")}>
               <option value="" disabled selected>
                 Select
               </option>
@@ -193,7 +197,7 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetUser && errors.targetUser.message}
             </div>
-            <select {...register("targetUser")}>
+            <select className={styles.selectStyles} {...register("targetUser")}>
               <option value="" disabled selected>
                 Select
               </option>
@@ -224,6 +228,7 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <textarea
+            className={styles.txtArea}
             placeholder="What do you want to say?"
             {...register("content", inputContentRequirements)}
             aria-invalid={errors.content ? "true" : "false"}
@@ -235,7 +240,7 @@ function CreatePostForm({ handleData }: Props) {
           </button>
         </div>
       </form>
-    </main>
+    </div>
   );
 }
 

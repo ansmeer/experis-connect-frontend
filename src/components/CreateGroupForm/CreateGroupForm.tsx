@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { TGroupPost } from "../../types/group";
-import styles from "../CreateGroup/createGroup.module.css";
+import styles from "./createGroupForm.module.css";
 
 type Props = { handleData: (data: TGroupPost) => void };
 
@@ -38,23 +38,30 @@ function CreateGroupFrom({ handleData }: Props) {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className={styles.postContent}>
-          <label htmlFor="name">Name </label>
+          <label htmlFor="name" className={styles.labelStyle}>
+            Name{" "}
+          </label>
           {errors.name && <div role="alert">{errors.name.message}</div>}
           <input
             placeholder="Give the group a name"
             {...register("name", inputNameRequirements)}
             aria-invalid={errors.name ? "true" : "false"}
           />
-          <label htmlFor="description">Description: </label>
+          <label htmlFor="description" className={styles.labelStyle}>
+            Description:{" "}
+          </label>
           {errors.description && (
             <div role="alert">{errors.description.message}</div>
           )}
           <textarea
+            className={styles.txtArea}
             placeholder="E.g. This group is about..."
             {...register("description", inputDescriptionRequirements)}
             aria-invalid={errors.description ? "true" : "false"}
           />
-          <label htmlFor="color">Color </label>
+          <label htmlFor="color" className={styles.labelStyle}>
+            Color{" "}
+          </label>
           <span className={styles.labelDetails}>Select group color</span>
           <input
             type="color"

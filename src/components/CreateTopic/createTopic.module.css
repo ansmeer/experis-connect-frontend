@@ -1,51 +1,9 @@
-main {
+.divMain {
   background: #ffffff;
   box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.08),
     0px 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   margin: 10px;
-}
-
-.formStyles {
-  display: flex;
-  justify-content: center;
-}
-
-fieldset {
-  border: 0;
-}
-
-.postForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.postContent {
-  display: flex;
-  flex-direction: column;
-}
-
-.targetSelect {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  padding: 8px;
-}
-
-.submitButton {
-  width: 60%;
-
-  border-radius: 5px;
-  padding: 11px 24px 11px 24px;
-  margin: 20px;
-}
-
-textarea {
-  height: 132px;
-}
-
-.error {
-  color: red;
 }
 
 .top-menu {
@@ -89,75 +47,6 @@ textarea {
   color: var(--experis-blue);
   border-bottom-color: var(--experis-blue);
 }
-label {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 16px;
-  letter-spacing: -0.01em;
-  font-feature-settings: "calt" off;
-  color: #000000;
-  display: flex;
-  align-items: start;
-  padding: 0 0 5px 5px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-.raidoOption {
-  margin-bottom: 0px;
-  margin-top: 8px;
-}
-
-.colorPicker {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 100px;
-  height: 50px;
-  border-radius: 8px;
-  background-color: transparent;
-  cursor: pointer;
-}
-.labelDetails {
-  font-weight: 400;
-  font-size: 14px;
-  color: #717d96;
-  display: flex;
-  align-items: start;
-  padding: 0 0 5px 5px;
-}
-
-.radioDetails {
-  font-weight: 400;
-  font-size: 12px;
-  color: #717d96;
-  display: flex;
-  align-items: start;
-  padding: 0 0 5px 5px;
-}
-
-.privateFields {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-.publicFields {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  border-top: 1px solid #e5e7eb;
-}
-
-.raidoText {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.radioBox {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin-right: 8px;
+fieldset {
+  border: 0;
 }

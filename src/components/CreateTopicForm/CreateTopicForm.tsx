@@ -1,5 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import styles from "../CreateGroup/createGroup.module.css";
+import styles from "./createTopicForm.module.css";
 import { TTopicPost } from "../../types/topic";
 
 type Props = { handleData: (data: TTopicPost) => void };
@@ -37,7 +37,9 @@ function CreateTopicForm({ handleData }: Props) {
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
         <fieldset className={styles.postContent}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className={styles.labelStyle}>
+            Name
+          </label>
           {errors.name && (
             <div className={styles.error} role="alert">
               {errors.name.message}
@@ -48,19 +50,24 @@ function CreateTopicForm({ handleData }: Props) {
             {...register("name", inputTitleRequirements)}
             aria-invalid={errors.name ? "true" : "false"}
           />
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description" className={styles.labelStyle}>
+            Description
+          </label>
           {errors.description && (
             <div className={styles.error} role="alert">
               {errors.description.message}
             </div>
           )}
           <textarea
+            className={styles.txtArea}
             placeholder="E.g. This topic is about..."
             {...register("description", inputContentRequirements)}
             aria-invalid={errors.description ? "true" : "false"}
           />
 
-          <label htmlFor="color">Color</label>
+          <label htmlFor="color" className={styles.labelStyle}>
+            Color
+          </label>
           <span className={styles.labelDetails}>Select group color</span>
           <input
             type="color"

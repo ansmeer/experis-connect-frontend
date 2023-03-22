@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import styles from "./createGroup.module.css";
 import { useState } from "react";
-import CreateTopicForm from "../CreateTopicForm/CreateTopicForm";
 import { TTopicPost } from "../../types/topic";
 import { topicApi } from "../../apis/topicApi";
 
@@ -26,18 +25,6 @@ function CreateGroup() {
     // const groupId = await response.json(); TODO fix backend to return id.
     // navigate(`/group/${groupId}`);
   };
-  const handleTopicData = async (data: TTopicPost) => {
-    const topicToSend: TTopicPost = {
-      name: data.name,
-      color: data.color,
-      description: data.description,
-    };
-
-    const postRequest = topicApi.post.newTopic(topicToSend);
-    const response = await fetch(postRequest.uri, postRequest.options);
-    //const postId = await response.json();
-    //navigate(`/thread/${postId}`);
-  };
 
   const handleTopicClick = () => {
     navigate("/create/topic");
@@ -45,10 +32,8 @@ function CreateGroup() {
 
   return (
     <div>
-      <h1>
-        {selectedTab === "GROUP" ? "Create new group" : "Create new topic"}
-      </h1>
-      <main>
+      <h1>Create new group</h1>
+      <div className={styles.mainDiv}>
         <div className={styles["top-menu"]}>
           <div>
             <button className={styles.selected}>Group</button>
@@ -56,7 +41,7 @@ function CreateGroup() {
           </div>
         </div>
         <CreateGroupFrom handleData={handleGroupData} />
-      </main>
+      </div>
     </div>
   );
 }
