@@ -30,7 +30,7 @@ function CreatePost() {
 
   return (
     <>
-      <div>CreatePost</div>
+      <h1>Create new post</h1>
       <CreatePostForm handleData={handleData} />
     </>
   );
