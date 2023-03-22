@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import keycloak from "../../utils/keycloak";
@@ -20,35 +20,17 @@ function Header() {
   };
 
   return (
-    <>
-      <header className={styles.header}>
-        {user && (
-          <>
+      
+      {keycloak.authenticated && user && (
+        <header className={styles.header}>
             <UserIcon user={user} small={true} />
             <SearchForm />
             <Link to="/create/post" className={styles["create-post"]}>
-              <AddIcon />
+                <AddIcon />
             </Link>
-          </>
-        )}
-      </header>
-      {!keycloak.authenticated && <NavLink to="/">Login</NavLink>}
-      {keycloak.authenticated && (
-        <div>
-          Temp menu:&nbsp;
-          <NavLink to="/dashboard">Dashboard</NavLink>&nbsp;
-          <NavLink to="/profile">Profile</NavLink>&nbsp;
-          <NavLink to="/profile/settings">Settings</NavLink>&nbsp;
-          <NavLink to="/groups">Groups</NavLink>&nbsp;
-          <NavLink to="/groups/1">Group</NavLink>&nbsp;
-          <NavLink to="/topics">Topics</NavLink>&nbsp;
-          <NavLink to="/topics/1">Topic</NavLink>&nbsp;
-          <NavLink to="/thread/1">Thread</NavLink>&nbsp;
-          <NavLink to="/search">Search</NavLink>
-          <button onClick={onLogoutClick}>Logout</button>
-        </div>
+        </header>
+
       )}
-    </>
   );
 }
 export default Header;

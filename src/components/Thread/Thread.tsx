@@ -1,18 +1,29 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { RootState } from "../../redux/store";
+import { hideReplyForm, showReplyForm } from "../../redux/slices/postSlice";
+import { AppDispatch, RootState } from "../../redux/store";
 import { TPostPost, TPostPut } from "../../types/post";
+import Footer from "../Footer/Footer";
 import Post from "../Post/Post";
 import PostReplyForm from "../PostReplyForm/PostReplyForm";
 import styles from "./thread.module.css";
 
 function Thread() {
   const { id } = useParams();
+  const replyFormIsVisible = useSelector(
+    (state: RootState) => state.post.showReplyForm
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.details);
   const selectedPost = useSelector(
     (state: RootState) => state.post.replyToPost
   );
+
+  useEffect(() => {
+    dispatch(hideReplyForm());
+  }, []);
 
   if (!id) return <></>;
 
@@ -34,12 +45,23 @@ function Thread() {
     // TODO fix data refresh in all post components
   };
 
+  const handleReplyClick = () => {
+    dispatch(showReplyForm());
+  };
+
   return (
     <div>
       <div className={styles.thread}>
+        <h1>Thread</h1>
         <Post id={parseInt(id, 10)} withReplies={true} selectPost={true} />
       </div>
-      <PostReplyForm handleData={handleReplyData} />
+      <div className={styles.reply}>
+        {replyFormIsVisible ? (
+          <PostReplyForm handleData={handleReplyData} />
+        ) : (
+          <Footer text="Reply to thread" clickHandler={handleReplyClick} />
+        )}
+      </div>
     </div>
   );
 }

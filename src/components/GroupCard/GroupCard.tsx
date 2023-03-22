@@ -1,6 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TGroup } from "../../types/group";
 import styles from "./groupCard.module.css";
+import { groupApi } from "../../apis/groupApi";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { refetchUser } from "../../redux/slices/userSlice";
 
 type GroupCardProps = {
   data: TGroup;
@@ -8,21 +12,45 @@ type GroupCardProps = {
 };
 
 function GroupCard({ data, isMember }: GroupCardProps) {
-  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const handleJoinClick = async () => {
+    const joinRequest = groupApi.post.addCurrentUserToGroup(data.id);
+    await fetch(joinRequest.uri, joinRequest.options);
+    dispatch(refetchUser());
+  };
 
-  const handleVisitClick = () => {
-    navigate(`/groups/${data.id}`);
+  const handleLeaveClick = async () => {
+    const joinRequest = groupApi.put.removeCurrentUserFromGroup(data.id);
+    await fetch(joinRequest.uri, joinRequest.options);
+    dispatch(refetchUser());
   };
 
   return (
-    <div className={styles.groupCard} role="button">
-      <div>{data.name}</div>
-      <div>Description: {data.description}</div>
-      <div>Started: {data.createdAt}</div>
-      <div>{data.isPrivate && "private group"}</div>
-      {isMember && <div>you are a member</div>}
-      <button onClick={handleVisitClick}>Visit group</button>
-    </div>
+    <section className={styles.groupCard}>
+      <header className={styles.header}>
+        <h2>
+          {data.name}
+          {/* // TODO icon lock */}
+          {data.private && " (private group)"}
+        </h2>
+        <p>Founded {}</p>
+        {/* TODO insert date here */}
+      </header>
+
+      <div>{data.description}</div>
+
+      <footer>
+        <Link to={`/groups/${data.id}`}>Visit</Link>
+        {isMember && (
+          <button onClick={handleLeaveClick} className={styles.light}>
+            Leave
+          </button>
+        )}
+        {!isMember && !data.private && (
+          <button onClick={handleJoinClick}>Join</button>
+        )}
+      </footer>
+    </section>
   );
 }
 

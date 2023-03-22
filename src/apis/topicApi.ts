@@ -86,4 +86,16 @@ export const topicApi = {
       };
     },
   },
+  put: {
+    removeCurrentUserFromTopic: (topicId: number): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(`${topicApiUrl}/${topicId}/leave`).toString(),
+        options: {
+          method: "PUT",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
+  },
 };

@@ -3,7 +3,7 @@ export type TGroup = {
   name: string;
   description: string;
   color: string;
-  isPrivate: boolean;
+  private: boolean;
   createdAt: string;
   updatedAt: string;
 };
@@ -12,7 +12,7 @@ export type TGroupPost = {
   name: string;
   description: string;
   color: string;
-  isPrivate: boolean;
+  private: boolean;
 };
 
 export type TGroupMini = {

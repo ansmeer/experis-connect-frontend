@@ -9,6 +9,10 @@ function PostList({ data }: Props) {
     <PostListItem data={post} key={post.id} />
   ));
 
+  if (data.length === 0) {
+    return <div>No posts to show.</div>;
+  }
+
   return <div className={styles["post-list"]}>{postList}</div>;
 }
 

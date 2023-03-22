@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import keycloak from "../../utils/keycloak";
+import styles from "./login.module.css";
 
 function Login() {
   const onLoginClick = () => {
@@ -11,9 +12,20 @@ function Login() {
   }
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <button onClick={onLoginClick}>Login</button>
+    <div className={styles["login-wrapper"]}>
+      <div className={styles.login}>
+        <img
+          src="/logo_no_text.png"
+          alt="Experis Connect Logo"
+          className={styles.logo}
+        />
+        <img src="/logo_text.png" alt="Experis Connect" />
+        <div>
+          Connect with your Experis alumnis and co-students to explore what is
+          happening in your network.
+        </div>
+        <button onClick={onLoginClick}>Login</button>
+      </div>
     </div>
   );
 }

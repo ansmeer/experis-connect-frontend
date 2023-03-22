@@ -17,17 +17,23 @@
 }
 
 a {
-  color: var(--text-color);
-  text-decoration: none;
-  border-bottom: 2px solid var(--experis-blue);
-}
-a:hover {
-  color: var(--experis-blue);
+  color: var(--experis-green);
+  text-decoration: underline;
+  font-weight: 600;
 }
 
-a::after {
-  content: " ▸";
-  color: var(--experis-blue);
+a:hover {
+  color: var(--text-color);
+}
+
+h2 a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+h2 a:hover {
+  text-decoration: none;
+  color: var(--experis-green);
 }
 
 body {
@@ -45,8 +51,10 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: left;
+  padding-left: 8px;
 }
 
 h2 {

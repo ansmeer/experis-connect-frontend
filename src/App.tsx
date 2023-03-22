@@ -30,7 +30,7 @@ function App() {
         refetchOnMount: true,
         refetchOnReconnect: false,
         retry: false,
-        staleTime: 30 * 1000,
+        staleTime: 1000,
       },
     },
   };
