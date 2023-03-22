@@ -11,12 +11,10 @@
 
 .profileBackground {
   background-color: var(--light-background);
-  border-radius: 8px 8px 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 0px;
   align-self: center;
   text-align: center;
   margin-top: 16px;
@@ -25,10 +23,10 @@
   border-radius: 8px;
 }
 
-.profile-content {
+.profile {
   background-color: var(--very-light-background);
-  padding: 8px;
   text-align: center;
+  border-radius: 8px;
 }
 
 .editButton {
@@ -51,7 +49,7 @@
   padding-bottom: 20px;
 }
 
-.profilePicture2 {
+.editBackground {
   display: flex;
   align-self: flex-end;
   border-radius: 8px 8px 0 0;
@@ -59,48 +57,49 @@
 }
 
 .profileName {
-  width: 100%;
   font-weight: 600;
+  align-items: center;
   text-align: center;
 }
 
 .profileStatus {
-  width: 90%;
-  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
   margin-bottom: -8px;
+  margin-left: 8px;
+  margin-right: 8px;
   border-bottom: 1.5px solid #d6dedb;
 }
 
 .profileBio {
-  width: 90%;
   font-weight: 600;
   text-align: left;
+  align-self: flex-start;
   margin-bottom: -8px;
+  margin-left: 8px;
+  margin-right: 8px;
   border-bottom: 1.5px solid #d6dedb;
 }
 
-.p {
+.profile p {
   font-weight: 400;
   margin-top: 4px;
 }
 
 .profileFunfact {
-  width: 90%;
   font-weight: 600;
+  align-self: flex-start;
   text-align: left;
+  margin-left: 8px;
+  margin-bottom: 8px;
 }
 
-.profileBackground2 {
+.textBackground {
   background-color: var(--very-light-background);
-  border-radius: 8px 8px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
-  width: 100%;
+  padding: 0px;
   align-self: center;
   text-align: center;
-
-  border-radius: 8px;
 }

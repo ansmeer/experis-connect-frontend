@@ -42,7 +42,7 @@ function ProfileSettingsForm({ handleData }: Props) {
   };
 
   return (
-    <div className={styles["settings-background"]}>
+    <div className={styles.settingsBackground}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.profileForm}>
         <label className={styles.labelStyle} htmlFor="name">
           Name

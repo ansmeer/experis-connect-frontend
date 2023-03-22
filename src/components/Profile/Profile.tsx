@@ -47,52 +47,48 @@ function Profile() {
   return (
     <div>
       <h1>{data && data.name}</h1>
-      <section>
-        <header>
-          <div className={styles.profileBackground}>
-            <div className={styles.profilePicture2}>
-              <div className={styles.editButton}>
-                {showEditButton && (
-                  <button onClick={handleEditClick}>Edit</button>
-                )}
-              </div>
-            </div>
-            <div className={styles.profilePicture}>
-              {data?.picture && (
-                <img
-                  src={data.picture}
-                  className={styles.avatar}
-                  alt={data.name}
-                />
+      <section className={styles.profile}>
+        <div className={styles.profileBackground}>
+          <div className={styles.editBackground}>
+            <div className={styles.editButton}>
+              {showEditButton && (
+                <button onClick={handleEditClick}>Edit</button>
               )}
-            </div>
-            <div className={styles.profileBackground2}>
-              {data?.name && (
-                <div className={styles.profileName}>{data.name}</div>
-              )}
-              {data?.status && (
-                <div className={styles.profileStatus}>
-                  <p className={styles.p}>{data.status}</p>
-                </div>
-              )}
-              {data?.bio && (
-                <div className={styles.profileBio}>
-                  Bio
-                  <p className={styles.p}>{data.bio}</p>
-                </div>
-              )}
-              {data?.funFact && (
-                <div className={styles.profileFunfact}>
-                  Fun fact
-                  <p className={styles.p}>{data.funFact}</p>
-                </div>
-              )}
-            </div>
-            <div className={styles.logoutButton}>
-              <button onClick={onLogoutClick}>Logout</button>
             </div>
           </div>
-        </header>
+          <div className={styles.profilePicture}>
+            {data?.picture && (
+              <img
+                src={data.picture}
+                className={styles.avatar}
+                alt={data.name}
+              />
+            )}
+          </div>
+          <div className={styles.textBackground}>
+            {data?.name && <h2>{data.name}</h2>}
+            {data?.status && (
+              <div className={styles.profileStatus}>
+                <p>{data.status}</p>
+              </div>
+            )}
+            {data?.bio && (
+              <div className={styles.profileBio}>
+                Bio
+                <p>{data.bio}</p>
+              </div>
+            )}
+            {data?.funFact && (
+              <div className={styles.profileFunfact}>
+                Fun fact
+                <p>{data.funFact}</p>
+              </div>
+            )}
+          </div>
+          <div className={styles.logoutButton}>
+            <button onClick={onLogoutClick}>Logout</button>
+          </div>
+        </div>
       </section>
     </div>
   );
