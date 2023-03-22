@@ -9,6 +9,7 @@ import keycloak from "../../utils/keycloak";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import ErrorFetch from "../ErrorFetch/ErrorFetch";
+import { useEffect } from "react";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -30,11 +31,17 @@ function Profile() {
   const handleEditClick = () => {
     navigate("/profile/settings");
   };
-
+  
   const onLogoutClick = () => {
     dispatch(logout());
     keycloak.logout();
   };
+
+  useEffect(() => {
+    document.title = data
+      ? `${data.name} | Experis Connect`
+      : "Experis Connect";
+  }, [data]);
 
   if (isLoading) {
     return <Loading />;

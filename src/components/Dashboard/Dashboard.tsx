@@ -10,7 +10,7 @@ import styles from "./dashboard.module.css";
 const getTargetType = (input: string | null): TPostTargetType | undefined => {
   if (input === "dms") return "USER";
   if (input === "groups") return "GROUP";
-  if (input === "topic") return "TOPIC";
+  if (input === "topics") return "TOPIC";
   return undefined;
 };
 
@@ -89,10 +89,16 @@ function Dashboard() {
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
       {selectedTab === "groups" && (
-        <Footer text="Explore" clickHandler={handleExploreGroupsClick} />
+        <Footer
+          text="Explore more groups"
+          clickHandler={handleExploreGroupsClick}
+        />
       )}
       {selectedTab === "topics" && (
-        <Footer text="Explore" clickHandler={handleExploreTopicsClick} />
+        <Footer
+          text="Explore more topics"
+          clickHandler={handleExploreTopicsClick}
+        />
       )}
     </main>
   );

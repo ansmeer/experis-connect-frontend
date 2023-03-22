@@ -1,7 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import TopicList from "../components/TopicList/TopicList";
 
 function TopicListPage() {
+  useEffect(() => {
+    document.title = "Topics | Experis Connect";
+  }, []);
+
   return <TopicList />;
 }
 

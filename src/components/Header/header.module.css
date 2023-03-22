@@ -2,7 +2,8 @@
 
 .header {
   background: var(--very-light-background);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -19,6 +20,13 @@
   align-items: center;
   gap: 16px;
   line-height: 1em;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .hide {

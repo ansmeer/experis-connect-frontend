@@ -28,7 +28,9 @@ function TopicCard({ data, isMember }: TopicCardProps) {
   return (
     <section className={styles.topicCard}>
       <header className={styles.header}>
-        <h2>{data.name}</h2>
+        <h2>
+          <Link to={`/topics/${data.id}`}>{data.name}</Link>
+        </h2>
         <p>Founded {}</p>
         {/* TODO insert date here */}
       </header>

@@ -43,7 +43,7 @@ function TopicList() {
 
   return (
     <>
-      <h1>Topics</h1>
+      <h1>All topics</h1>
       <div className={styles.topicList}>{topicList}</div>
       <Footer text="Create topic" clickHandler={handleCreateClick} />
     </>

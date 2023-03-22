@@ -25,6 +25,12 @@ function Thread() {
     dispatch(hideReplyForm());
   }, []);
 
+  // useEffect(() => { // TODO page title
+  //   document.title = urlParam
+  //     ? `Search: ${urlParam} | Experis Connect`
+  //     : "Experis Connect";
+  // }, [urlParam]);
+
   if (!id) return <></>;
 
   const handleReplyData = async (data: TPostPut) => {

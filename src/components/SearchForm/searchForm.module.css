@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
@@ -17,10 +17,17 @@
 
 .search input {
   border: none;
+  width: 100%;
 }
 
 .search input:focus,
 .search button:focus {
   outline: none;
   border: none;
+}
+
+@media (min-width: 520x) {
+  .search input {
+    max-width: 300px;
+  }
 }

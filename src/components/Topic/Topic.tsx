@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
@@ -55,6 +56,13 @@ function Topic() {
       return await response.json();
     },
   });
+
+  useEffect(() => {
+    document.title = data
+      ? `${data?.name} | Experis Connect`
+      : "Experis Connect";
+  }, [data]);
+
   return (
     <main>
       <div className={styles.info}>
