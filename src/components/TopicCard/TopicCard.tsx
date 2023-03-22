@@ -40,7 +40,7 @@ function TopicCard({ data, isMember }: TopicCardProps) {
       <footer>
         <Link to={`/topics/${data.id}`}>Visit</Link>
         {isMember && (
-          <button onClick={handleUnsubscribeClick} className={styles.light}>
+          <button onClick={handleUnsubscribeClick} className="light">
             Unsubscribe
           </button>
         )}

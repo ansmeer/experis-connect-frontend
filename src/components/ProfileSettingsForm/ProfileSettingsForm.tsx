@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../redux/store";
-import { TUser, TUserPut } from "../../types/user";
+import { TUser } from "../../types/user";
 import styles from "./profileSettings.module.css";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 type Props = { handleData: (data: TUser) => void };
 
@@ -52,6 +53,9 @@ function ProfileSettingsForm({ handleData }: Props) {
             {errors.name.message}
           </div>
         )}
+        <div className={styles.desc}>
+          Your name will be shown on your profile.
+        </div>
         <input
           className={styles.inputBackground}
           {...register("name", inputNameRequirements)}
@@ -66,6 +70,9 @@ function ProfileSettingsForm({ handleData }: Props) {
             {errors.status.message}
           </div>
         )}
+        <div className={styles.desc}>
+          Your work status, for example where you are currently employed.
+        </div>
         <input
           className={styles.inputBackground}
           {...register("status", inputTextRequirements)}
@@ -79,6 +86,7 @@ function ProfileSettingsForm({ handleData }: Props) {
             {errors.funFact.message}
           </div>
         )}
+        <div className={styles.desc}>Anything funny about you.</div>
         <input
           className={styles.inputBackground}
           {...register("funFact", inputTextRequirements)}
@@ -92,6 +100,9 @@ function ProfileSettingsForm({ handleData }: Props) {
             {errors.bio.message}
           </div>
         )}
+        <div className={styles.desc}>
+          Share a short biography so others can connect to you.
+        </div>
         <input
           className={styles.inputBackground}
           {...register("bio", inputTextRequirements)}
@@ -105,6 +116,10 @@ function ProfileSettingsForm({ handleData }: Props) {
             {errors.picture.message}
           </div>
         )}
+        <div className={styles.desc}>
+          URL to a picture (.png, .jpg or .gif) that will be used as your
+          avatar.
+        </div>
         <input
           className={styles.inputBackground}
           {...register("picture", inputPictureRequirements)}
@@ -115,7 +130,8 @@ function ProfileSettingsForm({ handleData }: Props) {
             Save settings
           </button>
           <button className={styles.buttonLight} onClick={handleEditClick}>
-            Cancel
+            <span>Cancel</span>
+            <CloseOutlinedIcon fontSize="small" />
           </button>
         </div>
       </form>

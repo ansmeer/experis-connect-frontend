@@ -44,7 +44,11 @@ function GroupCard({ data, isMember }: GroupCardProps) {
 
       <footer>
         <Link to={`/groups/${data.id}`}>Visit</Link>
-        {isMember && <button onClick={handleLeaveClick}>Leave</button>}
+        {isMember && (
+          <button onClick={handleLeaveClick} className="light">
+            Leave
+          </button>
+        )}
         {!isMember && !data.private && (
           <button onClick={handleJoinClick}>Join</button>
         )}
