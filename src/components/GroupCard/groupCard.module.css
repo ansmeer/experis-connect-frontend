@@ -33,12 +33,3 @@
   gap: 16px;
   padding: 8px;
 }
-
-button.light {
-  background-color: var(--light-background);
-  color: var(--text-color);
-}
-
-button.light:hover {
-  background-color: #ddd;
-}

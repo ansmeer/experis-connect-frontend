@@ -11,7 +11,6 @@ import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
 import Diversity1OutlinedIcon from "@mui/icons-material/Diversity1Outlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { logout } from "../../redux/slices/userSlice";
 
 function Header() {
@@ -27,15 +26,14 @@ function Header() {
     <>
       {keycloak.authenticated && user && (
         <header className={styles.header}>
-          <UserIcon user={user} small={true} />
-          <SearchForm />
-          <div className={styles.icons}>
+          <div>
+            <UserIcon user={user} small={true} />
             <Link to="/" title="Dashboard">
               <CottageOutlinedIcon />
             </Link>
             <Link to="/groups" title="Groups" className={styles.hide}>
               <Diversity1OutlinedIcon />
-            </Link>{" "}
+            </Link>
             <Link to="/topics" title="Topics" className={styles.hide}>
               <TopicOutlinedIcon />
             </Link>
@@ -46,6 +44,7 @@ function Header() {
               <LogoutOutlinedIcon />
             </button>
           </div>
+          <SearchForm />
         </header>
       )}
     </>

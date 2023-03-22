@@ -4,6 +4,8 @@ import { hideReplyForm } from "../../redux/slices/postSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { TPostPut } from "../../types/post";
 import styles from "./postReplyForm.module.css";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 type Props = { handleData: (data: TPostPut) => void };
 
@@ -77,9 +79,13 @@ function PostReplyForm({ handleData }: Props) {
           <button
             onClick={handleCancelClick}
             className={styles["button-light"]}>
-            Cancel
+            <span>Cancel</span>
+            <CloseOutlinedIcon fontSize="small" />
           </button>
-          <button type="submit">Send reply</button>
+          <button type="submit">
+            <span>Send reply</span>
+            <SendOutlinedIcon fontSize="small" />
+          </button>
         </div>
       </form>
     </>

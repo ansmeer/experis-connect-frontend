@@ -3,7 +3,7 @@
 .header {
   background: var(--very-light-background);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +36,10 @@
 @media (min-width: 500px) {
   .hide {
     display: inline;
+  }
+
+  .header {
+    grid-template-columns: 2fr 1fr;
   }
 }
 

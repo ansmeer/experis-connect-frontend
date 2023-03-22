@@ -10,6 +10,9 @@ import { TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
 import UserIcon from "../UserIcon/UserIcon";
 import styles from "./post.module.css";
+import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
+import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
 type Props = {
   id: number;
@@ -95,12 +98,21 @@ function Post({ id, withReplies, selectPost }: Props) {
         <div className={styles["post-content"]}>{data.content}</div>
         <footer>
           {showReplies && hasReplies && (
-            <button onClick={handleHideClick}>Hide {replyCountText}</button>
+            <button onClick={handleHideClick} className="light">
+              <span>Hide {replyCountText}</span>
+              <KeyboardArrowUpOutlinedIcon />
+            </button>
           )}
           {!showReplies && hasReplies && (
-            <button onClick={handleShowClick}>Show {replyCountText}</button>
+            <button onClick={handleShowClick} className="light">
+              <span>Show {replyCountText}</span>
+              <KeyboardArrowDownOutlinedIcon />
+            </button>
           )}
-          <button onClick={handleReplyClick}>Reply</button>
+          <button onClick={handleReplyClick}>
+            <span>Reply</span>
+            <MessageOutlinedIcon fontSize="small" />
+          </button>
         </footer>
       </section>
       {showReplies && (

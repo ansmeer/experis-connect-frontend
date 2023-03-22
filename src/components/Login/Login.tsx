@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import keycloak from "../../utils/keycloak";
 import styles from "./login.module.css";
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 
 function Login() {
   const onLoginClick = () => {
@@ -24,7 +25,10 @@ function Login() {
           Connect with your Experis alumnis and co-students to explore what is
           happening in your network.
         </div>
-        <button onClick={onLoginClick}>Login</button>
+        <button onClick={onLoginClick}>
+          <span>Login</span>
+          <LoginOutlinedIcon />
+        </button>
       </div>
     </div>
   );
