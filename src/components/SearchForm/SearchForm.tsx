@@ -6,6 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InputAdornment from "@mui/material/InputAdornment";
 import Input from "@mui/material/Input";
 
+
 function SearchForm() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
