@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { groupApi } from "../../apis/groupApi";
@@ -31,6 +32,7 @@ function CreatePostForm({ handleData }: Props) {
     defaultValues: {},
     values,
   });
+  const [selectedTab, setSelectedTab] = useState<string>("GROUP");
 
   const groupsQuery = useQuery<TGroup[]>({
     queryKey: "groups",
@@ -76,29 +78,30 @@ function CreatePostForm({ handleData }: Props) {
   ));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (data.postTarget === "GROUP" && !Boolean(data.targetGroup)) {
+    if (selectedTab === "GROUP" && !Boolean(data.targetGroup)) {
       setError("targetGroup", { message: "Group is required." });
       return;
     }
-    if (data.postTarget === "topic" && !Boolean(data.targetTopic)) {
+    if (selectedTab === "TOPIC" && !Boolean(data.targetTopic)) {
       setError("targetTopic", { message: "Topic is required." });
       return;
     }
-    if (data.postTarget === "user" && !Boolean(data.targetUser)) {
+    if (selectedTab === "USER" && !Boolean(data.targetUser)) {
       setError("targetUser", { message: "User is required." });
       return;
     }
 
-    if (data.postTarget === "user") {
+    if (selectedTab === "USER") {
       data.targetGroup = null;
       setValue("targetGroup", null);
       data.targetTopic = null;
       setValue("targetTopic", null);
     }
-    if (data.postTarget === "topic" || data.postTarget === "GROUP") {
+    if (selectedTab === "TOPIC" || selectedTab === "GROUP") {
       data.targetUser = "";
       setValue("targetUser", "");
     }
+    setValue("postTarget", selectedTab);
 
     handleData(data as TPostFormData); // TODO remove assertion
   };
@@ -113,73 +116,126 @@ function CreatePostForm({ handleData }: Props) {
     maxLength: { value: 4000, message: "Too many characters." },
   };
 
+  const handleGroupClick = () => {
+    setSelectedTab("GROUP");
+    setValue("postTarget", "GROUP");
+  };
+  const handleTopicClick = () => {
+    setSelectedTab("TOPIC");
+    setValue("postTarget", "TOPIC");
+  };
+  const handleDmClick = () => {
+    setSelectedTab("USER");
+    setValue("postTarget", "USER");
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
-      <fieldset className={styles.postContent}>
-        <label htmlFor="title">Title</label>
-        {errors.title && (
-          <div className={styles.error} role="alert">
-            {errors.title.message}
-          </div>
+    <main>
+      <div className={styles["top-menu"]}>
+        <div>
+          <button
+            onClick={handleGroupClick}
+            className={selectedTab === "GROUP" ? styles.selected : ""}>
+            Groups
+          </button>
+          <button
+            onClick={handleTopicClick}
+            className={selectedTab === "TOPIC" ? styles.selected : ""}>
+            Topics
+          </button>
+          <button
+            onClick={handleDmClick}
+            className={selectedTab === "USER" ? styles.selected : ""}>
+            DMs
+          </button>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
+        {watch("postTarget") === "GROUP" && (
+          <fieldset className={styles.targetSelect}>
+            <label htmlFor="targetGroup" className={styles.labelText}>
+              Group
+            </label>
+            <div className={styles.error} role="alert">
+              {errors.targetGroup && errors.targetGroup.message}
+            </div>
+            <select {...register("targetGroup")}>
+              <option value="" disabled selected>
+                Select
+              </option>
+              {groupOptions}
+            </select>
+          </fieldset>
         )}
-        <input
-          {...register("title", inputTitleRequirements)}
-          aria-invalid={errors.title ? "true" : "false"}
-        />
-        <label htmlFor="content">Content</label>
-        {errors.content && (
-          <div className={styles.error} role="alert">
-            {errors.content.message}
-          </div>
+        {watch("postTarget") === "TOPIC" && (
+          <fieldset className={styles.targetSelect}>
+            <label htmlFor="targetTopic" className={styles.labelText}>
+              Topic
+            </label>
+            <div className={styles.error} role="alert">
+              {errors.targetTopic && errors.targetTopic.message}
+            </div>
+            <select {...register("targetTopic")}>
+              <option value="" disabled selected>
+                Select
+              </option>
+              {topicOptions}
+            </select>
+          </fieldset>
         )}
-        <textarea
-          {...register("content", inputContentRequirements)}
-          aria-invalid={errors.content ? "true" : "false"}
-        />
-      </fieldset>
 
-      <fieldset id="postTarget">
-        <input type="radio" value="group" {...register("postTarget")} /> Group
-        <input type="radio" value="topic" {...register("postTarget")} /> Topic
-        <input type="radio" value="user" {...register("postTarget")} /> User
-      </fieldset>
-
-      {watch("postTarget") !== "user" && (
-        <fieldset className={styles.targetSelect}>
-          <label htmlFor="targetGroup">Group</label>
-          <div className={styles.error} role="alert">
-            {errors.targetGroup && errors.targetGroup.message}
-          </div>
-          <select {...register("targetGroup")}>
-            <option></option>
-            {groupOptions}
-          </select>
-          <label htmlFor="targetTopic">Topic</label>
-          <div className={styles.error} role="alert">
-            {errors.targetTopic && errors.targetTopic.message}
-          </div>
-          <select {...register("targetTopic")}>
-            <option></option>
-            {topicOptions}
-          </select>
+        {watch("postTarget") === "USER" && (
+          <fieldset className={styles.targetSelect}>
+            <label htmlFor="targetUser" className={styles.labelText}>
+              User
+            </label>
+            <div className={styles.error} role="alert">
+              {errors.targetUser && errors.targetUser.message}
+            </div>
+            <select {...register("targetUser")}>
+              <option value="" disabled selected>
+                Select
+              </option>
+              {userOptions}
+            </select>
+          </fieldset>
+        )}
+        <fieldset className={styles.postContent}>
+          <label htmlFor="title" className={styles.labelText}>
+            Post title
+          </label>
+          {errors.title && (
+            <div className={styles.error} role="alert">
+              {errors.title.message}
+            </div>
+          )}
+          <input
+            placeholder="E.g. Meet our Alumni"
+            {...register("title", inputTitleRequirements)}
+            aria-invalid={errors.title ? "true" : "false"}
+          />
+          <label htmlFor="content" className={styles.labelText}>
+            Content
+          </label>
+          {errors.content && (
+            <div className={styles.error} role="alert">
+              {errors.content.message}
+            </div>
+          )}
+          <textarea
+            placeholder="What do you want to say?"
+            {...register("content", inputContentRequirements)}
+            aria-invalid={errors.content ? "true" : "false"}
+          />
         </fieldset>
-      )}
-
-      {watch("postTarget") === "user" && (
-        <fieldset className={styles.targetSelect}>
-          <label htmlFor="targetUser">User</label>
-          <div className={styles.error} role="alert">
-            {errors.targetUser && errors.targetUser.message}
-          </div>
-          <select {...register("targetUser")}>
-            <option></option>
-            {userOptions}
-          </select>
-        </fieldset>
-      )}
-
-      <button type="submit">Save</button>
-    </form>
+        <div>
+          <button className={styles.submitButton} type="submit">
+            Create post
+          </button>
+        </div>
+      </form>
+    </main>
   );
 }
 
