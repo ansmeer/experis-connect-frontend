@@ -1,8 +1,74 @@
+@import "../../colors.css";
+
 .profileForm {
   display: flex;
+  width: 100%;
+  gap: 5px;
   flex-direction: column;
 }
 
 .error {
   color: red;
+}
+
+.inputBackground {
+  /* White */
+  background: #ffffff;
+  /* border */
+  border: 1px solid #afb1b6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.profileSettingsButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 24px;
+  gap: 10px;
+  margin-top: 60px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.settings-background {
+  background-color: var(--very-light-background);
+  border-radius: 8px 8px 8px 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 8px;
+  text-align: left;
+}
+
+.labelStyle {
+  font-weight: 500;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttonLight {
+  background-color: var(--very-light-background);
+  color: var(--text-color);
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.buttonLight:hover {
+  background-color: var(--very-light-background);
+  border-bottom-color: var(--experis-blue);
+  color: var(--experis-blue);
 }
