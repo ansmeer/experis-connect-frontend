@@ -13,6 +13,7 @@ type GroupCardProps = {
 
 function GroupCard({ data, isMember }: GroupCardProps) {
   const dispatch = useDispatch<AppDispatch>();
+
   const handleJoinClick = async () => {
     const joinRequest = groupApi.post.addCurrentUserToGroup(data.id);
     await fetch(joinRequest.uri, joinRequest.options);
@@ -29,9 +30,11 @@ function GroupCard({ data, isMember }: GroupCardProps) {
     <section className={styles.groupCard}>
       <header className={styles.header}>
         <h2>
-          {data.name}
-          {/* // TODO icon lock */}
-          {data.private && " (private group)"}
+          <Link to={`/groups/${data.id}`}>
+            {data.name}
+            {/* // TODO icon lock */}
+            {data.private && " (private group)"}
+          </Link>
         </h2>
         <p>Founded {}</p>
         {/* TODO insert date here */}
@@ -41,11 +44,7 @@ function GroupCard({ data, isMember }: GroupCardProps) {
 
       <footer>
         <Link to={`/groups/${data.id}`}>Visit</Link>
-        {isMember && (
-          <button onClick={handleLeaveClick} className={styles.light}>
-            Leave
-          </button>
-        )}
+        {isMember && <button onClick={handleLeaveClick}>Leave</button>}
         {!isMember && !data.private && (
           <button onClick={handleJoinClick}>Join</button>
         )}
