@@ -8,7 +8,7 @@ function CreateTopicForm({ handleData }: Props) {
   const values = {
     name: "",
     description: "",
-    color: "",
+    color: "#000000",
   };
   const {
     register,
@@ -34,54 +34,52 @@ function CreateTopicForm({ handleData }: Props) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
-        <fieldset className={styles.postContent}>
-          <label htmlFor="name" className={styles.labelStyle}>
-            Name
-          </label>
-          {errors.name && (
-            <div className={styles.error} role="alert">
-              {errors.name.message}
-            </div>
-          )}
-          <input
-            placeholder="Give the topic a name"
-            {...register("name", inputTitleRequirements)}
-            aria-invalid={errors.name ? "true" : "false"}
-          />
-          <label htmlFor="description" className={styles.labelStyle}>
-            Description
-          </label>
-          {errors.description && (
-            <div className={styles.error} role="alert">
-              {errors.description.message}
-            </div>
-          )}
-          <textarea
-            className={styles.txtArea}
-            placeholder="E.g. This topic is about..."
-            {...register("description", inputContentRequirements)}
-            aria-invalid={errors.description ? "true" : "false"}
-          />
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
+      <fieldset className={styles.postContent}>
+        <label htmlFor="name" className={styles.labelStyle}>
+          Name
+        </label>
+        {errors.name && (
+          <div className={styles.error} role="alert">
+            {errors.name.message}
+          </div>
+        )}
+        <input
+          placeholder="Give the topic a name"
+          {...register("name", inputTitleRequirements)}
+          aria-invalid={errors.name ? "true" : "false"}
+        />
+        <label htmlFor="description" className={styles.labelStyle}>
+          Description
+        </label>
+        {errors.description && (
+          <div className={styles.error} role="alert">
+            {errors.description.message}
+          </div>
+        )}
+        <textarea
+          className={styles.txtArea}
+          placeholder="This topic is about..."
+          {...register("description", inputContentRequirements)}
+          aria-invalid={errors.description ? "true" : "false"}
+        />
 
-          <label htmlFor="color" className={styles.labelStyle}>
-            Color
-          </label>
-          <span className={styles.labelDetails}>Select group color</span>
-          <input
-            type="color"
-            className={styles.colorPicker}
-            {...register("color")}
-          />
-        </fieldset>
-        <div>
-          <button type="submit" className={styles.submitButton}>
-            Create topic
-          </button>
-        </div>
-      </form>
-    </div>
+        <label htmlFor="color" className={styles.labelStyle}>
+          Color
+        </label>
+        <span className={styles.labelDetails}>Select group color</span>
+        <input
+          type="color"
+          className={styles.colorPicker}
+          {...register("color")}
+        />
+      </fieldset>
+      <div>
+        <button type="submit" className={styles.submitButton}>
+          Create topic
+        </button>
+      </div>
+    </form>
   );
 }
 

@@ -96,3 +96,7 @@ textarea {
 textarea {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+fieldset {
+  border: 0;
+}

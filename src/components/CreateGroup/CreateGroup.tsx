@@ -1,18 +1,14 @@
 import { TGroupPost } from "../../types/group";
 import CreateGroupFrom from "../CreateGroupForm/CreateGroupForm";
 import { groupApi } from "../../apis/groupApi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import styles from "./createGroup.module.css";
-import { useState } from "react";
-import { TTopicPost } from "../../types/topic";
-import { topicApi } from "../../apis/topicApi";
 
 function CreateGroup() {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<string>("GROUP");
-  const user = useSelector((state: RootState) => state.user.details);
+
   const handleGroupData = async (data: TGroupPost) => {
     const groupToMake: TGroupPost = {
       name: data.name,
@@ -31,9 +27,9 @@ function CreateGroup() {
   };
 
   return (
-    <div>
+    <>
       <h1>Create new group</h1>
-      <div className={styles.mainDiv}>
+      <main className={styles.create}>
         <div className={styles["top-menu"]}>
           <div>
             <button className={styles.selected}>Group</button>
@@ -41,8 +37,8 @@ function CreateGroup() {
           </div>
         </div>
         <CreateGroupFrom handleData={handleGroupData} />
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
 export default CreateGroup;

@@ -1,17 +1,13 @@
-.mainDiv {
-  background: #ffffff;
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.08),
-    0px 1px 3px rgba(0, 0, 0, 0.1);
+.create {
+  background: var(--very-light-background);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  margin: 10px;
+  padding-bottom: 8px;
 }
 
 .top-menu {
   background-color: var(--very-light-background);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-
-  top: 70px;
-
   min-width: 320px;
   border-radius: 8px;
 }

@@ -130,23 +130,23 @@ function CreatePostForm({ handleData }: Props) {
   };
 
   return (
-    <div className={styles.mainDiv}>
+    <main className={styles.create}>
       <div className={styles["top-menu"]}>
         <div>
           <button
             onClick={handleGroupClick}
             className={selectedTab === "GROUP" ? styles.selected : ""}>
-            Groups
+            Group
           </button>
           <button
             onClick={handleTopicClick}
             className={selectedTab === "TOPIC" ? styles.selected : ""}>
-            Topics
+            Topic
           </button>
           <button
             onClick={handleDmClick}
             className={selectedTab === "USER" ? styles.selected : ""}>
-            DMs
+            DM
           </button>
         </div>
       </div>
@@ -163,9 +163,7 @@ function CreatePostForm({ handleData }: Props) {
             <select
               className={styles.selectStyles}
               {...register("targetGroup")}>
-              <option value="" disabled selected>
-                Select
-              </option>
+              <option>Select</option>
               {groupOptions}
             </select>
           </fieldset>
@@ -181,9 +179,7 @@ function CreatePostForm({ handleData }: Props) {
             <select
               className={styles.selectStyles}
               {...register("targetTopic")}>
-              <option value="" disabled selected>
-                Select
-              </option>
+              <option>Select</option>
               {topicOptions}
             </select>
           </fieldset>
@@ -198,9 +194,7 @@ function CreatePostForm({ handleData }: Props) {
               {errors.targetUser && errors.targetUser.message}
             </div>
             <select className={styles.selectStyles} {...register("targetUser")}>
-              <option value="" disabled selected>
-                Select
-              </option>
+              <option>Select</option>
               {userOptions}
             </select>
           </fieldset>
@@ -215,7 +209,7 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <input
-            placeholder="E.g. Meet our Alumni"
+            placeholder="Meet our Alumni..."
             {...register("title", inputTitleRequirements)}
             aria-invalid={errors.title ? "true" : "false"}
           />
@@ -240,7 +234,7 @@ function CreatePostForm({ handleData }: Props) {
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 }
 
