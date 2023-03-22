@@ -19,7 +19,7 @@ function CreateGroup() {
       name: data.name,
       description: data.description,
       color: data.color,
-      isPrivate: data.isPrivate,
+      private: data.private,
     };
     const groupRequest = groupApi.post.newGroup(groupToMake);
     const response = await fetch(groupRequest.uri, groupRequest.options);
