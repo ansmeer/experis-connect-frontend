@@ -14,7 +14,12 @@ function Login() {
   return (
     <div className={styles["login-wrapper"]}>
       <div className={styles.login}>
-        <img src="/logo.png" alt="Experis Connect" />
+        <img
+          src="/logo_no_text.png"
+          alt="Experis Connect Logo"
+          className={styles.logo}
+        />
+        <img src="/logo_text.png" alt="Experis Connect" />
         <div>
           Connect with your Experis alumnis and co-students to explore what is
           happening in your network.
