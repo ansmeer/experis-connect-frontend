@@ -15,6 +15,10 @@ function Login() {
     <div className={styles["login-wrapper"]}>
       <div className={styles.login}>
         <img src="/logo.png" alt="Experis Connect" />
+        <div>
+          Connect with your Experis alumnis and co-students to explore what is
+          happening in your network.
+        </div>
         <button onClick={onLoginClick}>Login</button>
       </div>
     </div>

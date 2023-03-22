@@ -1,22 +1,30 @@
 @import "../../colors.css";
 
 .login-wrapper {
-  padding: 32px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid red;
+  display: grid;
 }
 
 .login {
-  border-radius: 64px;
   background-color: var(--very-light-background);
-  margin: 0 auto 0 auto;
+  top: 0;
+  left: 0;
+  margin: 32px;
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
+  border-radius: 8px;
 }
 
 .login img {
   width: 100%;
+  max-width: 400px;
 }
