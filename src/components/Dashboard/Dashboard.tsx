@@ -10,7 +10,7 @@ import styles from "./dashboard.module.css";
 const getTargetType = (input: string | null): TPostTargetType | undefined => {
   if (input === "dms") return "USER";
   if (input === "groups") return "GROUP";
-  if (input === "topic") return "TOPIC";
+  if (input === "topics") return "TOPIC";
   return undefined;
 };
 
