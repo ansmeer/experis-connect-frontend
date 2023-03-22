@@ -5,7 +5,7 @@
 }
 
 .login {
-  border-radius: 8px;
+  border-radius: 64px;
   background-color: var(--very-light-background);
   margin: 0 auto 0 auto;
   padding: 32px;
