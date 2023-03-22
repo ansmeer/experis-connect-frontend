@@ -1,3 +1,26 @@
 .error {
   color: red;
 }
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.search:focus-within {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.search input {
+  border: none;
+}
+
+.search input:focus,
+.search button:focus {
+  outline: none;
+  border: none;
+}
