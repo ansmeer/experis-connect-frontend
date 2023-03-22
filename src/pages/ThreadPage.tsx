@@ -1,4 +1,3 @@
-import React from "react";
 import Thread from "../components/Thread/Thread";
 
 function ThreadPage() {

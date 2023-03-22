@@ -7,6 +7,7 @@ import Loading from "../Loading/Loading";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import ErrorFetch from "../ErrorFetch/ErrorFetch";
+import { useEffect } from "react";
 
 function Profile() {
   const navigate = useNavigate();
@@ -27,6 +28,12 @@ function Profile() {
   const handleEditClick = () => {
     navigate("/profile/settings");
   };
+
+  useEffect(() => {
+    document.title = data
+      ? `${data.name} | Experis Connect`
+      : "Experis Connect";
+  }, [data]);
 
   if (isLoading) {
     return <Loading />;

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
@@ -59,6 +60,12 @@ function Group() {
   });
 
   const hasData = Boolean(groupPosts?.length);
+
+  useEffect(() => {
+    document.title = data
+      ? `${data?.name} | Experis Connect`
+      : "Experis Connect";
+  }, [data]);
 
   if (isError || membersError || postsError) {
     return <div>Could not load data</div>;
