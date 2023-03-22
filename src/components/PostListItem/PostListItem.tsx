@@ -17,7 +17,9 @@ function PostListItem({ data }: Props) {
       <header>
         <UserIcon user={data.senderId} />
         <div>
-          <h2>{data.title}</h2>
+          <h2>
+            <Link to={`/thread/${data.id}`}>{data.title}</Link>
+          </h2>
           <div className={styles["post-description"]}>
             <Link to={`/profile/${data.senderId.id}`}>
               {data.senderId.name}
