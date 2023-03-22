@@ -89,10 +89,16 @@ function Dashboard() {
       {!hasData && <div>Oh wow, so empty!</div>}
       {hasData && <PostList data={data} />}
       {selectedTab === "groups" && (
-        <Footer text="Explore" clickHandler={handleExploreGroupsClick} />
+        <Footer
+          text="Explore more groups"
+          clickHandler={handleExploreGroupsClick}
+        />
       )}
       {selectedTab === "topics" && (
-        <Footer text="Explore" clickHandler={handleExploreTopicsClick} />
+        <Footer
+          text="Explore more topics"
+          clickHandler={handleExploreTopicsClick}
+        />
       )}
     </main>
   );
