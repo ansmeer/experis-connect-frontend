@@ -1,10 +1,6 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import HomeIcon from "@mui/icons-material/Home";
-import InputAdornment from "@mui/material/InputAdornment";
-import Input from "@mui/material/Input";
 import styles from "./searchForm.module.css";
 
 function SearchForm() {
@@ -23,7 +19,7 @@ function SearchForm() {
         type="text"
         aria-label="search"
         className="inputSearch"
-        placeholder="Search here"
+        placeholder="Search"
       />
 
       <button type="submit" className={styles["button-search"]}>

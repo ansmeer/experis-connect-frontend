@@ -29,7 +29,7 @@ function Header() {
         <header className={styles.header}>
           <UserIcon user={user} small={true} />
           <SearchForm />
-          <div>
+          <div className={styles.icons}>
             <Link to="/" title="Dashboard">
               <CottageOutlinedIcon />
             </Link>
