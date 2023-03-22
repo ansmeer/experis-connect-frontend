@@ -17,7 +17,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
-  const { id } = useParams(); // TODO id not updated when going from other profile to own profile
+  const { id } = useParams();
   const { data, isLoading, error } = useQuery({
     queryKey: ["profile", id],
     queryFn: async (): Promise<TUser> => {

@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { dateOptionsEN } from "../../consts/dates";
+import { dateAndTimeOptionsEN } from "../../consts/dates";
 import { setReplyToPost, showReplyForm } from "../../redux/slices/postSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { TPostWithReplies } from "../../types/post";
@@ -74,7 +74,7 @@ function Post({ id, withReplies, selectPost }: Props) {
 
   const createdAtDate = new Date(data?.createdAt).toLocaleDateString(
     "en-EN",
-    dateOptionsEN
+    dateAndTimeOptionsEN
   );
 
   return (
