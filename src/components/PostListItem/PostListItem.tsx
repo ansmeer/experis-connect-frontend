@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { dateOptionsEN } from "../../consts/dates";
+import { dateAndTimeOptionsEN } from "../../consts/dates";
 import { TPost } from "../../types/post";
 import UserIcon from "../UserIcon/UserIcon";
 import styles from "./postListItem.module.css";
@@ -9,7 +9,7 @@ type Props = { data: TPost };
 function PostListItem({ data }: Props) {
   const createdAtDate = new Date(data.createdAt).toLocaleDateString(
     "en-EN",
-    dateOptionsEN
+    dateAndTimeOptionsEN
   );
 
   return (

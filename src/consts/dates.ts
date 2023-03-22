@@ -1,4 +1,4 @@
-export const dateOptionsEN: Intl.DateTimeFormatOptions = {
+export const dateAndTimeOptionsEN: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "long",
   day: "numeric",
@@ -6,4 +6,10 @@ export const dateOptionsEN: Intl.DateTimeFormatOptions = {
   hour12: false,
   minute: "numeric",
   timeZone: "CET",
+};
+
+export const dateOptionsEN: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 };

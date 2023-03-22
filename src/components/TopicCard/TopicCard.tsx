@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { topicApi } from "../../apis/topicApi";
+import { dateOptionsEN } from "../../consts/dates";
 import { refetchUser } from "../../redux/slices/userSlice";
 import { AppDispatch } from "../../redux/store";
 import { TTopic } from "../../types/topic";
@@ -13,6 +14,11 @@ type TopicCardProps = {
 
 function TopicCard({ data, isMember }: TopicCardProps) {
   const dispatch = useDispatch<AppDispatch>();
+  const createdAtDate = new Date(data.createdAt).toLocaleDateString(
+    "en-EN",
+    dateOptionsEN
+  );
+
   const handleSubscribeClick = async () => {
     const subscribeRequest = topicApi.post.addCurrentUserToTopic(data.id);
     await fetch(subscribeRequest.uri, subscribeRequest.options);
@@ -31,8 +37,7 @@ function TopicCard({ data, isMember }: TopicCardProps) {
         <h2>
           <Link to={`/topics/${data.id}`}>{data.name}</Link>
         </h2>
-        <p>Founded {}</p>
-        {/* TODO insert date here */}
+        <p>Started {createdAtDate}</p>
       </header>
 
       <div>{data.description}</div>
