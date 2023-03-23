@@ -55,3 +55,80 @@
 .post-highlight {
   border: 2px solid var(--experis-blue);
 }
+
+/* Markdown related styling for post content */
+
+.post-content img {
+  width: 100%;
+  height: auto;
+}
+
+.post-content blockquote {
+  margin: 16px;
+  padding: 8px 16px;
+  border-left: 8px solid var(--experis-blue);
+  background: var(--light-background);
+}
+
+.post-content p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.post-content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.post-content pre {
+  padding: 8px;
+}
+
+.post-content pre,
+.post-content code {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  background: var(--light-background);
+}
+
+.post-content em {
+  font-family: Arial, sans-serif;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  margin: 0 0 8px 8px;
+  padding: 0;
+}
+
+.post-content h1 {
+  font-size: 1.3em;
+  font-weight: 800;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 8px 0;
+  padding-left: 8px;
+}
+.post-content h2 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.post-content h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.post-content h4 {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.post-content h5 {
+  font-size: 1em;
+  font-weight: 500;
+}
+.post-content h6 {
+  font-size: 1em;
+  font-weight: 400;
+}

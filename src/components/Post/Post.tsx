@@ -13,6 +13,7 @@ import styles from "./post.module.css";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 type Props = {
   id: number;
@@ -95,7 +96,9 @@ function Post({ id, withReplies, selectPost }: Props) {
             </div>
           </div>
         </header>
-        <div className={styles["post-content"]}>{data.content}</div>
+        <div className={styles["post-content"]}>
+          <ReactMarkdown>{data.content}</ReactMarkdown>
+        </div>
         <footer>
           {showReplies && hasReplies && (
             <button onClick={handleHideClick} className="light">
