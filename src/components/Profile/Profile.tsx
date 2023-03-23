@@ -68,7 +68,7 @@ function Profile() {
           )}
         </div>
         <div className={styles.textBackground}>
-          {data?.name && <h2>{data.name}</h2>}
+          {data?.name && <div id={styles.username}>{data.name}</div>}
           {data?.status && (
             <div className={styles.profileStatus}>
               <p>{data.status}</p>
@@ -76,13 +76,13 @@ function Profile() {
           )}
           {data?.bio && (
             <div className={styles.profileBio}>
-              Bio
+              <h2>Bio</h2>
               <p>{data.bio}</p>
             </div>
           )}
           {data?.funFact && (
             <div className={styles.profileFunfact}>
-              Fun fact
+              <h2>Fun fact</h2>
               <p>{data.funFact}</p>
             </div>
           )}

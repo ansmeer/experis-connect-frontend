@@ -21,6 +21,11 @@
   border-radius: 8px;
 }
 
+#username {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
 .logoutButton {
   padding-bottom: 8px;
   background-color: var(--very-light-background);
