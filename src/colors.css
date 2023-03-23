@@ -1,6 +1,7 @@
 :root {
   --experis-blue: #386097;
-  --experis-green: #5d7d70;
+  /* --experis-green: #5d7d70; */
+  --experis-green: #58766a; /* darker green to satisfy accessibility*/
   --experis-orange: #c25700;
   --experis-red: #9d323d;
   --very-light-background: #fff;

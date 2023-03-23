@@ -1,5 +1,5 @@
 .error {
-  color: red;
+  color: #e50000;
 }
 
 .search {
@@ -24,10 +24,4 @@
 .search button:focus {
   outline: none;
   border: none;
-}
-
-@media (min-width: 520x) {
-  .search input {
-    max-width: 300px;
-  }
 }
