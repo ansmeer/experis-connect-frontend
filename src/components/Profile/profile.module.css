@@ -6,7 +6,6 @@
   object-fit: cover;
   width: 200px;
   height: 200px;
-  margin-top: 50px;
 }
 
 .profile {
@@ -36,7 +35,7 @@
   width: 100%;
   align-self: center;
   border-radius: 8px 8px 0 0;
-  background: linear-gradient(#f4f4f4 55%, #ffffff 50%);
+  background: linear-gradient(#f4f4f4 45%, #ffffff 40%);
   padding-bottom: 20px;
 }
 

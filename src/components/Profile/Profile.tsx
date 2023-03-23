@@ -30,10 +30,6 @@ function Profile() {
   });
   const isOwnProfile = id === user?.id || !id;
 
-  const handleEditClick = () => {
-    navigate("/profile/settings");
-  };
-
   const onLogoutClick = () => {
     dispatch(logout());
     keycloak.logout();
@@ -60,7 +56,7 @@ function Profile() {
         {isOwnProfile && (
           <div className={styles.editBackground}>
             <Link to="/profile/settings">
-              <SettingsOutlinedIcon fontSize="large" />
+              <SettingsOutlinedIcon />
               <br />
               Edit
             </Link>
