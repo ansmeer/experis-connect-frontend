@@ -46,6 +46,7 @@ function CreateGroupFrom({ handleData }: Props) {
           </div>
         )}
         <input
+          id="name"
           placeholder="Give the group a name"
           {...register("name", inputNameRequirements)}
           aria-invalid={errors.name ? "true" : "false"}
@@ -59,6 +60,7 @@ function CreateGroupFrom({ handleData }: Props) {
           </div>
         )}
         <textarea
+          id="description"
           className={styles.txtArea}
           placeholder="This group is about..."
           {...register("description", inputDescriptionRequirements)}
@@ -69,6 +71,7 @@ function CreateGroupFrom({ handleData }: Props) {
         </label>
         <span className={styles.labelDetails}>Select group color</span>
         <input
+          id="color"
           type="color"
           className={styles.colorPicker}
           {...register("color")}
@@ -77,7 +80,12 @@ function CreateGroupFrom({ handleData }: Props) {
       <fieldset id="privateOption">
         <div className={styles.publicFields}>
           <div className={styles.radioBox}>
-            <input type="radio" value="true" {...register("private")} />
+            <input
+              id="public"
+              type="radio"
+              value="true"
+              {...register("private")}
+            />
           </div>
           <div className={styles.radioText}>
             <label htmlFor="public" className={styles.radioOption}>
@@ -91,6 +99,7 @@ function CreateGroupFrom({ handleData }: Props) {
         <div className={styles.privateFields}>
           <div className={styles.radioBox}>
             <input
+              id="private"
               type="radio"
               value="false"
               {...register("private")}
@@ -98,8 +107,8 @@ function CreateGroupFrom({ handleData }: Props) {
             />
           </div>
           <div className={styles.radioText}>
-            <label htmlFor="public" className={styles.radioOption}>
-              Private{" "}
+            <label htmlFor="private" className={styles.radioOption}>
+              Private
             </label>
             <span className={styles.radioDetails}>
               Only members can see group members and what they publish

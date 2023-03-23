@@ -13,10 +13,10 @@ function SearchResult() {
   }, [urlParam]);
 
   return (
-    <div>
+    <main>
       <h1>Search results for &laquo;{urlParam}&raquo;</h1>
       <SearchResultList search={urlParam} />
-    </div>
+    </main>
   );
 }
 

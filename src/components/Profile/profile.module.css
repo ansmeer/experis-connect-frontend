@@ -6,20 +6,20 @@
   object-fit: cover;
   width: 200px;
   height: 200px;
-  margin-top: 50px;
 }
 
 .profile {
-  background-color: var(--light-background);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  align-self: center;
-  text-align: center;
+  background-color: var(--very-light-background);
+  display: grid;
+  grid-template-columns: 1fr;
   margin-top: 16px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+}
+
+#username {
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 .logoutButton {
@@ -35,23 +35,28 @@
 .profilePicture {
   width: 100%;
   align-self: center;
-  border-radius: 8px 8px 0 0;
-  background: linear-gradient(#f4f4f4 55%, #ffffff 50%);
+  background: linear-gradient(#f4f4f4 45%, #ffffff 40%);
   padding-bottom: 20px;
 }
 
 .editBackground {
-  display: flex;
-  align-self: flex-end;
   border-radius: 8px 8px 0 0;
-  background: #f4f4f4;
-  padding-top: 8px;
-  padding-right: 8px;
+  background-color: var(--light-background);
+  padding: 8px 8px 0 8px;
+  min-height: 16px;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .editBackground a {
   text-decoration: none;
   line-height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 .profileName {
@@ -101,4 +106,5 @@
   padding: 0px;
   align-self: center;
   text-align: center;
+  border-radius: 0 0 8px 8px;
 }

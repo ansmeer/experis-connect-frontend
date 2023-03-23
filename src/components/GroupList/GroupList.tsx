@@ -43,8 +43,10 @@ function GroupList() {
 
   return (
     <>
-      <h1>All groups</h1>
-      <div className={styles.groupList}>{groupList}</div>
+      <main>
+        <h1>All groups</h1>
+        <div className={styles.groupList}>{groupList}</div>
+      </main>
       <Footer text="Create group" clickHandler={handleCreateClick} />
     </>
   );

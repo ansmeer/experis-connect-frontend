@@ -18,8 +18,8 @@ function CreateGroup() {
     };
     const groupRequest = groupApi.post.newGroup(groupToMake);
     const response = await fetch(groupRequest.uri, groupRequest.options);
-    // const groupId = await response.json(); TODO fix backend to return id.
-    // navigate(`/group/${groupId}`);
+    const groupId = await response.json();
+    navigate(`/groups/${groupId}`);
   };
 
   const handleTopicClick = () => {
@@ -31,10 +31,10 @@ function CreateGroup() {
       <h1>Create new group</h1>
       <main className={styles.create}>
         <div className={styles["top-menu"]}>
-          <div>
+          <nav aria-label="create type">
             <button className={styles.selected}>Group</button>
             <button onClick={handleTopicClick}>Topic</button>
-          </div>
+          </nav>
         </div>
         <CreateGroupFrom handleData={handleGroupData} />
       </main>

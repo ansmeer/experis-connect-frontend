@@ -8,10 +8,16 @@ import PostList from "../PostList/PostList";
 import styles from "./dashboard.module.css";
 
 const getTargetType = (input: string | null): TPostTargetType | undefined => {
-  if (input === "dms") return "USER";
-  if (input === "groups") return "GROUP";
-  if (input === "topics") return "TOPIC";
-  return undefined;
+  switch (input) {
+    case "chats":
+      return "USER";
+    case "groups":
+      return "GROUP";
+    case "topics":
+      return "TOPIC";
+    default:
+      return undefined;
+  }
 };
 
 function Dashboard() {
@@ -41,8 +47,8 @@ function Dashboard() {
   const handleTopicsClick = () => {
     setSearchParams({ show: "topics" }, { replace: true });
   };
-  const handleDmsClick = () => {
-    setSearchParams({ show: "dms" }, { replace: true });
+  const handleChatsClick = () => {
+    setSearchParams({ show: "chats" }, { replace: true });
   };
   const handleExploreGroupsClick = () => {
     navigate("/groups");
@@ -60,34 +66,42 @@ function Dashboard() {
   }
 
   return (
-    <main>
-      <div className={styles["top-menu"]}>
-        <div>
-          <button
-            onClick={handleAllClick}
-            className={!selectedTab ? styles.selected : ""}>
-            All
-          </button>
-          <button
-            onClick={handleGroupsClick}
-            className={selectedTab === "groups" ? styles.selected : ""}>
-            Groups
-          </button>
-          <button
-            onClick={handleTopicsClick}
-            className={selectedTab === "topics" ? styles.selected : ""}>
-            Topics
-          </button>
-          <button
-            onClick={handleDmsClick}
-            className={selectedTab === "dms" ? styles.selected : ""}>
-            DMs
-          </button>
-        </div>
-      </div>
-      <h1>Dashboard</h1>
-      {!hasData && <div>Oh wow, so empty!</div>}
-      {hasData && <PostList data={data} />}
+    <>
+      <main>
+        <nav aria-label="dashboard" className={styles["top-menu"]}>
+          <div>
+            <button
+              onClick={handleAllClick}
+              className={!selectedTab ? styles.selected : ""}>
+              All
+            </button>
+            <button
+              onClick={handleGroupsClick}
+              className={selectedTab === "groups" ? styles.selected : ""}>
+              Groups
+            </button>
+            <button
+              onClick={handleTopicsClick}
+              className={selectedTab === "topics" ? styles.selected : ""}>
+              Topics
+            </button>
+            <button
+              onClick={handleChatsClick}
+              className={selectedTab === "chats" ? styles.selected : ""}>
+              Chats
+            </button>
+          </div>
+        </nav>
+        <h1>
+          Dashboard
+          {selectedTab &&
+            ": " +
+              selectedTab.charAt(0).toUpperCase() +
+              selectedTab.substring(1)}
+        </h1>
+        {!hasData && <div>Oh wow, so empty!</div>}
+        {hasData && <PostList data={data} />}
+      </main>
       {selectedTab === "groups" && (
         <Footer
           text="Explore more groups"
@@ -100,7 +114,7 @@ function Dashboard() {
           clickHandler={handleExploreTopicsClick}
         />
       )}
-    </main>
+    </>
   );
 }
 

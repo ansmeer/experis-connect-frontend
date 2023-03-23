@@ -9,15 +9,13 @@
 .info p {
   padding: 0;
   margin: 0;
+  font-size: 0.9em;
 }
 
 .info p:first-of-type {
   font-weight: 600;
   margin-bottom: 8px;
-}
-
-.info p:last-of-type {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .tabs {

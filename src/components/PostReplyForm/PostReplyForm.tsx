@@ -59,6 +59,7 @@ function PostReplyForm({ handleData }: Props) {
           </div>
         )}
         <input
+          id="title"
           {...register("title", inputTitleRequirements)}
           aria-invalid={errors.title ? "true" : "false"}
           type="text"
@@ -71,6 +72,7 @@ function PostReplyForm({ handleData }: Props) {
           </div>
         )}
         <textarea
+          id="content"
           {...register("content", inputContentRequirements)}
           aria-invalid={errors.content ? "true" : "false"}
           className={styles.input}

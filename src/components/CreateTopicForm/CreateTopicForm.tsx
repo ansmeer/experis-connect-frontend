@@ -45,6 +45,7 @@ function CreateTopicForm({ handleData }: Props) {
           </div>
         )}
         <input
+          id="name"
           placeholder="Give the topic a name"
           {...register("name", inputTitleRequirements)}
           aria-invalid={errors.name ? "true" : "false"}
@@ -58,6 +59,7 @@ function CreateTopicForm({ handleData }: Props) {
           </div>
         )}
         <textarea
+          id="description"
           className={styles.txtArea}
           placeholder="This topic is about..."
           {...register("description", inputContentRequirements)}
@@ -69,6 +71,7 @@ function CreateTopicForm({ handleData }: Props) {
         </label>
         <span className={styles.labelDetails}>Select group color</span>
         <input
+          id="color"
           type="color"
           className={styles.colorPicker}
           {...register("color")}
