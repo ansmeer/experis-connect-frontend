@@ -80,27 +80,38 @@ function CreatePostForm({ handleData }: Props) {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (selectedTab === "GROUP" && !Boolean(data.targetGroup)) {
       setError("targetGroup", { message: "Group is required." });
+      setValue("targetUser", "");
+      setValue("targetTopic", null);
       return;
     }
     if (selectedTab === "TOPIC" && !Boolean(data.targetTopic)) {
       setError("targetTopic", { message: "Topic is required." });
+      setValue("targetUser", "");
+      setValue("targetGroup", null);
       return;
     }
     if (selectedTab === "USER" && !Boolean(data.targetUser)) {
       setError("targetUser", { message: "User is required." });
+      setValue("targetGroup", null);
+      setValue("targetTopic", null);
       return;
     }
 
     if (selectedTab === "USER") {
       data.targetGroup = null;
-      setValue("targetGroup", null);
       data.targetTopic = null;
-      setValue("targetTopic", null);
     }
-    if (selectedTab === "TOPIC" || selectedTab === "GROUP") {
+
+    if (selectedTab === "GROUP") {
       data.targetUser = "";
-      setValue("targetUser", "");
+      data.targetTopic = null;
     }
+
+    if (selectedTab === "TOPIC") {
+      data.targetUser = "";
+      data.targetGroup = null;
+    }
+
     setValue("postTarget", selectedTab);
 
     handleData(data as TPostFormData); // TODO remove assertion
@@ -159,7 +170,7 @@ function CreatePostForm({ handleData }: Props) {
             </label>
             {errors.targetGroup && (
               <div className={styles.error} role="alert">
-                errors.targetGroup.message
+                {errors.targetGroup.message}
               </div>
             )}
             <select
