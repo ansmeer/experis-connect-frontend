@@ -46,7 +46,6 @@
 .radioOption {
   font-weight: 600;
   font-size: 16px;
-  color: #000000;
   display: flex;
   align-items: start;
   padding: 0;
@@ -77,7 +76,6 @@
 .radioDetails {
   font-weight: 400;
   font-size: 0.8em;
-  color: #717d96;
   display: flex;
   align-items: start;
   padding: 0;

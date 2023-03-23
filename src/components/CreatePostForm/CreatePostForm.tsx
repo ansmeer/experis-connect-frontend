@@ -157,10 +157,13 @@ function CreatePostForm({ handleData }: Props) {
             <label htmlFor="targetGroup" className={styles.labelText}>
               Group
             </label>
-            <div className={styles.error} role="alert">
-              {errors.targetGroup && errors.targetGroup.message}
-            </div>
+            {errors.targetGroup && (
+              <div className={styles.error} role="alert">
+                errors.targetGroup.message
+              </div>
+            )}
             <select
+              id="targetGroup"
               className={styles.selectStyles}
               {...register("targetGroup")}>
               <option>Select</option>
@@ -177,6 +180,7 @@ function CreatePostForm({ handleData }: Props) {
               {errors.targetTopic && errors.targetTopic.message}
             </div>
             <select
+              id="targetTopic"
               className={styles.selectStyles}
               {...register("targetTopic")}>
               <option>Select</option>
@@ -193,7 +197,10 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetUser && errors.targetUser.message}
             </div>
-            <select className={styles.selectStyles} {...register("targetUser")}>
+            <select
+              id="targetUser"
+              className={styles.selectStyles}
+              {...register("targetUser")}>
               <option>Select</option>
               {userOptions}
             </select>
@@ -209,6 +216,7 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <input
+            id="title"
             placeholder="Meet our Alumni..."
             {...register("title", inputTitleRequirements)}
             aria-invalid={errors.title ? "true" : "false"}
@@ -222,6 +230,7 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <textarea
+            id="content"
             className={styles.txtArea}
             placeholder="What do you want to say?"
             {...register("content", inputContentRequirements)}

@@ -57,6 +57,7 @@ function ProfileSettingsForm({ handleData }: Props) {
           Your name will be shown on your profile.
         </div>
         <input
+          id="name"
           className={styles.inputBackground}
           {...register("name", inputNameRequirements)}
           aria-invalid={errors.name ? "true" : "false"}
@@ -74,6 +75,7 @@ function ProfileSettingsForm({ handleData }: Props) {
           Your work status, for example where you are currently employed.
         </div>
         <input
+          id="status"
           className={styles.inputBackground}
           {...register("status", inputTextRequirements)}
           aria-invalid={errors.status ? "true" : "false"}
@@ -88,6 +90,7 @@ function ProfileSettingsForm({ handleData }: Props) {
         )}
         <div className={styles.desc}>Anything funny about you.</div>
         <input
+          id="funFact"
           className={styles.inputBackground}
           {...register("funFact", inputTextRequirements)}
           aria-invalid={errors.funFact ? "true" : "false"}
@@ -104,6 +107,7 @@ function ProfileSettingsForm({ handleData }: Props) {
           Share a short biography so others can connect to you.
         </div>
         <input
+          id="bio"
           className={styles.inputBackground}
           {...register("bio", inputTextRequirements)}
           aria-invalid={errors.bio ? "true" : "false"}
@@ -121,6 +125,7 @@ function ProfileSettingsForm({ handleData }: Props) {
           avatar.
         </div>
         <input
+          id="picture"
           className={styles.inputBackground}
           {...register("picture", inputPictureRequirements)}
           aria-invalid={errors.picture ? "true" : "false"}
