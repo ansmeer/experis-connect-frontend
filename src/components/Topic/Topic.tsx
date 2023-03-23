@@ -70,7 +70,7 @@ function Topic() {
         <p>{data?.description}</p>
       </div>
 
-      <div className={styles.tabs}>
+      <nav className={styles.tabs}>
         <button
           onClick={handlePostsClick}
           className={selectedTab === "posts" ? styles.selected : ""}>
@@ -81,9 +81,12 @@ function Topic() {
           className={selectedTab === "members" ? styles.selected : ""}>
           Members
         </button>
-      </div>
+      </nav>
 
-      <h1>{data?.name}</h1>
+      <h1>
+        {data?.name}:{" "}
+        {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
+      </h1>
 
       {selectedTab === "posts" && topicPosts && <PostList data={topicPosts} />}
       {selectedTab === "members" && topicMembers && (

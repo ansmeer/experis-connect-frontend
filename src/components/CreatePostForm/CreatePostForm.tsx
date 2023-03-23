@@ -142,7 +142,7 @@ function CreatePostForm({ handleData }: Props) {
 
   return (
     <main className={styles.create}>
-      <div className={styles["top-menu"]}>
+      <nav aria-label="post target" className={styles["top-menu"]}>
         <div>
           <button
             onClick={handleGroupClick}
@@ -160,7 +160,7 @@ function CreatePostForm({ handleData }: Props) {
             DM
           </button>
         </div>
-      </div>
+      </nav>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
         {watch("postTarget") === "GROUP" && (

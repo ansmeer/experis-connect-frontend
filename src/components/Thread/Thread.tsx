@@ -56,11 +56,13 @@ function Thread() {
   };
 
   return (
-    <div>
-      <div className={styles.thread}>
-        <h1>Thread</h1>
-        <Post id={parseInt(id, 10)} withReplies={true} selectPost={true} />
-      </div>
+    <>
+      <main>
+        <div className={styles.thread}>
+          <h1>Thread</h1>
+          <Post id={parseInt(id, 10)} withReplies={true} selectPost={true} />
+        </div>
+      </main>
       <div className={styles.reply}>
         {replyFormIsVisible ? (
           <PostReplyForm handleData={handleReplyData} />
@@ -68,7 +70,7 @@ function Thread() {
           <Footer text="Reply to thread" clickHandler={handleReplyClick} />
         )}
       </div>
-    </div>
+    </>
   );
 }
 

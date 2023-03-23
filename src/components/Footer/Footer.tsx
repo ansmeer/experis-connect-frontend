@@ -7,11 +7,11 @@ type Props = {
 
 function Footer({ text, clickHandler }: Props) {
   return (
-    <div className={styles.footer}>
+    <footer aria-label="more actions" className={styles.footer}>
       <div>
         <button onClick={clickHandler}>{text}</button>
       </div>
-    </div>
+    </footer>
   );
 }
 

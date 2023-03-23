@@ -31,10 +31,10 @@ function CreateGroup() {
       <h1>Create new group</h1>
       <main className={styles.create}>
         <div className={styles["top-menu"]}>
-          <div>
+          <nav aria-label="create type">
             <button className={styles.selected}>Group</button>
             <button onClick={handleTopicClick}>Topic</button>
-          </div>
+          </nav>
         </div>
         <CreateGroupFrom handleData={handleGroupData} />
       </main>

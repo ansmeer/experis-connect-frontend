@@ -50,18 +50,16 @@ function Profile() {
   }
 
   return (
-    <div>
+    <main>
       <h1>{data && data.name}</h1>
       <section className={styles.profile}>
-        {isOwnProfile && (
-          <div className={styles.editBackground}>
+        <div className={styles.editBackground}>
+          {isOwnProfile && (
             <Link to="/profile/settings">
-              <SettingsOutlinedIcon />
-              <br />
-              Edit
+              Edit <SettingsOutlinedIcon />
             </Link>
-          </div>
-        )}
+          )}
+        </div>
         <div className={styles.profilePicture}>
           {data?.picture && (
             <img src={data.picture} className={styles.avatar} alt={data.name} />
@@ -95,7 +93,7 @@ function Profile() {
           </div>
         )}
       </section>
-    </div>
+    </main>
   );
 }
 

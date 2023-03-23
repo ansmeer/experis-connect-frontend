@@ -60,34 +60,36 @@ function Dashboard() {
   }
 
   return (
-    <main>
-      <div className={styles["top-menu"]}>
-        <div>
-          <button
-            onClick={handleAllClick}
-            className={!selectedTab ? styles.selected : ""}>
-            All
-          </button>
-          <button
-            onClick={handleGroupsClick}
-            className={selectedTab === "groups" ? styles.selected : ""}>
-            Groups
-          </button>
-          <button
-            onClick={handleTopicsClick}
-            className={selectedTab === "topics" ? styles.selected : ""}>
-            Topics
-          </button>
-          <button
-            onClick={handleDmsClick}
-            className={selectedTab === "dms" ? styles.selected : ""}>
-            DMs
-          </button>
-        </div>
-      </div>
-      <h1>Dashboard</h1>
-      {!hasData && <div>Oh wow, so empty!</div>}
-      {hasData && <PostList data={data} />}
+    <>
+      <main>
+        <nav aria-label="dashboard" className={styles["top-menu"]}>
+          <div>
+            <button
+              onClick={handleAllClick}
+              className={!selectedTab ? styles.selected : ""}>
+              All
+            </button>
+            <button
+              onClick={handleGroupsClick}
+              className={selectedTab === "groups" ? styles.selected : ""}>
+              Groups
+            </button>
+            <button
+              onClick={handleTopicsClick}
+              className={selectedTab === "topics" ? styles.selected : ""}>
+              Topics
+            </button>
+            <button
+              onClick={handleDmsClick}
+              className={selectedTab === "dms" ? styles.selected : ""}>
+              DMs
+            </button>
+          </div>
+        </nav>
+        <h1>Dashboard</h1>
+        {!hasData && <div>Oh wow, so empty!</div>}
+        {hasData && <PostList data={data} />}
+      </main>
       {selectedTab === "groups" && (
         <Footer
           text="Explore more groups"
@@ -100,7 +102,7 @@ function Dashboard() {
           clickHandler={handleExploreTopicsClick}
         />
       )}
-    </main>
+    </>
   );
 }
 

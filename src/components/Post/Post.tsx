@@ -86,7 +86,7 @@ function Post({ id, withReplies, selectPost }: Props) {
         <header>
           <UserIcon user={data.senderId} />
           <div>
-            <h2>{data.title}</h2>
+            <div className={styles["post-title"]}>{data.title}</div>
             <div className={styles["post-description"]}>
               <Link to={`/profile/${data.senderId.id}`}>
                 {data.senderId.name}

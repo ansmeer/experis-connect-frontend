@@ -78,7 +78,7 @@ function Group() {
         <p>{data?.description}</p>
       </div>
 
-      <div className={styles.tabs}>
+      <nav className={styles.tabs}>
         <button
           onClick={handlePostsClick}
           className={selectedTab === "posts" ? styles.selected : ""}>
@@ -89,9 +89,12 @@ function Group() {
           className={selectedTab === "members" ? styles.selected : ""}>
           Members
         </button>
-      </div>
+      </nav>
 
-      <h1>{data?.name}</h1>
+      <h1>
+        {data?.name}:{" "}
+        {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
+      </h1>
 
       {selectedTab === "posts" && groupPosts && <PostList data={groupPosts} />}
       {selectedTab === "members" && groupMembers && (
