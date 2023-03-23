@@ -16,8 +16,8 @@ function CreateTopic() {
 
     const postRequest = topicApi.post.newTopic(topicToSend);
     const response = await fetch(postRequest.uri, postRequest.options);
-    //const postId = await response.json();
-    //navigate(`/thread/${postId}`);
+    const topicId = await response.json();
+    navigate(`/topics/${topicId}`);
   };
 
   const handleGroupClick = () => {
