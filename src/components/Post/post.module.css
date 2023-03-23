@@ -59,7 +59,7 @@
 /* Markdown related styling for post content */
 
 .post-content img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
