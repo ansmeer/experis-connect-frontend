@@ -95,8 +95,7 @@
 
 .labelText {
   font-weight: 600;
-  display: flex;
-  align-items: start;
   padding: 0 0 8px 8px;
   margin-top: 16px;
+  text-align: left;
 }
