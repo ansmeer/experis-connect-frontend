@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { topicApi } from "../../apis/topicApi";
+import { dateOptionsEN } from "../../consts/dates";
 import { TPost } from "../../types/post";
 import { TTopic } from "../../types/topic";
 import { TUser } from "../../types/user";
@@ -32,6 +33,11 @@ function Topic() {
       return await response.json();
     },
   });
+
+  const createdAtDate = data
+    ? new Date(data.createdAt).toLocaleDateString("en-EN", dateOptionsEN)
+    : "";
+
   const {
     data: topicPosts,
     isLoading: topicLoading,
@@ -67,6 +73,7 @@ function Topic() {
     <main>
       <div className={styles.info}>
         <p>{data?.name}</p>
+        <p>Founded {createdAtDate}</p>
         <p>{data?.description}</p>
       </div>
 

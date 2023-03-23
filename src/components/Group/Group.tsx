@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { postApi } from "../../apis/postApi";
+import { dateOptionsEN } from "../../consts/dates";
 import { TGroup } from "../../types/group";
 import { TPost } from "../../types/post";
 import { TUser } from "../../types/user";
@@ -33,6 +34,10 @@ function Group() {
       return await response.json();
     },
   });
+
+  const createdAtDate = data
+    ? new Date(data.createdAt).toLocaleDateString("en-EN", dateOptionsEN)
+    : "";
 
   const {
     data: groupPosts,
@@ -75,6 +80,7 @@ function Group() {
     <main>
       <div className={styles.info}>
         <p>{data?.name}</p>
+        <p>Founded {createdAtDate}</p>
         <p>{data?.description}</p>
       </div>
 

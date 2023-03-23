@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { refetchUser } from "../../redux/slices/userSlice";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { dateOptionsEN } from "../../consts/dates";
 
 type GroupCardProps = {
   data: TGroup;
@@ -15,10 +14,6 @@ type GroupCardProps = {
 
 function GroupCard({ data, isMember }: GroupCardProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const createdAtDate = new Date(data.createdAt).toLocaleDateString(
-    "en-EN",
-    dateOptionsEN
-  );
 
   const handleJoinClick = async () => {
     const joinRequest = groupApi.post.addCurrentUserToGroup(data.id);
@@ -35,18 +30,14 @@ function GroupCard({ data, isMember }: GroupCardProps) {
   return (
     <section className={styles.groupCard}>
       <header className={styles.header}>
-        <h2>
-          <Link to={`/groups/${data.id}`}>
-            {data.name}
-            {data.private && (
-              <>
-                {" "}
-                <LockOpenIcon fontSize="small" />
-              </>
-            )}
-          </Link>
+        <h2 className={styles.group}>
+          <Link to={`/groups/${data.id}`}>{data.name}</Link>
         </h2>
-        <p>Founded {createdAtDate}</p>
+        {data.private && (
+          <p>
+            Private group <LockOpenIcon fontSize="inherit" />
+          </p>
+        )}
       </header>
 
       <div>{data.description}</div>
