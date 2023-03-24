@@ -19,7 +19,7 @@ function PostListItem({ data }: Props) {
         <UserIcon user={data.senderId} />
         <div>
           <h2>
-            <Link to={`/thread/${data.id}`}>{data.title}</Link>
+            <Link to={`/thread/${data.originId}`}>{data.title}</Link>
           </h2>
           <div className={styles["post-description"]}>
             <Link to={`/profile/${data.senderId.id}`}>
@@ -45,7 +45,7 @@ function PostListItem({ data }: Props) {
         <ReactMarkdown>{data.content}</ReactMarkdown>
       </div>
       <footer>
-        <Link to={`/thread/${data.id}`}>Read thread</Link>
+        <Link to={`/thread/${data.originId}`}>Read thread</Link>
       </footer>
     </section>
   );

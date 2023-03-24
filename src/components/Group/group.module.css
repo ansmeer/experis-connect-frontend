@@ -59,3 +59,21 @@
   color: var(--experis-blue);
   border-bottom-color: var(--experis-blue);
 }
+
+@media (max-width: 814px) {
+  .tabs {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .info {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .tabs button:first-of-type {
+    border-radius: 0;
+  }
+
+  .tabs button:last-of-type {
+    border-radius: 0;
+  }
+}

@@ -8,6 +8,7 @@ export type TPost = {
   updatedAt: string;
   title: string;
   content: string;
+  originId: number;
   postTarget: TPostTargetType;
   senderId: TUserShort;
   replyParentId: number | null;
