@@ -25,7 +25,7 @@ function CreateTopicForm({ handleData }: Props) {
 
   const inputTitleRequirements = {
     required: { value: true, message: "Title is required." },
-    maxLength: { value: 100, message: "Too many characters." },
+    maxLength: { value: 30, message: "Too many characters." },
   };
 
   const inputContentRequirements = {

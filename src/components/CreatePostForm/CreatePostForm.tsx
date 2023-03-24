@@ -73,7 +73,8 @@ function CreatePostForm({ handleData }: Props) {
   ));
   const userOptions = userQuery.data?.map((user) => (
     <option key={user.id} value={user.id}>
-      {user.name}
+      {user.name.substring(0, 30)}
+      {user.name.length > 30 && "..."}
     </option>
   ));
 
