@@ -41,3 +41,17 @@
   color: var(--experis-blue);
   border-bottom-color: var(--experis-blue);
 }
+
+@media (max-width: 814px) {
+  .top-menu {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .top-menu button:first-of-type {
+    border-radius: 0;
+  }
+
+  .top-menu button:last-of-type {
+    border-radius: 0;
+  }
+}
