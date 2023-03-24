@@ -118,3 +118,10 @@ textarea {
 fieldset {
   border: 0;
 }
+
+.infinite-scroll-component {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 70px;
+}

@@ -18,9 +18,11 @@ function Topic() {
 
   if (!id) return <></>;
   const handlePostsClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams({ show: "posts" }, { replace: true });
   };
   const handleMembersClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams({ show: "members" }, { replace: true });
   };
   const topicId = parseInt(id);
@@ -45,11 +47,22 @@ function Topic() {
   } = useQuery({
     queryKey: ["topicPosts", id],
     queryFn: async (): Promise<TPost[]> => {
-      const topicRequest = postApi.get.postsFromTopic(topicId);
+      const topicRequest = postApi.get.postsFromTopicByPage(topicId, 7, 0);
       const response = await fetch(topicRequest.uri, topicRequest.options);
       return await response.json();
     },
   });
+
+  const getMorePosts = async (offset: number): Promise<TPost[]> => {
+    const postRequest = postApi.get.postsFromGroupByPage(
+      parseInt(id, 10),
+      5,
+      offset
+    );
+    const response = await fetch(postRequest.uri, postRequest.options);
+    return await response.json();
+  };
+
   const {
     data: topicMembers,
     isLoading: membersLoading,
@@ -95,7 +108,12 @@ function Topic() {
         {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
       </h1>
 
-      {selectedTab === "posts" && topicPosts && <PostList data={topicPosts} />}
+      {selectedTab === "posts" && !topicPosts?.length && (
+        <div>There are no posts in this topic.</div>
+      )}
+      {selectedTab === "posts" && topicPosts && topicPosts.length > 0 && (
+        <PostList initialData={topicPosts} fetchData={getMorePosts} />
+      )}
       {selectedTab === "members" && topicMembers && (
         <UserList data={topicMembers} />
       )}

@@ -1,6 +1,6 @@
 import { postApi } from "../../apis/postApi";
 import { useQuery } from "react-query";
-import { TPostWithReplies } from "../../types/post";
+import { TPost, TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 
@@ -11,11 +11,18 @@ function SearchResultList({ search }: Props) {
     queryKey: ["search", search],
     queryFn: async () => {
       if (!search) return;
-      const postRequest = postApi.get.searchPosts(search);
+      const postRequest = postApi.get.searchPostsByPage(search, 7, 0);
       const response = await fetch(postRequest.uri, postRequest.options);
       return await response.json();
     },
   });
+
+  const getMorePosts = async (offset: number): Promise<TPost[]> => {
+    if (!search) return [];
+    const postRequest = postApi.get.searchPostsByPage(search, 5, offset);
+    const response = await fetch(postRequest.uri, postRequest.options);
+    return await response.json();
+  };
 
   const hasResults = Boolean(data?.length);
 
@@ -25,11 +32,11 @@ function SearchResultList({ search }: Props) {
 
   return (
     <>
-      {isError && <div>Could not fetch search results</div>}
+      {isError && <div>Could not fetch search results.</div>}
       {hasResults && data ? (
-        <PostList data={data} />
+        <PostList initialData={data} fetchData={getMorePosts} />
       ) : (
-        <div>No results found</div>
+        <div>No results found.</div>
       )}
     </>
   );

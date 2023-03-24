@@ -21,6 +21,30 @@ export const postApi = {
         },
       };
     },
+    postByPage: (
+      limit: number,
+      offset: number,
+      target?: TPostTargetType
+    ): ApiRequestInfo => {
+      let requestUrl = postApiUrl;
+      if (target) {
+        requestUrl += `/${target.toLowerCase()}`;
+      }
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(
+          `${requestUrl}?` +
+            new URLSearchParams([
+              ["limit", `${limit}`],
+              ["offset", `${offset}`],
+            ])
+        ).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
     postById: (id: number): ApiRequestInfo => {
       const token = getKeycloakToken();
       return {
@@ -36,6 +60,27 @@ export const postApi = {
       return {
         uri: new URL(
           `${postApiUrl}?` + new URLSearchParams({ search: searchTerm })
+        ).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
+    searchPostsByPage: (
+      searchTerm: string,
+      limit: number,
+      offset: number
+    ): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(
+          `${postApiUrl}?` +
+            new URLSearchParams([
+              ["search", searchTerm],
+              ["limit", `${limit}`],
+              ["offset", `${offset}`],
+            ])
         ).toString(),
         options: {
           method: "GET",
@@ -101,6 +146,26 @@ export const postApi = {
         },
       };
     },
+    postsFromGroupByPage: (
+      groupId: number,
+      limit: number,
+      offset: number
+    ): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(
+          `${postApiUrl}/group/${groupId}?` +
+            new URLSearchParams([
+              ["limit", `${limit}`],
+              ["offset", `${offset}`],
+            ])
+        ).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
     searchPostsFromGroup: (
       groupId: number,
       searchTerm: string
@@ -121,6 +186,26 @@ export const postApi = {
       const token = getKeycloakToken();
       return {
         uri: new URL(`${postApiUrl}/topic/${topicId}`).toString(),
+        options: {
+          method: "GET",
+          headers: [["Authorization", `Bearer ${token}`]],
+        },
+      };
+    },
+    postsFromTopicByPage: (
+      topicId: number,
+      limit: number,
+      offset: number
+    ): ApiRequestInfo => {
+      const token = getKeycloakToken();
+      return {
+        uri: new URL(
+          `${postApiUrl}/topic/${topicId}?` +
+            new URLSearchParams([
+              ["limit", `${limit}`],
+              ["offset", `${offset}`],
+            ])
+        ).toString(),
         options: {
           method: "GET",
           headers: [["Authorization", `Bearer ${token}`]],
