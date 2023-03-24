@@ -81,19 +81,19 @@ function CreatePostForm({ handleData }: Props) {
     if (selectedTab === "GROUP" && !Boolean(data.targetGroup)) {
       setError("targetGroup", { message: "Group is required." });
       setValue("targetUser", "");
-      setValue("targetTopic", null);
+      setValue("targetTopic", "");
       return;
     }
     if (selectedTab === "TOPIC" && !Boolean(data.targetTopic)) {
       setError("targetTopic", { message: "Topic is required." });
       setValue("targetUser", "");
-      setValue("targetGroup", null);
+      setValue("targetGroup", "");
       return;
     }
     if (selectedTab === "USER" && !Boolean(data.targetUser)) {
       setError("targetUser", { message: "User is required." });
-      setValue("targetGroup", null);
-      setValue("targetTopic", null);
+      setValue("targetGroup", "");
+      setValue("targetTopic", "");
       return;
     }
 
@@ -217,7 +217,7 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetUser && errors.targetUser.message}
             </div>
-            <select 
+            <select
               id="targetUser"
               className={styles.selectStyles}
               {...register("targetUser")}>
