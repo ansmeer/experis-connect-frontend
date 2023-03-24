@@ -233,7 +233,11 @@ function CreatePostForm({ handleData }: Props) {
             aria-invalid={errors.title ? "true" : "false"}
           />
           <label htmlFor="content" className={styles.labelText}>
-            Content
+            Content (
+            <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">
+              Markdown
+            </a>{" "}
+            supported)
           </label>
           {errors.content && (
             <div className={styles.error} role="alert">

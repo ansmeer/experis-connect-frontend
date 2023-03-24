@@ -65,7 +65,13 @@ function PostReplyForm({ handleData }: Props) {
           type="text"
           className={styles.input}
         />
-        <label htmlFor="content">Reply</label>
+        <label htmlFor="content">
+          Reply (
+          <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">
+            Markdown
+          </a>{" "}
+          supported)
+        </label>
         {errors.content && (
           <div className={styles.error} role="alert">
             {errors.content.message}

@@ -3,6 +3,7 @@ import { dateAndTimeOptionsEN } from "../../consts/dates";
 import { TPost } from "../../types/post";
 import UserIcon from "../UserIcon/UserIcon";
 import styles from "./postListItem.module.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 type Props = { data: TPost };
 
@@ -40,7 +41,9 @@ function PostListItem({ data }: Props) {
           </div>
         </div>
       </header>
-      <div className={styles["post-content"]}>{data.content}</div>
+      <div className={styles["post-content"]}>
+        <ReactMarkdown>{data.content}</ReactMarkdown>
+      </div>
       <footer>
         <Link to={`/thread/${data.id}`}>Read thread</Link>
       </footer>
