@@ -43,7 +43,8 @@ function Header() {
             <button
               onClick={onLogoutClick}
               className={styles.hide}
-              aria-label="logout">
+              aria-label="logout"
+              title="Log out">
               <LogoutOutlinedIcon />
             </button>
           </nav>
