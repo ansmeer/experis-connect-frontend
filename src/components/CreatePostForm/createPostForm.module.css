@@ -100,3 +100,10 @@
   padding: 0 0 8px 8px;
   margin-top: 16px;
 }
+
+.desc {
+  text-align: left;
+  font-size: 0.8em;
+  padding-left: 8px;
+  padding-bottom: 4px;
+}

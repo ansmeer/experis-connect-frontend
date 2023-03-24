@@ -17,8 +17,8 @@ function CreatePostForm({ handleData }: Props) {
     postTarget: "GROUP",
     title: "",
     content: "",
-    targetGroup: null,
-    targetTopic: null,
+    targetGroup: "",
+    targetTopic: "",
     targetUser: "",
   };
   const {
@@ -93,9 +93,9 @@ function CreatePostForm({ handleData }: Props) {
 
     if (selectedTab === "USER") {
       data.targetGroup = null;
-      setValue("targetGroup", null);
+      setValue("targetGroup", "");
       data.targetTopic = null;
-      setValue("targetTopic", null);
+      setValue("targetTopic", "");
     }
     if (selectedTab === "TOPIC" || selectedTab === "GROUP") {
       data.targetUser = "";
@@ -119,14 +119,20 @@ function CreatePostForm({ handleData }: Props) {
   const handleGroupClick = () => {
     setSelectedTab("GROUP");
     setValue("postTarget", "GROUP");
+    setValue("targetTopic", "");
+    setValue("targetUser", "");
   };
   const handleTopicClick = () => {
     setSelectedTab("TOPIC");
     setValue("postTarget", "TOPIC");
+    setValue("targetGroup", "");
+    setValue("targetUser", "");
   };
   const handleDmClick = () => {
     setSelectedTab("USER");
     setValue("postTarget", "USER");
+    setValue("targetTopic", "");
+    setValue("targetGroup", "");
   };
 
   return (
@@ -157,13 +163,14 @@ function CreatePostForm({ handleData }: Props) {
             <label htmlFor="targetGroup" className={styles.labelText}>
               Group
             </label>
+            <div className={styles.desc}>Select a group</div>
             <div className={styles.error} role="alert">
               {errors.targetGroup && errors.targetGroup.message}
             </div>
             <select
               className={styles.selectStyles}
               {...register("targetGroup")}>
-              <option>Select</option>
+              <option></option>
               {groupOptions}
             </select>
           </fieldset>
@@ -173,13 +180,14 @@ function CreatePostForm({ handleData }: Props) {
             <label htmlFor="targetTopic" className={styles.labelText}>
               Topic
             </label>
+            <div className={styles.desc}>Select a topic</div>
             <div className={styles.error} role="alert">
               {errors.targetTopic && errors.targetTopic.message}
             </div>
             <select
               className={styles.selectStyles}
               {...register("targetTopic")}>
-              <option>Select</option>
+              <option></option>
               {topicOptions}
             </select>
           </fieldset>
@@ -190,11 +198,12 @@ function CreatePostForm({ handleData }: Props) {
             <label htmlFor="targetUser" className={styles.labelText}>
               User
             </label>
+            <div className={styles.desc}>Select a user</div>
             <div className={styles.error} role="alert">
               {errors.targetUser && errors.targetUser.message}
             </div>
             <select className={styles.selectStyles} {...register("targetUser")}>
-              <option>Select</option>
+              <option></option>
               {userOptions}
             </select>
           </fieldset>
