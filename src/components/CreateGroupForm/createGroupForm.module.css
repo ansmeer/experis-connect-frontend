@@ -13,6 +13,15 @@
   flex-direction: column;
 }
 
+.radioButton {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.labelTitle {
+  margin-left: 3px;
+}
+
 .targetSelect {
   display: flex;
   flex-direction: column;
