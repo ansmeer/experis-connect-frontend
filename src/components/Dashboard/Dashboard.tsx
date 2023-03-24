@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
-import { TPostTargetType } from "../../types/post";
+import { TPost, TPostTargetType } from "../../types/post";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
@@ -29,25 +29,36 @@ function Dashboard() {
     queryKey: ["posts", "from", selectedTab],
     queryFn: async () => {
       const targetType = getTargetType(selectedTab);
-      const postRequest = postApi.get.posts(targetType);
+      const postRequest = postApi.get.postByPage(7, 0, targetType);
       const response = await fetch(postRequest.uri, postRequest.options);
-      if (!response.ok) return;
+      if (!response.ok) return [];
       return await response.json();
     },
   });
 
+  const getMorePosts = async (offset: number): Promise<TPost[]> => {
+    const targetType = getTargetType(selectedTab);
+    const postRequest = postApi.get.postByPage(5, offset, targetType);
+    const response = await fetch(postRequest.uri, postRequest.options);
+    return await response.json();
+  };
+
   const hasData = Boolean(data?.length);
 
   const handleAllClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams(undefined, { replace: true });
   };
   const handleGroupsClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams({ show: "groups" }, { replace: true });
   };
   const handleTopicsClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams({ show: "topics" }, { replace: true });
   };
   const handleChatsClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setSearchParams({ show: "chats" }, { replace: true });
   };
   const handleExploreGroupsClick = () => {
@@ -100,7 +111,7 @@ function Dashboard() {
               selectedTab.substring(1)}
         </h1>
         {!hasData && <div>Oh wow, so empty!</div>}
-        {hasData && <PostList data={data} />}
+        {hasData && <PostList initialData={data} fetchData={getMorePosts} />}
       </main>
       {selectedTab === "groups" && (
         <Footer
