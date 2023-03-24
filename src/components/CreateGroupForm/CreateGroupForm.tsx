@@ -23,7 +23,7 @@ function CreateGroupFrom({ handleData }: Props) {
 
   const inputNameRequirements = {
     required: { value: true, message: "Name is required." },
-    maxLength: { value: 100, message: "Too many characters" },
+    maxLength: { value: 30, message: "Too many characters" },
   };
   const inputDescriptionRequirements = {
     required: { value: true, message: "Description is required." },
