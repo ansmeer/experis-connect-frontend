@@ -8,6 +8,7 @@ This project is about creating an Alumni Network Portal for maintaining contact 
 
 - [Install](#Install)
 - [Usage](#Usage)
+- [Technologies](#technologies)
 - [Maintainers](#Maintainers)
 - [Contributing](#Contributing)
 - [License](#License)
@@ -17,6 +18,14 @@ This project is about creating an Alumni Network Portal for maintaining contact 
 Use `git clone` to clone the repository. Run `npm install` to install dependencies.
 
 ## Usage
+
+## Technologies
+
+[React](https://react.dev/)
+[Vite](https://vitejs.dev/)
+[TypeScript](https://www.typescriptlang.org/)
+[Key Cloak](https://www.keycloak.org), implements [OAuth 2](https://oauth.net/2/)
+[Redux](https://redux.js.org/)
 
 ### Development server
 

@@ -43,8 +43,10 @@ function TopicList() {
 
   return (
     <>
-      <h1>All topics</h1>
-      <div className={styles.topicList}>{topicList}</div>
+      <main>
+        <h1>All topics</h1>
+        <div className={styles.topicList}>{topicList}</div>
+      </main>
       <Footer text="Create topic" clickHandler={handleCreateClick} />
     </>
   );

@@ -19,10 +19,10 @@ function ProfileSettings() {
   };
 
   return (
-    <div>
+    <main>
       <h1>Profile settings</h1>
       <ProfileSettingsForm handleData={handleFormData} />
-    </div>
+    </main>
   );
 }
 

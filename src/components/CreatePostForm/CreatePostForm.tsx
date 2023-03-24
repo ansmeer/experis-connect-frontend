@@ -80,14 +80,20 @@ function CreatePostForm({ handleData }: Props) {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (selectedTab === "GROUP" && !Boolean(data.targetGroup)) {
       setError("targetGroup", { message: "Group is required." });
+      setValue("targetUser", "");
+      setValue("targetTopic", null);
       return;
     }
     if (selectedTab === "TOPIC" && !Boolean(data.targetTopic)) {
       setError("targetTopic", { message: "Topic is required." });
+      setValue("targetUser", "");
+      setValue("targetGroup", null);
       return;
     }
     if (selectedTab === "USER" && !Boolean(data.targetUser)) {
       setError("targetUser", { message: "User is required." });
+      setValue("targetGroup", null);
+      setValue("targetTopic", null);
       return;
     }
 
@@ -97,10 +103,17 @@ function CreatePostForm({ handleData }: Props) {
       data.targetTopic = null;
       setValue("targetTopic", "");
     }
-    if (selectedTab === "TOPIC" || selectedTab === "GROUP") {
+
+    if (selectedTab === "GROUP") {
       data.targetUser = "";
-      setValue("targetUser", "");
+      data.targetTopic = null;
     }
+
+    if (selectedTab === "TOPIC") {
+      data.targetUser = "";
+      data.targetGroup = null;
+    }
+
     setValue("postTarget", selectedTab);
 
     handleData(data as TPostFormData); // TODO remove assertion
@@ -137,7 +150,7 @@ function CreatePostForm({ handleData }: Props) {
 
   return (
     <main className={styles.create}>
-      <div className={styles["top-menu"]}>
+      <nav aria-label="post target" className={styles["top-menu"]}>
         <div>
           <button
             onClick={handleGroupClick}
@@ -155,7 +168,7 @@ function CreatePostForm({ handleData }: Props) {
             DM
           </button>
         </div>
-      </div>
+      </nav>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
         {watch("postTarget") === "GROUP" && (
@@ -168,6 +181,7 @@ function CreatePostForm({ handleData }: Props) {
               {errors.targetGroup && errors.targetGroup.message}
             </div>
             <select
+              id="targetGroup"
               className={styles.selectStyles}
               {...register("targetGroup")}>
               <option></option>
@@ -185,6 +199,7 @@ function CreatePostForm({ handleData }: Props) {
               {errors.targetTopic && errors.targetTopic.message}
             </div>
             <select
+              id="targetTopic"
               className={styles.selectStyles}
               {...register("targetTopic")}>
               <option></option>
@@ -202,7 +217,10 @@ function CreatePostForm({ handleData }: Props) {
             <div className={styles.error} role="alert">
               {errors.targetUser && errors.targetUser.message}
             </div>
-            <select className={styles.selectStyles} {...register("targetUser")}>
+            <select 
+              id="targetUser"
+              className={styles.selectStyles}
+              {...register("targetUser")}>
               <option></option>
               {userOptions}
             </select>
@@ -218,12 +236,17 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <input
+            id="title"
             placeholder="Meet our Alumni..."
             {...register("title", inputTitleRequirements)}
             aria-invalid={errors.title ? "true" : "false"}
           />
           <label htmlFor="content" className={styles.labelText}>
-            Content
+            Content (
+            <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">
+              Markdown
+            </a>{" "}
+            supported)
           </label>
           {errors.content && (
             <div className={styles.error} role="alert">
@@ -231,6 +254,7 @@ function CreatePostForm({ handleData }: Props) {
             </div>
           )}
           <textarea
+            id="content"
             className={styles.txtArea}
             placeholder="What do you want to say?"
             {...register("content", inputContentRequirements)}

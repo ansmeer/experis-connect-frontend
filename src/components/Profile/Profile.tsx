@@ -30,10 +30,6 @@ function Profile() {
   });
   const isOwnProfile = id === user?.id || !id;
 
-  const handleEditClick = () => {
-    navigate("/profile/settings");
-  };
-
   const onLogoutClick = () => {
     dispatch(logout());
     keycloak.logout();
@@ -54,25 +50,23 @@ function Profile() {
   }
 
   return (
-    <div>
+    <main>
       <h1>{data && data.name}</h1>
       <section className={styles.profile}>
-        {isOwnProfile && (
-          <div className={styles.editBackground}>
+        <div className={styles.editBackground}>
+          {isOwnProfile && (
             <Link to="/profile/settings">
-              <SettingsOutlinedIcon fontSize="large" />
-              <br />
-              Edit
+              Edit <SettingsOutlinedIcon />
             </Link>
-          </div>
-        )}
+          )}
+        </div>
         <div className={styles.profilePicture}>
           {data?.picture && (
             <img src={data.picture} className={styles.avatar} alt={data.name} />
           )}
         </div>
         <div className={styles.textBackground}>
-          {data?.name && <h2>{data.name}</h2>}
+          {data?.name && <div id={styles.username}>{data.name}</div>}
           {data?.status && (
             <div className={styles.profileStatus}>
               <p>{data.status}</p>
@@ -80,13 +74,13 @@ function Profile() {
           )}
           {data?.bio && (
             <div className={styles.profileBio}>
-              Bio
+              <h2>Bio</h2>
               <p>{data.bio}</p>
             </div>
           )}
           {data?.funFact && (
             <div className={styles.profileFunfact}>
-              Fun fact
+              <h2>Fun fact</h2>
               <p>{data.funFact}</p>
             </div>
           )}
@@ -99,7 +93,7 @@ function Profile() {
           </div>
         )}
       </section>
-    </div>
+    </main>
   );
 }
 

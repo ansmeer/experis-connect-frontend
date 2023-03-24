@@ -26,7 +26,7 @@ function Header() {
     <>
       {keycloak.authenticated && user && (
         <header className={styles.header}>
-          <div>
+          <nav aria-label="main">
             <UserIcon user={user} small={true} />
             <Link to="/" title="Dashboard">
               <CottageOutlinedIcon />
@@ -40,10 +40,13 @@ function Header() {
             <Link to="/create/post" title="Create post">
               <AddCircleOutlineIcon />
             </Link>
-            <button onClick={onLogoutClick} className={styles.hide}>
+            <button
+              onClick={onLogoutClick}
+              className={styles.hide}
+              aria-label="logout">
               <LogoutOutlinedIcon />
             </button>
-          </div>
+          </nav>
           <SearchForm />
         </header>
       )}

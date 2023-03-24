@@ -59,18 +59,26 @@ function PostReplyForm({ handleData }: Props) {
           </div>
         )}
         <input
+          id="title"
           {...register("title", inputTitleRequirements)}
           aria-invalid={errors.title ? "true" : "false"}
           type="text"
           className={styles.input}
         />
-        <label htmlFor="content">Reply</label>
+        <label htmlFor="content">
+          Reply (
+          <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">
+            Markdown
+          </a>{" "}
+          supported)
+        </label>
         {errors.content && (
           <div className={styles.error} role="alert">
             {errors.content.message}
           </div>
         )}
         <textarea
+          id="content"
           {...register("content", inputContentRequirements)}
           aria-invalid={errors.content ? "true" : "false"}
           className={styles.input}

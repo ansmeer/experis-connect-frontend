@@ -16,8 +16,8 @@ function CreateTopic() {
 
     const postRequest = topicApi.post.newTopic(topicToSend);
     const response = await fetch(postRequest.uri, postRequest.options);
-    //const postId = await response.json();
-    //navigate(`/thread/${postId}`);
+    const topicId = await response.json();
+    navigate(`/topics/${topicId}`);
   };
 
   const handleGroupClick = () => {
@@ -29,10 +29,10 @@ function CreateTopic() {
       <h1>Create new topic</h1>
       <main className={styles.create}>
         <div className={styles["top-menu"]}>
-          <div>
+          <nav aria-label="create type">
             <button onClick={handleGroupClick}>Group</button>
             <button className={styles.selected}>Topic</button>
-          </div>
+          </nav>
         </div>
         <CreateTopicForm handleData={handleData} />
       </main>

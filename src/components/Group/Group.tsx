@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { postApi } from "../../apis/postApi";
+import { dateOptionsEN } from "../../consts/dates";
 import { TGroup } from "../../types/group";
 import { TPost } from "../../types/post";
 import { TUser } from "../../types/user";
@@ -33,6 +34,10 @@ function Group() {
       return await response.json();
     },
   });
+
+  const createdAtDate = data
+    ? new Date(data.createdAt).toLocaleDateString("en-EN", dateOptionsEN)
+    : "";
 
   const {
     data: groupPosts,
@@ -75,10 +80,11 @@ function Group() {
     <main>
       <div className={styles.info}>
         <p>{data?.name}</p>
+        <p>Founded {createdAtDate}</p>
         <p>{data?.description}</p>
       </div>
 
-      <div className={styles.tabs}>
+      <nav className={styles.tabs}>
         <button
           onClick={handlePostsClick}
           className={selectedTab === "posts" ? styles.selected : ""}>
@@ -89,9 +95,12 @@ function Group() {
           className={selectedTab === "members" ? styles.selected : ""}>
           Members
         </button>
-      </div>
+      </nav>
 
-      <h1>{data?.name}</h1>
+      <h1>
+        {data?.name}:{" "}
+        {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
+      </h1>
 
       {selectedTab === "posts" && groupPosts && <PostList data={groupPosts} />}
       {selectedTab === "members" && groupMembers && (
