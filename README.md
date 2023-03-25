@@ -78,6 +78,7 @@ flowchart TD
 33 --> 34(PostListItem)
 34 --> 35(UserIcon)
 32 --> 36(UserList)
+36 --> 63(GroupAddUserForm)
 
 3 --> 12([CreateGroupPage])
 12 --> 37(CreateGroup)
