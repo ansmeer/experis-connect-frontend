@@ -42,7 +42,85 @@ Run `npm run dev` for a dev server. Navigate to `http://localhost:5173/`. The ap
 
 ## Component tree
 
-// TODO
+```mermaid
+flowchart TD
+1{{App}} --> 2(Header)
+2 --> 4(UserIcon)
+2 --> 5(SearchForm)
+
+1 --> 3(PageLayout)
+
+3 --> 6([LoginPage])
+6 --> 20(Login)
+
+3 --> 7([DashboardPage])
+7 --> 21(Dashboard)
+21 --> 22(PostList)
+22 --> 23(PostListItem)
+23 --> 24(UserIcon)
+21 --> 25(Footer)
+
+3 --> 8([ProfilePage])
+8 --> 26(Profile)
+
+3 --> 9([ProfileSettingsPage])
+9 --> 27(ProfileSettings)
+27 --> 28(ProfileSettingsForm)
+
+3 --> 10([GroupListPage])
+10 --> 29(GroupList)
+29 --> 30(GroupListItem)
+29 --> 31(Footer)
+
+3 --> 11([GroupPage])
+11 --> 32(Group)
+32 --> 33(PostList)
+33 --> 34(PostListItem)
+34 --> 35(UserIcon)
+32 --> 36(UserList)
+
+3 --> 12([CreateGroupPage])
+12 --> 37(CreateGroup)
+37 --> 38(CreateGroupForm)
+
+3 --> 13([TopicListPage])
+13 --> 39(TopicList)
+39 --> 40(TopicListItem)
+39 --> 41(Footer)
+
+3 --> 14([TopicPage])
+14 --> 42(Topic)
+42 --> 43(PostList)
+43 --> 44(PostListItem)
+44 --> 45(UserIcon)
+42 --> 46(UserList)
+
+3 --> 15([CreateTopicPage])
+15 --> 47(CreateTopic)
+47 --> 48(CreateTopicForm)
+
+3 --> 16([CreatePostPage])
+16 --> 49(CreatePost)
+49 --> 50(CreatePostForm)
+
+3 --> 17([ThreadPage])
+17 --> 51(Thread)
+51 --> 52(Post)
+52 --> 53(Post)
+53 --> 56(...)
+52 --> 54(UserIcon)
+51 --> 55(PostReplyForm)
+
+3 --> 18([SearchResultPage])
+18 --> 57(SearchResult)
+57 --> 58(SearchResultList)
+58 --> 59(PostList)
+59 --> 60(PostListItem)
+60 --> 61(UserIcon)
+
+3 --> 19([Error404Page])
+19 --> 62(Error404)
+```
 
 ## Maintainers
 
