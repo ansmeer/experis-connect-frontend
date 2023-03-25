@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { TGroup } from "../../types/group";
-import styles from "./groupCard.module.css";
+import styles from "./groupListItem.module.css";
 import { groupApi } from "../../apis/groupApi";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { refetchUser } from "../../redux/slices/userSlice";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-type GroupCardProps = {
+type Props = {
   data: TGroup;
   isMember: boolean;
 };
 
-function GroupCard({ data, isMember }: GroupCardProps) {
+function GroupListItem({ data, isMember }: Props) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleJoinClick = async () => {
@@ -57,4 +57,4 @@ function GroupCard({ data, isMember }: GroupCardProps) {
   );
 }
 
-export default GroupCard;
+export default GroupListItem;

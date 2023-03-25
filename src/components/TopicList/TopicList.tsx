@@ -7,7 +7,7 @@ import { TTopic } from "../../types/topic";
 import ErrorFetch from "../ErrorFetch/ErrorFetch";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
-import TopicCard from "../TopicCard/TopicCard";
+import TopicListItem from "../TopicListItem/TopicListItem";
 import styles from "./topicList.module.css";
 
 function TopicList() {
@@ -23,7 +23,7 @@ function TopicList() {
   });
 
   const topicList = data?.map((topic) => (
-    <TopicCard
+    <TopicListItem
       key={topic.id}
       data={topic}
       isMember={user?.topics.includes(topic.id) || false}

@@ -4,14 +4,14 @@ import { topicApi } from "../../apis/topicApi";
 import { refetchUser } from "../../redux/slices/userSlice";
 import { AppDispatch } from "../../redux/store";
 import { TTopic } from "../../types/topic";
-import styles from "./topicCard.module.css";
+import styles from "./topicListItem.module.css";
 
-type TopicCardProps = {
+type Props = {
   data: TTopic;
   isMember: boolean;
 };
 
-function TopicCard({ data, isMember }: TopicCardProps) {
+function TopicListItem({ data, isMember }: Props) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubscribeClick = async () => {
@@ -49,4 +49,4 @@ function TopicCard({ data, isMember }: TopicCardProps) {
   );
 }
 
-export default TopicCard;
+export default TopicListItem;
