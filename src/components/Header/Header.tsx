@@ -28,7 +28,7 @@ function Header() {
         <header className={styles.header}>
           <nav aria-label="main">
             <UserIcon user={user} small={true} />
-            <Link to="/" title="Dashboard">
+            <Link to="/dashboard" title="Dashboard">
               <CottageOutlinedIcon />
             </Link>
             <Link to="/groups" title="Groups" className={styles.hide}>
