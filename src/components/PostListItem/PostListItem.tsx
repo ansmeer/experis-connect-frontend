@@ -38,6 +38,14 @@ function PostListItem({ data }: Props) {
                 {data.targetTopic?.name}
               </Link>
             )}
+            {data.postTarget === "USER" && (
+              <>
+                Private chat with{" "}
+                <Link to={`/profile/${data.targetUser?.id}`}>
+                  {data.targetUser?.name}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </header>

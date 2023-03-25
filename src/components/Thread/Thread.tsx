@@ -40,7 +40,7 @@ function Thread() {
       senderId: user!.id,
       replyParentId: selectedPost!.id,
       postTarget: selectedPost!.postTarget,
-      targetUser: selectedPost!.targetUser,
+      targetUser: selectedPost!.targetUser?.id || null,
       targetGroup: selectedPost!.targetGroup?.id || null,
       targetTopic: selectedPost!.targetTopic?.id || null,
     };

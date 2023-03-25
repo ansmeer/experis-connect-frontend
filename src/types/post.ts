@@ -12,7 +12,7 @@ export type TPost = {
   postTarget: TPostTargetType;
   senderId: TUserShort;
   replyParentId: number | null;
-  targetUser: string | null;
+  targetUser: TUserShort | null;
   targetGroup: TGroupMini | null;
   targetTopic: TTopicMini | null;
 };
