@@ -7,6 +7,8 @@ import { dateOptionsEN } from "../../consts/dates";
 import { TPost } from "../../types/post";
 import { TTopic } from "../../types/topic";
 import { TUser } from "../../types/user";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
+import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 import UserList from "../UserList/UserList";
 import styles from "./topic.module.css";
@@ -40,11 +42,7 @@ function Topic() {
     ? new Date(data.createdAt).toLocaleDateString("en-EN", dateOptionsEN)
     : "";
 
-  const {
-    data: topicPosts,
-    isLoading: topicLoading,
-    isError: postError,
-  } = useQuery({
+  const { data: topicPosts, isError: postError } = useQuery({
     queryKey: ["topicPosts", id],
     queryFn: async (): Promise<TPost[]> => {
       const topicRequest = postApi.get.postsFromTopicByPage(topicId, 7, 0);
@@ -63,11 +61,7 @@ function Topic() {
     return await response.json();
   };
 
-  const {
-    data: topicMembers,
-    isLoading: membersLoading,
-    isError: membersError,
-  } = useQuery({
+  const { data: topicMembers, isError: membersError } = useQuery({
     queryKey: ["topicMembers", id],
     queryFn: async (): Promise<TUser[]> => {
       const topicRequest = topicApi.get.topicMembers(topicId);
@@ -81,6 +75,14 @@ function Topic() {
       ? `${data?.name} | Experis Connect`
       : "Experis Connect";
   }, [data]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError || postError || membersError) {
+    return <ErrorFetch text="Could not fetch topic data." />;
+  }
 
   return (
     <main>

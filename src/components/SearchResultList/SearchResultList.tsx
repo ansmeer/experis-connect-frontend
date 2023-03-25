@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { TPost, TPostWithReplies } from "../../types/post";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 
 type Props = { search: string | null };
 
@@ -30,9 +31,12 @@ function SearchResultList({ search }: Props) {
     return <Loading />;
   }
 
+  if (isError) {
+    return <ErrorFetch text="Could not fetch search results." />;
+  }
+
   return (
     <>
-      {isError && <div>Could not fetch search results.</div>}
       {hasResults && data ? (
         <PostList initialData={data} fetchData={getMorePosts} />
       ) : (

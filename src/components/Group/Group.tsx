@@ -12,6 +12,7 @@ import PostList from "../PostList/PostList";
 import UserList from "../UserList/UserList";
 import styles from "./group.module.css";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 
 function Group() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -82,7 +83,7 @@ function Group() {
   }
 
   if (isError || membersError || postsError) {
-    return <div>Could not load data</div>;
+    return <ErrorFetch text="Could not load group data." />;
   }
 
   return (

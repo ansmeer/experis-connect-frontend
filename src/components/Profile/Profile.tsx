@@ -18,7 +18,7 @@ function Profile() {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["profile", id],
     queryFn: async (): Promise<TUser> => {
       const userRequest = id
@@ -45,8 +45,8 @@ function Profile() {
     return <Loading />;
   }
 
-  if (error) {
-    return <ErrorFetch />;
+  if (isError) {
+    return <ErrorFetch text="Could not load profile." />;
   }
 
   return (

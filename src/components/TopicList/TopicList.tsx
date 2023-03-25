@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { topicApi } from "../../apis/topicApi";
 import { RootState } from "../../redux/store";
 import { TTopic } from "../../types/topic";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import TopicCard from "../TopicCard/TopicCard";
@@ -38,7 +39,7 @@ function TopicList() {
   }
 
   if (isError) {
-    return <div>Could not load topic list.</div>;
+    return <ErrorFetch text="Could not load topic list." />;
   }
 
   return (

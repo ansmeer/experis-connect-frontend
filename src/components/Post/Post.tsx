@@ -14,6 +14,7 @@ import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 
 type Props = {
   id: number;
@@ -66,7 +67,7 @@ function Post({ id, withReplies, selectPost }: Props) {
   }
 
   if (isError) {
-    return <div>Could not load post.</div>;
+    return <ErrorFetch text="Could not load post." />;
   }
 
   if (!data) {
