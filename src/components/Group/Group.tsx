@@ -11,6 +11,7 @@ import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
 import UserList from "../UserList/UserList";
 import styles from "./group.module.css";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 function Group() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -88,6 +89,11 @@ function Group() {
     <main>
       <div className={styles.info}>
         <p>{data?.name}</p>
+        {data?.private && (
+          <p>
+            Private group <LockOpenIcon fontSize="inherit" />
+          </p>
+        )}
         <p>Founded {createdAtDate}</p>
         <p>{data?.description}</p>
       </div>
