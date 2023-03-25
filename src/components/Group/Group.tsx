@@ -161,7 +161,10 @@ function Group() {
           <UserList data={groupMembers} />
         </>
       )}
-      <Dialog open={open} onClose={handleClose} maxWidth={false}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperProps={{ sx: { padding: "8px" } }}>
         <GroupAddUserForm handleData={addUserToGroup} />
         <button onClick={handleClose} className="cancel">
           <span>Cancel</span>
