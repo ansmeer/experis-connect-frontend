@@ -84,9 +84,7 @@ function PostReplyForm({ handleData }: Props) {
           className={styles.input}
         />
         <div className={styles.buttons}>
-          <button
-            onClick={handleCancelClick}
-            className={styles["button-light"]}>
+          <button onClick={handleCancelClick} className="cancel">
             <span>Cancel</span>
             <CloseOutlinedIcon fontSize="small" />
           </button>

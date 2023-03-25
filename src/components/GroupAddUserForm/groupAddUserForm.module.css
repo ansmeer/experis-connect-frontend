@@ -1,0 +1,25 @@
+form.add-user {
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.add-user label {
+  font-weight: 600;
+}
+
+.add-user select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.error {
+  color: #e50000;
+  text-align: left;
+}
+
+.description {
+  font-size: 0.9em;
+}

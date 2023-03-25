@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams, useSearchParams } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
@@ -13,11 +13,25 @@ import UserList from "../UserList/UserList";
 import styles from "./group.module.css";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import ErrorFetch from "../ErrorFetch/ErrorFetch";
+import Dialog from "@mui/material/Dialog";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import GroupAddUserForm, {
+  GroupAddUserFormData,
+} from "../GroupAddUserForm/GroupAddUserForm";
 
 function Group() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTab = searchParams.get("show") || "posts";
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   if (!id) return <></>;
 
@@ -63,7 +77,11 @@ function Group() {
     return await response.json();
   };
 
-  const { data: groupMembers, isError: membersError } = useQuery({
+  const {
+    data: groupMembers,
+    isError: membersError,
+    refetch: refetchMembers,
+  } = useQuery({
     queryKey: ["groupMembers", id],
     queryFn: async (): Promise<TUser[]> => {
       const groupRequest = groupApi.get.groupMembers(groupId);
@@ -71,6 +89,16 @@ function Group() {
       return await response.json();
     },
   });
+
+  const addUserToGroup = async (formData: GroupAddUserFormData) => {
+    const addUserRequest = groupApi.post.addUserToGroup(
+      data!.id,
+      formData.user
+    );
+    await fetch(addUserRequest.uri, addUserRequest.options);
+    setOpen(false);
+    refetchMembers();
+  };
 
   useEffect(() => {
     document.title = data
@@ -124,8 +152,22 @@ function Group() {
         <PostList initialData={groupPosts} fetchData={getMorePosts} />
       )}
       {selectedTab === "members" && groupMembers && (
-        <UserList data={groupMembers} />
+        <>
+          {data?.private && (
+            <div className={styles["add-members"]}>
+              <button onClick={handleClickOpen}>Add more members</button>
+            </div>
+          )}
+          <UserList data={groupMembers} />
+        </>
       )}
+      <Dialog open={open} onClose={handleClose} maxWidth={false}>
+        <GroupAddUserForm handleData={addUserToGroup} />
+        <button onClick={handleClose} className="cancel">
+          <span>Cancel</span>
+          <CloseOutlinedIcon fontSize="small" />
+        </button>
+      </Dialog>
     </main>
   );
 }

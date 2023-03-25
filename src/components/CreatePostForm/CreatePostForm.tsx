@@ -53,7 +53,7 @@ function CreatePostForm({ handleData }: Props) {
   });
 
   const userQuery = useQuery<TUserMini[]>({
-    queryKey: "user",
+    queryKey: "all-users",
     queryFn: async () => {
       const userRequest = userApi.get.allUsers();
       const response = await fetch(userRequest.uri, userRequest.options);
