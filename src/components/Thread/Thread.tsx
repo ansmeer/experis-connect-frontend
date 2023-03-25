@@ -48,7 +48,7 @@ function Thread() {
     const postRequest = postApi.post.newPost(postToSend);
     await fetch(postRequest.uri, postRequest.options);
 
-    // TODO fix data refresh in all post components
+    window.location.reload(); // TODO is there a better way to refresh?
   };
 
   const handleReplyClick = () => {
