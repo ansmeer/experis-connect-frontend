@@ -109,7 +109,8 @@ function HeaderMenu() {
         MenuListProps={{
           "aria-labelledby": "show-more",
           sx: { padding: "0" },
-        }}>
+        }}
+        sx={{ zIndex: "10000" }}>
         <MenuItem
           onClick={handleGroupsClick}
           sx={{ padding: "0 8px", lineHeight: "1em" }}>
