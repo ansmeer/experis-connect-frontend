@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { TGroupPost } from "../../types/group";
 import styles from "./createGroupForm.module.css";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 type Props = { handleData: (data: TGroupPost) => void };
 
@@ -81,38 +83,46 @@ function CreateGroupFrom({ handleData }: Props) {
         <div className={styles.publicFields}>
           <div className={styles.radioBox}>
             <input
+              className={styles.radioButton}
+              type="radio"
               id="public"
+              value="false"
+              {...register("private")}
+              defaultChecked
+            />
+          </div>
+          <div className={styles.radioText}>
+            <label htmlFor="public" className={styles.radioOption}>
+              <PublicOutlinedIcon fontSize="small" />
+              <div>
+                <div> Public</div>
+                <div className={styles.radioDetails}>
+                  Everyone can see members in the group and what they publish
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div className={styles.privateFields}>
+          <div className={styles.radioBox}>
+            <input
+              className={styles.radioButton}
+              id="private"
               type="radio"
               value="true"
               {...register("private")}
             />
           </div>
           <div className={styles.radioText}>
-            <label htmlFor="public" className={styles.radioOption}>
-              Public
-            </label>
-            <span className={styles.radioDetails}>
-              Everyone can see members in the group and what they publish
-            </span>
-          </div>
-        </div>
-        <div className={styles.privateFields}>
-          <div className={styles.radioBox}>
-            <input
-              id="private"
-              type="radio"
-              value="false"
-              {...register("private")}
-              checked
-            />
-          </div>
-          <div className={styles.radioText}>
             <label htmlFor="private" className={styles.radioOption}>
-              Private
+              <LockOutlinedIcon fontSize="small" />
+              <div>
+                <div> Private</div>
+                <div className={styles.radioDetails}>
+                  Only members can see group members and what they publish
+                </div>
+              </div>
             </label>
-            <span className={styles.radioDetails}>
-              Only members can see group members and what they publish
-            </span>
           </div>
         </div>
       </fieldset>
