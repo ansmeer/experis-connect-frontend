@@ -18,12 +18,19 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import GroupAddUserForm, {
   GroupAddUserFormData,
 } from "../GroupAddUserForm/GroupAddUserForm";
+import Footer from "../Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import { refetchUser } from "../../redux/slices/userSlice";
 
 function Group() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTab = searchParams.get("show") || "posts";
   const { id } = useParams();
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user.details);
+  const isMember = id ? user?.groups.includes(parseInt(id, 10)) : false;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,6 +41,13 @@ function Group() {
   };
 
   if (!id) return <></>;
+
+  const handleJoinClick = async () => {
+    if (!data) return;
+    const joinRequest = groupApi.post.addCurrentUserToGroup(data.id);
+    await fetch(joinRequest.uri, joinRequest.options);
+    dispatch(refetchUser());
+  };
 
   const handlePostsClick = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -115,63 +129,66 @@ function Group() {
   }
 
   return (
-    <main>
-      <div className={styles.info}>
-        <p>{data?.name}</p>
-        {data?.private && (
-          <p>
-            Private group <LockOpenIcon fontSize="inherit" />
-          </p>
-        )}
-        <p>Founded {createdAtDate}</p>
-        <p>{data?.description}</p>
-      </div>
-
-      <nav className={styles.tabs}>
-        <button
-          onClick={handlePostsClick}
-          className={selectedTab === "posts" ? styles.selected : ""}>
-          Posts
-        </button>
-        <button
-          onClick={handleMembersClick}
-          className={selectedTab === "members" ? styles.selected : ""}>
-          Members
-        </button>
-      </nav>
-
-      <h1>
-        {data?.name}:{" "}
-        {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
-      </h1>
-
-      {selectedTab === "posts" && !groupPosts?.length && (
-        <div>There are no posts in this group.</div>
-      )}
-      {selectedTab === "posts" && groupPosts && groupPosts.length > 0 && (
-        <PostList initialData={groupPosts} fetchData={getMorePosts} />
-      )}
-      {selectedTab === "members" && groupMembers && (
-        <>
+    <>
+      <main>
+        <div className={styles.info}>
+          <p>{data?.name}</p>
           {data?.private && (
-            <div className={styles["add-members"]}>
-              <button onClick={handleClickOpen}>Add more members</button>
-            </div>
+            <p>
+              Private group <LockOpenIcon fontSize="inherit" />
+            </p>
           )}
-          <UserList data={groupMembers} />
-        </>
-      )}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{ sx: { padding: "8px" } }}>
-        <GroupAddUserForm handleData={addUserToGroup} />
-        <button onClick={handleClose} className="cancel">
-          <span>Cancel</span>
-          <CloseOutlinedIcon fontSize="small" />
-        </button>
-      </Dialog>
-    </main>
+          <p>Founded {createdAtDate}</p>
+          <p>{data?.description}</p>
+        </div>
+
+        <nav className={styles.tabs}>
+          <button
+            onClick={handlePostsClick}
+            className={selectedTab === "posts" ? styles.selected : ""}>
+            Posts
+          </button>
+          <button
+            onClick={handleMembersClick}
+            className={selectedTab === "members" ? styles.selected : ""}>
+            Members
+          </button>
+        </nav>
+
+        <h1>
+          {data?.name}:{" "}
+          {selectedTab.charAt(0).toUpperCase() + selectedTab.substring(1)}
+        </h1>
+
+        {selectedTab === "posts" && !groupPosts?.length && (
+          <div>There are no posts in this group.</div>
+        )}
+        {selectedTab === "posts" && groupPosts && groupPosts.length > 0 && (
+          <PostList initialData={groupPosts} fetchData={getMorePosts} />
+        )}
+        {selectedTab === "members" && groupMembers && (
+          <>
+            {data?.private && (
+              <div className={styles["add-members"]}>
+                <button onClick={handleClickOpen}>Add more members</button>
+              </div>
+            )}
+            <UserList data={groupMembers} />
+          </>
+        )}
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          PaperProps={{ sx: { padding: "8px" } }}>
+          <GroupAddUserForm handleData={addUserToGroup} />
+          <button onClick={handleClose} className="cancel">
+            <span>Cancel</span>
+            <CloseOutlinedIcon fontSize="small" />
+          </button>
+        </Dialog>
+      </main>
+      {!isMember && <Footer text="Join group" clickHandler={handleJoinClick} />}
+    </>
   );
 }
 
