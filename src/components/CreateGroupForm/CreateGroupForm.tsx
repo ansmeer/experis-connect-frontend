@@ -94,13 +94,13 @@ function CreateGroupFrom({ handleData }: Props) {
           <div className={styles.radioText}>
             <label htmlFor="public" className={styles.radioOption}>
               <PublicOutlinedIcon fontSize="small" />
-              <div className={styles.labelTitle}> Public</div>
+              <div>
+                <div> Public</div>
+                <div className={styles.radioDetails}>
+                  Everyone can see members in the group and what they publish
+                </div>
+              </div>
             </label>
-            <span className={styles.radioDetails}>
-              <label htmlFor="public">
-                Everyone can see members in the group and what they publish
-              </label>
-            </span>
           </div>
         </div>
         <div className={styles.privateFields}>
@@ -115,14 +115,14 @@ function CreateGroupFrom({ handleData }: Props) {
           </div>
           <div className={styles.radioText}>
             <label htmlFor="private" className={styles.radioOption}>
-              <LockOutlinedIcon fontSize="small" />{" "}
-              <div className={styles.labelTitle}> Private</div>
+              <LockOutlinedIcon fontSize="small" />
+              <div>
+                <div> Private</div>
+                <div className={styles.radioDetails}>
+                  Only members can see group members and what they publish
+                </div>
+              </div>
             </label>
-            <span className={styles.radioDetails}>
-              <label htmlFor="private">
-                Only members can see group members and what they publish
-              </label>
-            </span>
           </div>
         </div>
       </fieldset>
