@@ -22,7 +22,7 @@ The aim of this project was to create an Alumni Networking Portal to maintain co
 
 This app is built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/) and [Vite](https://vitejs.dev/). It uses [Redux](https://redux.js.org/) for global state management, [React Router](https://reactrouter.com/), [TanStack Query](https://tanstack.com/query/latest) and other libraries for extended functionality.
 
-Authentication is handled by a [Key Cloak](https://www.keycloak.org) server and implementet useing the [JavaScript adapter](https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter) to follow the [OpenID Connect](https://openid.net/connect/)/[OAuth 2.0](https://oauth.net/2/) standard.
+Authentication is handled by a [Key Cloak](https://www.keycloak.org) server and implemented using the [JavaScript adapter](https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter) to follow the [OpenID Connect](https://openid.net/connect/)/[OAuth 2.0](https://oauth.net/2/) standard.
 
 Code standard is maintained by using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/).
 
