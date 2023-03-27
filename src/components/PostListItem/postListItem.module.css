@@ -39,6 +39,7 @@
 .post-content img {
   max-width: 100%;
   height: auto;
+  margin: 8px auto;
 }
 
 .post-content blockquote {

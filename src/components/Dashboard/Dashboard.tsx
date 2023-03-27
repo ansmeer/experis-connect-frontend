@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { TPost, TPostTargetType } from "../../types/post";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import PostList from "../PostList/PostList";
@@ -73,7 +74,7 @@ function Dashboard() {
   }
 
   if (isError) {
-    return <div>Could not load feed</div>;
+    return <ErrorFetch text="Could not load feed" />;
   }
 
   return (

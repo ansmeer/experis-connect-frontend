@@ -103,6 +103,19 @@ button.light:hover {
   background-color: #ddd;
 }
 
+button.cancel {
+  background-color: var(--very-light-background);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  border-radius: 0;
+}
+
+button.cancel:hover {
+  background-color: var(--very-light-background);
+  border-bottom-color: var(--experis-blue);
+  color: var(--experis-blue);
+}
+
 input,
 textarea {
   padding: 8px;

@@ -53,7 +53,7 @@ function CreatePostForm({ handleData }: Props) {
   });
 
   const userQuery = useQuery<TUserMini[]>({
-    queryKey: "user",
+    queryKey: "all-users",
     queryFn: async () => {
       const userRequest = userApi.get.allUsers();
       const response = await fetch(userRequest.uri, userRequest.options);
@@ -142,7 +142,7 @@ function CreatePostForm({ handleData }: Props) {
     setValue("targetGroup", "");
     setValue("targetUser", "");
   };
-  const handleDmClick = () => {
+  const handleChatClick = () => {
     setSelectedTab("USER");
     setValue("postTarget", "USER");
     setValue("targetTopic", "");
@@ -164,9 +164,9 @@ function CreatePostForm({ handleData }: Props) {
             Topic
           </button>
           <button
-            onClick={handleDmClick}
+            onClick={handleChatClick}
             className={selectedTab === "USER" ? styles.selected : ""}>
-            DM
+            Chat
           </button>
         </div>
       </nav>

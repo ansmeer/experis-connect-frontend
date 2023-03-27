@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { groupApi } from "../../apis/groupApi";
 import { RootState } from "../../redux/store";
 import { TGroup } from "../../types/group";
+import ErrorFetch from "../ErrorFetch/ErrorFetch";
 import Footer from "../Footer/Footer";
-import GroupCard from "../GroupCard/GroupCard";
+import GroupListItem from "../GroupListItem/GroupListItem";
 import Loading from "../Loading/Loading";
 import styles from "./groupList.module.css";
 
@@ -22,7 +23,7 @@ function GroupList() {
   });
 
   const groupList = data?.map((group) => (
-    <GroupCard
+    <GroupListItem
       key={group.id}
       data={group}
       isMember={user?.groups.includes(group.id) || false}
@@ -38,7 +39,7 @@ function GroupList() {
   }
 
   if (isError) {
-    return <div>Could not load group list.</div>;
+    return <ErrorFetch text="Could not load group list." />;
   }
 
   return (

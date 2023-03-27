@@ -132,9 +132,9 @@ function ProfileSettingsForm({ handleData }: Props) {
         />
         <div className={styles.buttons}>
           <button className={styles.profileSettingsButton} type="submit">
-            Save settings
+            <span>Save settings</span>
           </button>
-          <button className={styles.buttonLight} onClick={handleEditClick}>
+          <button className="cancel" onClick={handleEditClick}>
             <span>Cancel</span>
             <CloseOutlinedIcon fontSize="small" />
           </button>

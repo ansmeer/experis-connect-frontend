@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import CreatePost from "../components/CreatePost/CreatePost";
 
 function CreatePostPage() {
-  useEffect(() => {
-    document.title = "Create post | Experis Connect";
-  }, []);
+  document.title = "Create post | Experis Connect";
 
   return <CreatePost />;
 }
