@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { TPost, TPostTargetType } from "../../types/post";
 import ErrorFetch from "../ErrorFetch/ErrorFetch";
@@ -111,7 +111,16 @@ function Dashboard() {
               selectedTab.charAt(0).toUpperCase() +
               selectedTab.substring(1)}
         </h1>
-        {!hasData && <div>Oh wow, so empty!</div>}
+        {!hasData && selectedTab !== "chats" && (
+          <div>
+            It's a bit quiet in here, why don't you join some{" "}
+            <Link to="/groups">groups</Link> or subscribe to some{" "}
+            <Link to="/topics">topics</Link>?
+          </div>
+        )}{" "}
+        {!hasData && selectedTab === "chats" && (
+          <div>You don't have any chats yet.</div>
+        )}
         {hasData && <PostList initialData={data} fetchData={getMorePosts} />}
       </main>
       {selectedTab === "groups" && (
