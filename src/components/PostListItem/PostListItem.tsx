@@ -29,14 +29,20 @@ function PostListItem({ data }: Props) {
           </div>
           <div className={styles["post-description"]}>
             {data.postTarget === "GROUP" && (
-              <Link to={`/groups/${data.targetGroup?.id}`}>
-                {data.targetGroup?.name}
-              </Link>
+              <>
+                Posted in{" "}
+                <Link to={`/groups/${data.targetGroup?.id}`}>
+                  {data.targetGroup?.name}
+                </Link>
+              </>
             )}
             {data.postTarget === "TOPIC" && (
-              <Link to={`/topics/${data.targetTopic?.id}`}>
-                {data.targetTopic?.name}
-              </Link>
+              <>
+                Posted in{" "}
+                <Link to={`/topics/${data.targetTopic?.id}`}>
+                  {data.targetTopic?.name}
+                </Link>
+              </>
             )}
             {data.postTarget === "USER" && (
               <>

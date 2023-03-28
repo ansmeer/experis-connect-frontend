@@ -10,3 +10,10 @@
   right: 0;
   width: 100vw;
 }
+
+.thread-description {
+  font-size: 0.9em;
+  text-align: left;
+  padding: 0 8px 8px 8px;
+  margin-top: -8px;
+}
