@@ -48,7 +48,7 @@ export const loginUser = createAsyncThunk(
 const loginUserFulfilled = (state: UserState, action: PayloadAction<TUser>) => {
   state.error = undefined;
   state.isLoggedIn = true;
-  state.details = action.payload;
+  state.details = { ...action.payload };
 };
 
 // Extra reducers: async registerUser

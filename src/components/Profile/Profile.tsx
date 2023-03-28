@@ -32,6 +32,7 @@ function Profile() {
     cacheTime: 0,
   });
   const isOwnProfile = id === user?.id || !id;
+  const userData = isOwnProfile ? user : data;
 
   const onLogoutClick = () => {
     dispatch(logout());
@@ -39,10 +40,10 @@ function Profile() {
   };
 
   useEffect(() => {
-    document.title = data
-      ? `${data.name} | Experis Connect`
+    document.title = userData
+      ? `${userData.name} | Experis Connect`
       : "Experis Connect";
-  }, [data]);
+  }, [userData]);
 
   if (isLoading) {
     return <Loading />;
@@ -54,7 +55,7 @@ function Profile() {
 
   return (
     <main>
-      <h1>{data && data.name}</h1>
+      <h1>{userData && userData.name}</h1>
       <section className={styles.profile}>
         <div className={styles.editBackground}>
           {isOwnProfile && (
@@ -64,27 +65,31 @@ function Profile() {
           )}
         </div>
         <div className={styles.profilePicture}>
-          {data?.picture && (
-            <img src={data.picture} className={styles.avatar} alt={data.name} />
+          {userData?.picture && (
+            <img
+              src={userData.picture}
+              className={styles.avatar}
+              alt={userData.name}
+            />
           )}
         </div>
         <div className={styles.textBackground}>
-          {data?.name && <div id={styles.username}>{data.name}</div>}
-          {data?.status && (
+          {userData?.name && <div id={styles.username}>{userData.name}</div>}
+          {userData?.status && (
             <div className={styles.profileStatus}>
-              <p>{data.status}</p>
+              <p>{userData.status}</p>
             </div>
           )}
-          {data?.bio && (
+          {userData?.bio && (
             <div className={styles.profileBio}>
               <h2>Bio</h2>
-              <p>{data.bio}</p>
+              <p>{userData.bio}</p>
             </div>
           )}
-          {data?.funFact && (
+          {userData?.funFact && (
             <div className={styles.profileFunfact}>
               <h2>Fun fact</h2>
-              <p>{data.funFact}</p>
+              <p>{userData.funFact}</p>
             </div>
           )}
         </div>
