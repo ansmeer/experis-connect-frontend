@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postApi } from "../../apis/postApi";
 import { dateAndTimeOptionsEN } from "../../consts/dates";
 import { setReplyToPost, showReplyForm } from "../../redux/slices/postSlice";
@@ -23,7 +23,6 @@ type Props = {
 };
 
 function Post({ id, withReplies, selectPost }: Props) {
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const selectedPostId = useSelector(
     (state: RootState) => state.post.replyToPost?.id
@@ -34,9 +33,6 @@ function Post({ id, withReplies, selectPost }: Props) {
     queryFn: async () => {
       const postRequest = postApi.get.postById(id);
       const response = await fetch(postRequest.uri, postRequest.options);
-      if (response.status === 404) {
-        navigate("/404");
-      }
       return await response.json();
     },
   });

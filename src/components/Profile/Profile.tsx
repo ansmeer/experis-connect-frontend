@@ -1,7 +1,7 @@
 import styles from "./profile.module.css";
 import { logout } from "../../redux/slices/userSlice";
 import { TUser } from "../../types/user";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { userApi } from "../../apis/userApi";
 import { useQuery } from "react-query";
 import Loading from "../Loading/Loading";
@@ -15,7 +15,6 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 function Profile() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.details);
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery({
@@ -27,6 +26,10 @@ function Profile() {
       const response = await fetch(userRequest.uri, userRequest.options);
       return await response.json();
     },
+    refetchOnMount: true,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: true,
+    cacheTime: 0,
   });
   const isOwnProfile = id === user?.id || !id;
 
