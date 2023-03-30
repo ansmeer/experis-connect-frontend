@@ -71,7 +71,7 @@ function CreateTopicForm({ handleData }: Props) {
             <label htmlFor="color" className={styles.labelStyle}>
               Color
             </label>
-            <span className={styles.labelDetails}>Select group color</span>
+            <span className={styles.labelDetails}>Select topic color</span>
           </div>
           <input
             id="color"
