@@ -54,6 +54,13 @@
   border: none;
 }
 
+.colorWrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: end;
+  border-radius: 8px;
+}
+
 .labelDetails {
   font-weight: 400;
   font-size: 0.9em;

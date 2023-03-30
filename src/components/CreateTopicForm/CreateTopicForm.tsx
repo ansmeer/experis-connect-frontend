@@ -8,7 +8,7 @@ function CreateTopicForm({ handleData }: Props) {
   const values = {
     name: "",
     description: "",
-    color: "#000000",
+    color: "#f4ee65",
   };
   const {
     register,
@@ -66,16 +66,20 @@ function CreateTopicForm({ handleData }: Props) {
           aria-invalid={errors.description ? "true" : "false"}
         />
 
-        <label htmlFor="color" className={styles.labelStyle}>
-          Color
-        </label>
-        <span className={styles.labelDetails}>Select group color</span>
-        <input
-          id="color"
-          type="color"
-          className={styles.colorPicker}
-          {...register("color")}
-        />
+        <div className={styles.colorWrapper}>
+          <div>
+            <label htmlFor="color" className={styles.labelStyle}>
+              Color
+            </label>
+            <span className={styles.labelDetails}>Select group color</span>
+          </div>
+          <input
+            id="color"
+            type="color"
+            className={styles.colorPicker}
+            {...register("color")}
+          />
+        </div>
       </fieldset>
       <div>
         <button type="submit" className={styles.submitButton}>
